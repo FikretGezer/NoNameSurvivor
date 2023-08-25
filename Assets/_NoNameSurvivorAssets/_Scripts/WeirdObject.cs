@@ -8,23 +8,36 @@ namespace FikretGezer
 {
     public class WeirdObject : MonoBehaviour
     {
-        private Action<WeirdObject> _killAction;
-        public void Init(Action<WeirdObject> killAction)
-        {
-            _killAction = killAction;
+        public Action OnThisSpawned;
+        [SerializeField] private Gradient _gradient;
+        [SerializeField] private Transform bulletPoint;
+        [SerializeField] private float _speed = 1f;
+        private Renderer _renderer;
+        private Camera _camera;
+        private Rigidbody _rb;
+
+        private void Awake() {
+            _renderer = GetComponent<Renderer>();
+            _camera = Camera.main;
+            _rb = GetComponent<Rigidbody>();
         }
-        private void OnCollisionEnter(Collision other) {
-            if (other.gameObject.layer == 6)
+        private void OnEnable() {
+            StartCoroutine(nameof(ObjectColorOverTime));   
+        }
+        private void Update() {
+            if(!_camera.IsObjectVisible(_renderer)) gameObject.SetActive(false); //If object is out of camera view, set active false;
+            //transform.Translate(bulletPoint.forward * _speed * Time.deltaTime);      
+            OnThisSpawned?.Invoke();
+        }
+        IEnumerator ObjectColorOverTime()
+        {
+            var elapsedTime = 0f;
+            while(elapsedTime < 1f)
             {
-                //StartCoroutine(nameof(Timer));
-                //_killAction(this);
-                ObjectPoolManager.ReturnObjectToPool(gameObject);
+                elapsedTime += Time.deltaTime;
+                _renderer.material.color = _gradient.Evaluate(elapsedTime);
+                yield return null;
             }
-        }
-        IEnumerator Timer()
-        {
-            _killAction(this);
-            yield return new WaitForSeconds(1f);
         }
     }
 }

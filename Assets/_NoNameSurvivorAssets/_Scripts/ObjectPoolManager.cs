@@ -1,53 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 namespace FikretGezer
 {
     public class ObjectPoolManager : MonoBehaviour
     {
-        public static List<PooledObjectInfo> ObjectPools = new List<PooledObjectInfo>();
-
-        public static GameObject SpawnObject(GameObject objectToSpawn, Vector3 pos)
-        {
-            PooledObjectInfo pool = ObjectPools.Find(p => p.LookupString == objectToSpawn.name);
-
-            if(pool == null)
-            {
-                pool = new PooledObjectInfo() { LookupString = objectToSpawn.name};
-                ObjectPools.Add(pool);
-            }
-
-            GameObject spawnableObj = pool.InactiveObjects.FirstOrDefault();
-
-            if(spawnableObj == null)
-            {
-                spawnableObj = Instantiate(objectToSpawn);
-                spawnableObj.transform.position = pos + Random.insideUnitSphere * 10f;
-            }
-            else
-            {
-                spawnableObj.transform.position = pos + Random.insideUnitSphere * 10f;
-                pool.InactiveObjects.Remove(spawnableObj);
-                spawnableObj.SetActive(true);
-            }
-            return spawnableObj;
+        public static ObjectPoolManager Instance;
+        private List<GameObject> pooledObject;
+        [SerializeField] private WeirdObject objectToPool;
+        [SerializeField] private int amountToPool;
+        private void Awake() {
+            if (Instance == null) Instance = this;
         }
-        public static void ReturnObjectToPool(GameObject obj)
+        private void Start() {
+            BeginningInstantiater();
+        }
+        private void BeginningInstantiater()
         {
-            string goName = obj.name.Substring(0, obj.name.Length - 7);
-            PooledObjectInfo pool = ObjectPools.Find(p => p.LookupString == goName);
-            if(pool != null)
+            pooledObject = new List<GameObject>();
+            GameObject tmp;
+            string parentName = objectToPool.name;
+            GameObject parent = new GameObject();
+            parent.name = parentName + "s Parent";
+            for (int i = 0; i < amountToPool; i++)
             {
-                obj.SetActive(false);
-                pool.InactiveObjects.Add(obj);
+                tmp = Instantiate(objectToPool.gameObject);
+                tmp.SetActive(false);
+                tmp.transform.parent = parent.transform;
+                pooledObject.Add(tmp);
             }
         }
-    }
-    public class PooledObjectInfo
-    {
-        public string LookupString;
-        public List<GameObject> InactiveObjects = new List<GameObject>();
+        public GameObject GetPooledObject()
+        {
+            for (int i = 0; i < amountToPool; i++)
+            {
+                if(!pooledObject[i].activeInHierarchy)
+                {
+                    return pooledObject[i];
+                }
+            }
+            return null;
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace FikretGezer
         [SerializeField] private float _jumpSpeed = -2f;
         [SerializeField] private float _fallSpeed = 2f;
         [SerializeField] private Transform _object;
+        [SerializeField] private Transform _target;
 
         [Header("Gravity Things")]
         [SerializeField] private float _gravity = -9.81f;
@@ -22,6 +23,7 @@ namespace FikretGezer
         private CharacterController _characterController;
         private Vector3 _velocity;
         private Camera _cam;
+        private const float TAU = 6.28318530718f;
         
         private bool _isGrounded;
         private bool _isJumping;
@@ -38,7 +40,8 @@ namespace FikretGezer
 
             Controls();
             Moving(hor, ver);
-            RotateCharacter();
+            //RotateCharacterWithMouse();
+            RotateCharacterToEnemy();
             Jumping();
         }
         private void Controls()
@@ -69,7 +72,7 @@ namespace FikretGezer
             Vector3 move = new Vector3(hor, 0, ver);
             _characterController.Move(move * _moveSpeed * Time.deltaTime);
         }
-        private void RotateCharacter()
+        private void RotateCharacterWithMouse()
         {
             Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _groundLayer))
@@ -79,6 +82,37 @@ namespace FikretGezer
             var pos = _object.transform.position;
             pos.y = transform.position.y;
             transform.LookAt(pos);
+        }
+        private void RotateCharacterToEnemy()
+        {
+            var dir = (_target.position - transform.position).normalized;
+            
+            if(_target.gameObject.activeInHierarchy)
+            {
+                var rot = Quaternion.LookRotation(dir);
+                var rotY = rot.eulerAngles.y;
+
+                var limitRot = Mathf.Rad2Deg * TAU; // 360 degrees total
+                limitRot = limitRot / 2; // Every player can rotate inside of their 180 degrees area
+                var perPlayer = limitRot / 2; // We got 0 as a center and player can rotate between -perPlayer & perPlayer which means for this -90f & 90f
+                                              
+
+                if(rotY > 180f) 
+                {
+                   rotY -= 360f;
+                }
+                Debug.Log(rotY);
+                if(rotY >= -perPlayer && rotY <= perPlayer)
+                {
+                    var pos = _target.position;
+                    pos.y = transform.position.y;
+                    transform.LookAt(pos);
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Vector3.zero), 5f * Time.deltaTime);
+                }
+            }
         }
         private bool IsGrounded()
         {
