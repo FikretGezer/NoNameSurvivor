@@ -18,7 +18,8 @@ namespace FikretGezer
         }
         private void FollowPlayer()
         {
-            var posPlayer = _playerBody.position;
+            //var posPlayer = _playerBody.position;
+            var posPlayer = CharacterSpawner.Instance._position;
             posPlayer.y = transform.position.y;
             posPlayer += _distanceBetweenPlayerAndCamera;
 
