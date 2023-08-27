@@ -11,3 +11,4 @@
 *.fx linguist-detectable=false
 *.fxh linguist-detectable=false
 *.hlsli linguist-detectable=false
+*.mathematica linguist-detectable=false
