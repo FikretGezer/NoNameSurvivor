@@ -13,12 +13,10 @@
 *.hlsli linguist-detectable=false
 *.mathematica linguist-detectable=false
 *.cdf linguist-detectable=false
+*.ma linguist-detectable=false
 *.m linguist-detectable=false
- /*- ".cdf"
-  - ".m"
-  - ".ma"
-  - ".mt"
-  - ".nb"
-  - ".nbp"
-  - ".wl"
-  - ".wlt"*/
+*.mt linguist-detectable=false
+*.nb linguist-detectable=false
+*.nbp linguist-detectable=false
+*.wl linguist-detectable=false
+*.wlt linguist-detectable=false
