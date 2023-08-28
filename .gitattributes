@@ -1,2 +1,22 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+*.cs linguist-detectable=true
+*.asax linguist-detectable=false
+*.asp linguist-detectable=false
+*.ashx linguist-detectable=false
+*.asmx linguist-detectable=false
+*.aspx linguist-detectable=false
+*.axd linguist-detectable=false
+*.shader linguist-detectable=false
+*.hlsl linguist-detectable=false
+*.cginc linguist-detectable=false
+*.fx linguist-detectable=false
+*.fxh linguist-detectable=false
+*.hlsli linguist-detectable=false
+*.mathematica linguist-detectable=false
+*.cdf linguist-detectable=false
+*.ma linguist-detectable=false
+*.m linguist-detectable=false
+*.mt linguist-detectable=false
+*.nb linguist-detectable=false
+*.nbp linguist-detectable=false
+*.wl linguist-detectable=false
+*.wlt linguist-detectable=false
