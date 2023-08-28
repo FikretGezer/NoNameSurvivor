@@ -58,12 +58,15 @@ namespace FikretGezer
             {
                 _target = ChooseTarget();
             }
-            if(_target.gameObject.activeInHierarchy)
-            {                             
-                var pos = _target.position;
-                pos.y = transform.position.y;
-                transform.LookAt(pos);
-            }
+            else
+            {
+                if(_target.gameObject.activeInHierarchy)
+                {                             
+                    var pos = _target.position;
+                    pos.y = transform.position.y;
+                    transform.LookAt(pos);
+                }
+            }       
         }
     }
 }
