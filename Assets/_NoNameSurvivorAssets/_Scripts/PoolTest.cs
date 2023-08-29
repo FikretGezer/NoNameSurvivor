@@ -7,7 +7,6 @@ namespace FikretGezer
 {
     public class PoolTest : MonoBehaviour
     {
-        [SerializeField] private float sizeOfRadius = 3f;
         [SerializeField] private Transform bulletPoint;
         [SerializeField] private Transform target;
         [SerializeField] private Transform cube;
@@ -22,20 +21,14 @@ namespace FikretGezer
             {
                 obj.transform.position = bulletPoint.position;//transform.position + Random.insideUnitSphere * sizeOfRadius;
                 obj.gameObject.SetActive(true);
-                obj.GetComponent<WeirdObject>().OnThisSpawned = Deneme;
+                obj.GetComponent<WeirdObject>().OnThisSpawned = ShootBullet;
             }
-            void Deneme() 
+            void ShootBullet() 
             {
                 var dir = (target.position - bulletPoint.position).normalized;
                 dir.y = 0f;
-                obj.GetComponent<Rigidbody>().AddForce(dir * _speed);
+                obj.transform.Translate(dir * _speed * Time.deltaTime);
             }
-        }
-        private void AddSpeed()
-        {
-            var dir = (cube.position - bulletPoint.position).normalized;
-            //obj.GetComponent<Rigidbody>().AddForce(dir * _speed);
-
         }
     }
 }

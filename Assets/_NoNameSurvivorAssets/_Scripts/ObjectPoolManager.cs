@@ -14,7 +14,7 @@ namespace FikretGezer
             if (Instance == null) Instance = this;
         }
         private void Start() {
-            BeginningInstantiater();
+            BeginningInstantiater(); //Creates pooled objects in the beginning
         }
         private void BeginningInstantiater()
         {
@@ -41,6 +41,10 @@ namespace FikretGezer
                 }
             }
             return null;
+        }
+        public void ReturnToThePool(GameObject pooledObject)
+        {
+            pooledObject.SetActive(false);
         }
     }
 }

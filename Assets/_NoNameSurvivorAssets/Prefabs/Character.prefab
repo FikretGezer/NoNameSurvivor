@@ -220,15 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 7
-  _jumpHeight: 4
-  _jumpSpeed: -2
-  _fallSpeed: 2
-  _gravity: -9.81
-  _groundObject: {fileID: 1153531315784371296}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  _groundDistance: 0.4
+  _target: {fileID: 0}
+  _lerpSpeed: 10
 --- !u!1 &8382549409308378591
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,8 +234,9 @@ GameObject:
   - component: {fileID: 6621196460566105891}
   - component: {fileID: 2899476679807097133}
   - component: {fileID: 2635779862189631184}
+  - component: {fileID: 5192698832771356974}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,3 +329,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5192698832771356974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382549409308378591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a23b40b44f93904e853dfad894d4b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPoint: {fileID: 3824928106741246077}
+  target: {fileID: 0}
+  speed: 5

@@ -25,8 +25,10 @@ namespace FikretGezer
             StartCoroutine(nameof(ObjectColorOverTime));   
         }
         private void Update() {
-            if(!_camera.IsObjectVisible(_renderer)) gameObject.SetActive(false); //If object is out of camera view, set active false;
-            //transform.Translate(bulletPoint.forward * _speed * Time.deltaTime);      
+            if(!_camera.IsObjectVisible(_renderer))
+            {
+                ObjectPoolManager.Instance.ReturnToThePool(gameObject); //If object is out of camera view, returns to the pool;
+            }    
             OnThisSpawned?.Invoke();
         }
         IEnumerator ObjectColorOverTime()

@@ -7,14 +7,16 @@ namespace FikretGezer
     public abstract class PlayerBase : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed = 3f;
-        [SerializeField] private Transform _target;
+        [SerializeField] public Transform _target;
+        [SerializeField] private float _lerpSpeed = 1f;
         
 
         private CharacterController _characterController;
         private Camera _cam;
         
-
+        public static PlayerBase Instance;
         public virtual void Awake() {
+            if(Instance == null) Instance = this;
             _characterController = GetComponent<CharacterController>();
             _cam = Camera.main;
         }
@@ -31,6 +33,11 @@ namespace FikretGezer
             Moving(hor, ver);
             //RotateCharacterWithMouse();
             RotateCharacterToEnemy();
+            if(Input.GetMouseButtonDown(0))
+            {
+                _target.gameObject.SetActive(false);
+                _target = null;
+            }
         }
         private void Controls()
         {
@@ -64,7 +71,8 @@ namespace FikretGezer
                 {                             
                     var pos = _target.position;
                     pos.y = transform.position.y;
-                    transform.LookAt(pos);
+                    var dir = (pos - transform.position).normalized;
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), _lerpSpeed * Time.deltaTime);
                 }
             }       
         }
