@@ -5,19 +5,7 @@ using UnityEngine;
 namespace FikretGezer
 {
     public class PlayerController : PlayerBase
-    {
-        // public override Transform ChooseTarget()
-        // {
-        //     Transform _target;
-        //     var selectionIndex = Random.Range(0, EnemySpawnController.Instance.enemies.Count);
-        //     _target = EnemySpawnController.Instance.enemies[selectionIndex].transform;
-        //     if(!EnemySpawnController.Instance.selectedEnemies.Contains(_target.gameObject))
-        //     {
-        //         EnemySpawnController.Instance.selectedEnemies.Add(EnemySpawnController.Instance.enemies[selectionIndex]);
-        //         return _target;
-        //     }
-        //     return null;
-        // }     
+    {   
         public override Transform ChooseTarget()
         {
             Transform _target = null;

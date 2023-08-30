@@ -6,9 +6,9 @@ namespace FikretGezer
 {
     public class FastShooter : ShootingBase
     {
-        public override void Start()
+        public override void Update()
         {
-            base.Start();
+            base.Update();
         }
     }
 }

@@ -8,43 +8,72 @@ namespace FikretGezer
     {
         [SerializeField] protected Transform bulletPoint;
         [SerializeField] protected Transform target;
-        [SerializeField] protected float speed;
+        [SerializeField] protected float bulletSpeed;
+        [SerializeField] protected float bulletCoolDown = 1f;
+        private bool didShoot;
 
-        public virtual void Start() {
-            ChooseTarget();
-            InvokeRepeating(nameof(Spawn), 0.2f, 1f);
-        }
         public virtual void Update()
         {
             ChooseTarget();
+            if(target != null)
+            {
+                if(!didShoot)
+                {
+                    StartCoroutine(Timer(bulletCoolDown));
+                    didShoot = true;
+                }
+            }
         }
         private void ChooseTarget()
         {
             if(target == null)
             {
-                target = PlayerBase.Instance._target;
+                target = transform.parent.GetComponent<PlayerController>()._target;
+            }
+            else
+            {
+                if(!target.gameObject.activeInHierarchy)
+                    target = null;
             }
         }
-        private void Spawn()
+        private void Shoot()
         {
-            GameObject obj = ObjectPoolManager.Instance.GetPooledObject();
+            ChooseTarget();
             if(target != null)
             {
-                if(obj != null)
+                var dir = (target.position - transform.parent.position).normalized;
+                var bullet = ObjectPoolManager.Instance.GetPooledObject();
+                if(bullet != null)
                 {
-                    obj.transform.position = bulletPoint.position;//transform.position + Random.insideUnitSphere * sizeOfRadius;
-                    obj.gameObject.SetActive(true);
-                    obj.GetComponent<WeirdObject>().OnThisSpawned = ShootBullet;
+                    bullet.SetActive(true);
+                    bullet.transform.position = bulletPoint.position;
+                    bullet.GetComponent<WeirdObject>().ShootThis(Fire);
                 }
-                void ShootBullet() 
+
+                void Fire()
                 {
-                    var dir = (target.position - bulletPoint.position).normalized;
-                    dir.y = 0f;
-                    obj.transform.Translate(dir * speed * Time.deltaTime);
+                    bullet.transform.Translate(dir * bulletSpeed * Time.deltaTime);
                 }
             }
-            
         }
-           
+        IEnumerator Timer(float coolDown)
+        {
+            var elapsedTime = 0f;
+            Shoot();
+            while(elapsedTime < coolDown)
+            {
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            didShoot = false;
+        }
+        private void OnDrawGizmos() {
+            if(target != null)
+            {
+                var dir = target.position - transform.parent.position;
+                Gizmos.DrawLine(transform.parent.position,transform.parent.position + dir);
+            }
+
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace FikretGezer
         [SerializeField] private float _moveSpeed = 3f;
         [SerializeField] public Transform _target;
         [SerializeField] private float _lerpSpeed = 1f;
-        
+        [HideInInspector] public Vector3 direction;
 
         private CharacterController _characterController;
         private Camera _cam;
@@ -33,11 +33,9 @@ namespace FikretGezer
             Moving(hor, ver);
             //RotateCharacterWithMouse();
             RotateCharacterToEnemy();
-            if(Input.GetMouseButtonDown(0))
-            {
-                _target.gameObject.SetActive(false);
+
+            if(!_target.gameObject.activeInHierarchy)
                 _target = null;
-            }
         }
         private void Controls()
         {
@@ -71,8 +69,8 @@ namespace FikretGezer
                 {                             
                     var pos = _target.position;
                     pos.y = transform.position.y;
-                    var dir = (pos - transform.position).normalized;
-                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), _lerpSpeed * Time.deltaTime);
+                    direction = (pos - transform.position).normalized;
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), _lerpSpeed * Time.deltaTime);
                 }
             }       
         }

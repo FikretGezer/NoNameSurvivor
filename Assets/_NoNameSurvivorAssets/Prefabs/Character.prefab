@@ -222,6 +222,7 @@ MonoBehaviour:
   _moveSpeed: 7
   _target: {fileID: 0}
   _lerpSpeed: 10
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &8382549409308378591
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,4 +344,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPoint: {fileID: 3824928106741246077}
   target: {fileID: 0}
-  speed: 5
+  bulletSpeed: 20
+  bulletCoolDown: 0.2

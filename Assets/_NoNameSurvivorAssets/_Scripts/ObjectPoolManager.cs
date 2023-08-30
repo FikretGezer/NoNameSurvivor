@@ -10,8 +10,14 @@ namespace FikretGezer
         private List<GameObject> pooledObject;
         [SerializeField] private WeirdObject objectToPool;
         [SerializeField] private int amountToPool;
+        private GameObject parentOfBullets;
         private void Awake() {
             if (Instance == null) Instance = this;
+
+            //Create parent and name it
+            parentOfBullets = new GameObject();
+            string parentName = objectToPool.name;
+            parentOfBullets.name = parentName + "s Parent";
         }
         private void Start() {
             BeginningInstantiater(); //Creates pooled objects in the beginning
@@ -19,17 +25,19 @@ namespace FikretGezer
         private void BeginningInstantiater()
         {
             pooledObject = new List<GameObject>();
-            GameObject tmp;
-            string parentName = objectToPool.name;
-            GameObject parent = new GameObject();
-            parent.name = parentName + "s Parent";
             for (int i = 0; i < amountToPool; i++)
             {
-                tmp = Instantiate(objectToPool.gameObject);
-                tmp.SetActive(false);
-                tmp.transform.parent = parent.transform;
-                pooledObject.Add(tmp);
+                Spawn();
             }
+        }
+        private GameObject Spawn()
+        {
+            GameObject tmp;
+            tmp = Instantiate(objectToPool.gameObject);
+            tmp.SetActive(false);
+            tmp.transform.parent = parentOfBullets.transform;
+            pooledObject.Add(tmp);
+            return tmp;
         }
         public GameObject GetPooledObject()
         {
@@ -39,8 +47,9 @@ namespace FikretGezer
                 {
                     return pooledObject[i];
                 }
-            }
-            return null;
+            }   
+            return Spawn();
+            //return null;
         }
         public void ReturnToThePool(GameObject pooledObject)
         {

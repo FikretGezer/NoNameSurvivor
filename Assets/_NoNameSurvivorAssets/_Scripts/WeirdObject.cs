@@ -1,25 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace FikretGezer
 {
     public class WeirdObject : MonoBehaviour
     {
-        public Action OnThisSpawned;
+        private Action OnShoot = delegate{};
         [SerializeField] private Gradient _gradient;
-        [SerializeField] private Transform bulletPoint;
-        [SerializeField] private float _speed = 1f;
         private Renderer _renderer;
         private Camera _camera;
-        private Rigidbody _rb;
-
+        
         private void Awake() {
             _renderer = GetComponent<Renderer>();
             _camera = Camera.main;
-            _rb = GetComponent<Rigidbody>();
         }
         private void OnEnable() {
             StartCoroutine(nameof(ObjectColorOverTime));   
@@ -28,8 +23,19 @@ namespace FikretGezer
             if(!_camera.IsObjectVisible(_renderer))
             {
                 ObjectPoolManager.Instance.ReturnToThePool(gameObject); //If object is out of camera view, returns to the pool;
-            }    
-            OnThisSpawned?.Invoke();
+            }  
+            OnShoot.Invoke();
+        }
+        public void ShootThis(Action shoot)
+        {
+            OnShoot = shoot;
+        }
+        private void OnTriggerEnter(Collider other) {
+            if(other.gameObject.tag == "enemy")
+            {
+                ObjectPoolManager.Instance.ReturnToThePool(gameObject);
+                other.GetComponent<IDamageable>().TakeDamage();
+            }
         }
         IEnumerator ObjectColorOverTime()
         {

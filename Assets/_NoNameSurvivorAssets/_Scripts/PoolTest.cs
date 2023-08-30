@@ -21,7 +21,7 @@ namespace FikretGezer
             {
                 obj.transform.position = bulletPoint.position;//transform.position + Random.insideUnitSphere * sizeOfRadius;
                 obj.gameObject.SetActive(true);
-                obj.GetComponent<WeirdObject>().OnThisSpawned = ShootBullet;
+                //obj.GetComponent<WeirdObject>().OnThisSpawned = ShootBullet;
             }
             void ShootBullet() 
             {
