@@ -34,8 +34,7 @@ namespace FikretGezer
             //RotateCharacterWithMouse();
             RotateCharacterToEnemy();
 
-            if(!_target.gameObject.activeInHierarchy)
-                _target = null;
+            
         }
         private void Controls()
         {
@@ -59,12 +58,15 @@ namespace FikretGezer
         public abstract Transform ChooseTarget();
         private void RotateCharacterToEnemy()
         {            
+            if(_target != null && !_target.gameObject.activeInHierarchy)
+                _target = null;
+
             if(_target == null)
             {
                 _target = ChooseTarget();
             }
             else
-            {
+            {              
                 if(_target.gameObject.activeInHierarchy)
                 {                             
                     var pos = _target.position;

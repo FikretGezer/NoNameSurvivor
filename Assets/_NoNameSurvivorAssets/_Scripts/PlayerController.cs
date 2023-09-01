@@ -6,6 +6,11 @@ namespace FikretGezer
 {
     public class PlayerController : PlayerBase
     {   
+        private Camera _camera;
+        public override void Awake() {
+            base.Awake();   
+            _camera = Camera.main;
+        }
         public override Transform ChooseTarget()
         {
             Transform _target = null;
