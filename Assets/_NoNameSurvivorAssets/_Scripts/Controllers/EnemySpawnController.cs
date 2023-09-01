@@ -12,6 +12,7 @@ namespace FikretGezer
         [SerializeField] private int _spawnCount = 0;
         [SerializeField] private float _sizeOfSpawnArea = 20;
         [SerializeField] private MeshRenderer _groundMeshRenderer;
+        [SerializeField] private float timePerSpawn = 1f;
         public List<GameObject> enemies = new List<GameObject>();
         public List<GameObject> selectedEnemies = new List<GameObject>();
         private bool gotPooledObject;
@@ -39,15 +40,22 @@ namespace FikretGezer
             
             if(!gotPooledObject)
             {
-                StartCoroutine(SpawnTimer(2f));
+                StartCoroutine(SpawnTimer(timePerSpawn));
             }
         }
         private void MakeActive()
         {
-            int count = Random.Range(5, 8);
+            int count = Random.Range(10, 15);
             for (int i = 0; i < count; i++)
             {
-                GetPooledObject()?.SetActive(true);
+                var obj = GetPooledObject();
+                if(obj != null)
+                {
+                    obj.SetActive(true);
+                    float x = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
+                    float z = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
+                    obj.transform.position = new Vector3(x, 1f, z);
+                }
             }
         }
         IEnumerator SpawnTimer(float maxTime)

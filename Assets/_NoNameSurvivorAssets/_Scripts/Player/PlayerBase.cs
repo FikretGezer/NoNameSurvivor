@@ -7,12 +7,13 @@ namespace FikretGezer
     public abstract class PlayerBase : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed = 3f;
+        //[SerializeField] public Transform _target;
         [SerializeField] public Transform _target;
         [SerializeField] private float _lerpSpeed = 1f;
         [HideInInspector] public Vector3 direction;
 
         private CharacterController _characterController;
-        private Camera _cam;
+        protected Camera _cam;
         
         public static PlayerBase Instance;
         public virtual void Awake() {
@@ -20,24 +21,15 @@ namespace FikretGezer
             _characterController = GetComponent<CharacterController>();
             _cam = Camera.main;
         }
-        public virtual void Start() {
-            //_target = GameObject.FindGameObjectWithTag("target").transform;
-        }
         
         public virtual void Update() {
             
             float hor = Input.GetAxis("Horizontal");
             float ver = Input.GetAxis("Vertical");
 
-            Controls();
             Moving(hor, ver);
+            TargetTheEnemy();            
             //RotateCharacterWithMouse();
-            RotateCharacterToEnemy();
-
-            
-        }
-        private void Controls()
-        {
         }
         private void Moving(float hor, float ver)
         {
@@ -56,14 +48,12 @@ namespace FikretGezer
             transform.LookAt(pos);
         }*/
         public abstract Transform ChooseTarget();
-        private void RotateCharacterToEnemy()
+        private void TargetTheEnemy()
         {            
-            if(_target != null && !_target.gameObject.activeInHierarchy)
-                _target = null;
-
             if(_target == null)
             {
                 _target = ChooseTarget();
+                Debug.Log("Selected");
             }
             else
             {              
@@ -71,8 +61,13 @@ namespace FikretGezer
                 {                             
                     var pos = _target.position;
                     pos.y = transform.position.y;
+                    //transform.LookAt(pos);
                     direction = (pos - transform.position).normalized;
                     transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), _lerpSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    _target = null;
                 }
             }       
         }

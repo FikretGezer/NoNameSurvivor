@@ -6,10 +6,8 @@ namespace FikretGezer
 {
     public class PlayerController : PlayerBase
     {   
-        private Camera _camera;
         public override void Awake() {
             base.Awake();   
-            _camera = Camera.main;
         }
         public override Transform ChooseTarget()
         {
@@ -17,7 +15,7 @@ namespace FikretGezer
             float minDist = 100000f;
             foreach(var trgt in EnemySpawnController.Instance.enemies)
             {
-                if(!EnemySpawnController.Instance.selectedEnemies.Contains(trgt.gameObject))
+                if(trgt.activeInHierarchy && !EnemySpawnController.Instance.selectedEnemies.Contains(trgt.gameObject))
                 {
                     var dist = (trgt.transform.position - transform.position).sqrMagnitude;
                     if(dist < minDist)
@@ -25,11 +23,22 @@ namespace FikretGezer
                         minDist = dist;
                         _target = trgt.transform;
                     }
-                }                
+                }
+                
+                // if(!EnemySpawnController.Instance.selectedEnemies.Contains(trgt.gameObject))
+                // {
+                //     var dist = (trgt.transform.position - transform.position).sqrMagnitude;
+                //     if(dist < minDist)
+                //     {
+                //         minDist = dist;
+                //         _target = trgt.transform;
+                //     }
+                // }                
             }
             if(_target != null)
                 EnemySpawnController.Instance.selectedEnemies.Add(_target.gameObject);
             return _target;
-        }  
+        }
+         
     }
 }
