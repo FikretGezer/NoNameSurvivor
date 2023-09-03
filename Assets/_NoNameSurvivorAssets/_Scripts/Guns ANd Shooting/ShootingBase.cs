@@ -8,7 +8,7 @@ namespace FikretGezer
     {
         [SerializeField] protected Transform bulletPoint;
         [SerializeField] protected Transform target;
-        [SerializeField] protected float bulletSpeed;
+        [field:SerializeField] protected float bulletSpeed;
         [SerializeField] protected float bulletCoolDown = 1f;
         private bool didShoot;
 

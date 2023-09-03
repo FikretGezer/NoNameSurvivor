@@ -7,9 +7,10 @@ namespace FikretGezer
     public abstract class EnemyBase : MonoBehaviour, IDamageable
     {
         [field:SerializeField] public float Health {get;set;}
+        [field:SerializeField] public float Speed => 0.5f;
         public virtual void Update() {
             var dir = CharacterSpawner.Instance._position - transform.position;
-            transform.Translate(dir * 0.5f * Time.deltaTime);
+            transform.Translate(dir * Speed * Time.deltaTime);
         }
         public void TakeDamage()
         {

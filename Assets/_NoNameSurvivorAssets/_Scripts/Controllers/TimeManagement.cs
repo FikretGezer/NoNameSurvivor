@@ -29,7 +29,7 @@ namespace FikretGezer
                 reducedTime -= Time.deltaTime;
                 yield return null;
             }
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             isRoundStarted = false;
         }
     }

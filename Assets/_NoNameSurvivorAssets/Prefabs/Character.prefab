@@ -345,4 +345,4 @@ MonoBehaviour:
   bulletPoint: {fileID: 3824928106741246077}
   target: {fileID: 0}
   bulletSpeed: 20
-  bulletCoolDown: 0.2
+  bulletCoolDown: 1
