@@ -154,11 +154,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2543068444057984508}
+  - component: {fileID: 7106779001160101768}
   - component: {fileID: 5479755875039925256}
   - component: {fileID: -287504899613272160}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,6 +182,27 @@ Transform:
   - {fileID: 1323104111379929088}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7106779001160101768
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7337104611988155941}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.72, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &5479755875039925256
 CharacterController:
   m_ObjectHideFlags: 0
@@ -222,7 +244,7 @@ MonoBehaviour:
   _moveSpeed: 7
   _target: {fileID: 0}
   _lerpSpeed: 10
-  direction: {x: 0, y: 0, z: 0}
+  <Health>k__BackingField: 10
 --- !u!1 &8382549409308378591
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,3 +368,4 @@ MonoBehaviour:
   target: {fileID: 0}
   bulletSpeed: 20
   bulletCoolDown: 1
+  GivingDamage: 1

@@ -9,6 +9,7 @@ namespace FikretGezer
     {
         private Action OnShoot = delegate{};
         [SerializeField] private Gradient _gradient;
+
         private Renderer _renderer;
         private Camera _camera;
         
@@ -34,7 +35,7 @@ namespace FikretGezer
             if(other.gameObject.tag == "enemy")
             {
                 ObjectPoolManager.Instance.ReturnToThePool(gameObject);
-                other.GetComponent<IDamageable>().TakeDamage();
+                other.GetComponent<IDamageable>().TakeDamage(1f);
             }
         }
         IEnumerator ObjectColorOverTime()

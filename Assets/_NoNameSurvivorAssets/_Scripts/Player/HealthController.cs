@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -11,37 +10,37 @@ namespace FikretGezer
         [SerializeField] private Image healthImage;
         [SerializeField] private TMP_Text healthText;
         [SerializeField] private float maxHealth = 10f;
-        [SerializeField] private bool gotHit;
         [SerializeField] private float lerpSpeed = 1f;
         [SerializeField] private float lerpSpeedForText = 1f;
-        private float currentHealth;
-        private float reducedFillAmount;
+        public float currentHealth;
         private float previousCurrentHealth;
+        private float reducedFillAmount;
+
+        public static HealthController Instance;
         private void Awake() {
+            if (Instance == null) Instance = this;
+
             healthImage.fillAmount = reducedFillAmount = 1f;
             currentHealth = previousCurrentHealth = maxHealth;
-            //healthText.text = currentHealth.ToString();
             healthText.text = $"{currentHealth:0}";
         }
         private void Update() {
             
-            if(gotHit)
-            {
-                currentHealth -= 2f;
-                reducedFillAmount = currentHealth / maxHealth;
-                gotHit = false;
-            }
+            reducedFillAmount = currentHealth / maxHealth;  
             if(healthImage.fillAmount > reducedFillAmount)
             {
-                healthImage.fillAmount = Mathf.MoveTowards(healthImage.fillAmount, reducedFillAmount, lerpSpeed * Time.deltaTime);
-                
+                healthImage.fillAmount = Mathf.MoveTowards(healthImage.fillAmount, reducedFillAmount, lerpSpeed * Time.deltaTime);  
             }
             if(previousCurrentHealth > currentHealth)
             {
                 previousCurrentHealth = Mathf.MoveTowards(previousCurrentHealth, currentHealth, lerpSpeedForText * Time.deltaTime);
                 healthText.text = $"{previousCurrentHealth:0}";
             }
-            //healthImage.fillAmount = reducedHealth;
+        }
+        public void RearrangeHealth(float damageAmount)
+        {
+            if(currentHealth > 0)
+                currentHealth -= damageAmount;
         }
     }
 }

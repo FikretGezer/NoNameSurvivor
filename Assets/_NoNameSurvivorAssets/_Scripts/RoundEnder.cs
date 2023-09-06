@@ -8,6 +8,10 @@ namespace FikretGezer
     {
         [SerializeField] private CharacterSpawner _characterSpawner;
         private bool isActive;
+        public RoundEnder Instance;
+        private void Awake() {
+            if(Instance == null) Instance = this;
+        }
         public void NewRoundStart()
         {
             StartCoroutine(nameof(Timer));

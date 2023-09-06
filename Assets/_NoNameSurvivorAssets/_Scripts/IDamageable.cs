@@ -7,7 +7,7 @@ namespace FikretGezer
     public interface IDamageable
     {
         public float Health { get; set; }
-        public void TakeDamage();
+        public void TakeDamage(float GivingDamage);
         public void Die();
     }
 }

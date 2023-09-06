@@ -4,20 +4,18 @@ using UnityEngine;
 
 namespace FikretGezer
 {
-    public abstract class PlayerBase : MonoBehaviour
+    public abstract class PlayerBase : MonoBehaviour, IDamageable
     {
         [SerializeField] private float _moveSpeed = 3f;
-        //[SerializeField] public Transform _target;
         [SerializeField] public Transform _target;
         [SerializeField] private float _lerpSpeed = 1f;
-        [HideInInspector] public Vector3 direction;
+        [field:SerializeField] public float Health { get; set; }
 
         private CharacterController _characterController;
         protected Camera _cam;
         
-        public static PlayerBase Instance;
+        
         public virtual void Awake() {
-            if(Instance == null) Instance = this;
             _characterController = GetComponent<CharacterController>();
             _cam = Camera.main;
         }
@@ -31,6 +29,7 @@ namespace FikretGezer
             TargetTheEnemy();            
             //RotateCharacterWithMouse();
         }
+        public abstract Transform ChooseTarget();
         private void Moving(float hor, float ver)
         {
             Vector3 move = new Vector3(hor, 0, ver);
@@ -47,7 +46,6 @@ namespace FikretGezer
             pos.y = transform.position.y;
             transform.LookAt(pos);
         }*/
-        public abstract Transform ChooseTarget();
         private void TargetTheEnemy()
         {            
             if(_target == null)
@@ -62,7 +60,7 @@ namespace FikretGezer
                     var pos = _target.position;
                     pos.y = transform.position.y;
                     //transform.LookAt(pos);
-                    direction = (pos - transform.position).normalized;
+                    var direction = (pos - transform.position).normalized;
                     transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), _lerpSpeed * Time.deltaTime);
                 }
                 else
@@ -70,6 +68,18 @@ namespace FikretGezer
                     _target = null;
                 }
             }       
+        }
+        public void TakeDamage(float GivingDamage)
+        {
+            Health -= GivingDamage;
+            HealthController.Instance.RearrangeHealth(GivingDamage);
+            if(HealthController.Instance.currentHealth <= 0f)
+                Die();
+        }
+        public void Die()
+        {
+            Time.timeScale = 0f;
+            Debug.Log("<color=red> DIED! </color>");
         }
     }
 }

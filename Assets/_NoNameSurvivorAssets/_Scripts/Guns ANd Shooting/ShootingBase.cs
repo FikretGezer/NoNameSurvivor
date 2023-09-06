@@ -8,8 +8,9 @@ namespace FikretGezer
     {
         [SerializeField] protected Transform bulletPoint;
         [SerializeField] protected Transform target;
-        [field:SerializeField] protected float bulletSpeed;
         [SerializeField] protected float bulletCoolDown = 1f;
+        [SerializeField] protected float GivingDamage = 1f;
+        [field:SerializeField] protected float bulletSpeed;
         private bool didShoot;
 
         public virtual void Update()
@@ -73,7 +74,6 @@ namespace FikretGezer
                 var dir = target.position - transform.parent.position;
                 Gizmos.DrawLine(transform.parent.position,transform.parent.position + dir);
             }
-
         }
     }
 }

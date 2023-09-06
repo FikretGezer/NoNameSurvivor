@@ -58,11 +58,11 @@ namespace FikretGezer
                 }
             }
         }
-        IEnumerator SpawnTimer(float maxTime)
+        IEnumerator SpawnTimer(float delay)
         {
             var elaspedTime = 0f;
             gotPooledObject = true;
-            while(elaspedTime < maxTime)
+            while(elaspedTime < delay)
             {
                 elaspedTime += Time.deltaTime;
                 yield return null;

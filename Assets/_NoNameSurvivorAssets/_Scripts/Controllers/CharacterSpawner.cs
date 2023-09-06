@@ -64,10 +64,10 @@ namespace FikretGezer
             
             for (int i = 0; i < _characterCount; i++)
             {
-                _charactersOnTheScene[i].transform.position = _position + ReturnPositionOfACharacter(i);
+                _charactersOnTheScene[i].transform.position = _position + ReturnPositionOfSpawnedCharacter(i);
             }
         }
-        private Vector3 ReturnPositionOfACharacter(int i)
+        private Vector3 ReturnPositionOfSpawnedCharacter(int i)
         {
             float d = i * TAU / _characterCount;
             float x = Mathf.Cos(d);
@@ -81,7 +81,7 @@ namespace FikretGezer
             Gizmos.color = Color.cyan;
             for (int i = 0; i < _characterCount; i++)
             {
-                Gizmos.DrawSphere(_position + ReturnPositionOfACharacter(i), 0.3f);
+                Gizmos.DrawSphere(_position + ReturnPositionOfSpawnedCharacter(i), 0.3f);
             }
         }
     }
