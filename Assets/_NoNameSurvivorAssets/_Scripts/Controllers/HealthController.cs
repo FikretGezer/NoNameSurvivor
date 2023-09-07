@@ -22,7 +22,7 @@ namespace FikretGezer
 
             healthImage.fillAmount = reducedFillAmount = 1f;
             currentHealth = previousCurrentHealth = maxHealth;
-            healthText.text = $"{currentHealth:0}";
+            healthText.text = $"{currentHealth:0}/{maxHealth:0}";
         }
         private void Update() {
             
@@ -34,7 +34,7 @@ namespace FikretGezer
             if(previousCurrentHealth > currentHealth)
             {
                 previousCurrentHealth = Mathf.MoveTowards(previousCurrentHealth, currentHealth, lerpSpeedForText * Time.deltaTime);
-                healthText.text = $"{previousCurrentHealth:0}";
+                healthText.text = $"{previousCurrentHealth:0}/{maxHealth:0}";
             }
         }
         public void RearrangeHealth(float damageAmount)

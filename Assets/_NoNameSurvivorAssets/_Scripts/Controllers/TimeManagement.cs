@@ -6,7 +6,7 @@ namespace FikretGezer
 {
     public class TimeManagement : MonoBehaviour
     {
-        public Action<float> UpdateRoundTimeText = delegate{};
+        public Action<float> OnRoundTimeChanged = delegate{};
         [SerializeField] private float timePerRound = 10f;
         private bool isRoundStarted;
         public static TimeManagement Instance;
@@ -25,7 +25,7 @@ namespace FikretGezer
             float reducedTime = timePerRound;
             while(reducedTime > 0f)
             {
-                UpdateRoundTimeText(reducedTime);
+                OnRoundTimeChanged(reducedTime);
                 reducedTime -= Time.deltaTime;
                 yield return null;
             }

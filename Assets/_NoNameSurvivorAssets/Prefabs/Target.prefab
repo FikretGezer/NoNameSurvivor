@@ -147,5 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Health>k__BackingField: 1
-  <Speed>k__BackingField: 0.1
+  <Speed>k__BackingField: 0.5
   <GivingDamage>k__BackingField: 1
