@@ -8,7 +8,7 @@ namespace FikretGezer
     {
         public static ObjectPoolManager Instance;
         private List<GameObject> pooledObject;
-        [SerializeField] private WeirdObject objectToPool;
+        [SerializeField] private Bullet objectToPool;
         [SerializeField] private int amountToPool;
         private GameObject parentOfBullets;
         private void Awake() {

@@ -13,10 +13,12 @@ namespace FikretGezer
         [SerializeField] private float _sizeOfSpawnArea = 20;
         [SerializeField] private MeshRenderer _groundMeshRenderer;
         [SerializeField] private float timePerSpawn = 1f;
+        [SerializeField] private ParticleSystem _posEffect;
+
         public List<GameObject> enemies = new List<GameObject>();
         public List<GameObject> selectedEnemies = new List<GameObject>();
         private bool gotPooledObject;
-        
+        private int totalSpawnCount = 0, maxSpawnCount = 50;
         private void Awake() {
             if(Instance == null) Instance = this;
             _sizeOfSpawnArea = _groundMeshRenderer.bounds.size.x / 2 - 5;
@@ -34,29 +36,41 @@ namespace FikretGezer
                 _enemy.transform.parent = parent.transform;
             }
 
-            MakeActive();
+            Invoke(nameof(MakeActive), 1f);
         }
         private void Update() {
             
-            if(!gotPooledObject)
+            if(!gotPooledObject && totalSpawnCount < maxSpawnCount)
             {
                 StartCoroutine(SpawnTimer(timePerSpawn));
             }
         }
+        private void BeforeSpawn(Vector3 pos)
+        {
+            ParticleSystem newEffect = Instantiate(_posEffect);
+            newEffect.transform.position = pos;
+            newEffect.Play();
+        }
         private void MakeActive()
         {
-            int count = Random.Range(10, 15);
+            int count = Random.Range(5, 10);
+            totalSpawnCount += count;
             for (int i = 0; i < count; i++)
             {
                 var obj = GetPooledObject();
                 if(obj != null)
                 {
-                    obj.SetActive(true);
                     float x = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
                     float z = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
+                    BeforeSpawn(new Vector3(x, 0.2f, z));
+                    obj.SetActive(true);
                     obj.transform.position = new Vector3(x, 1f, z);
                 }
             }
+        }
+        IEnumerator PointerBeforeSpawn(float spawnTime)
+        {
+            yield return new WaitForSeconds(spawnTime);
         }
         IEnumerator SpawnTimer(float delay)
         {
@@ -67,6 +81,7 @@ namespace FikretGezer
                 elaspedTime += Time.deltaTime;
                 yield return null;
             }
+
             MakeActive();
             gotPooledObject = false;
         }
@@ -80,11 +95,14 @@ namespace FikretGezer
                 }
             }   
             return null;
-            //return null;
         }
-        // public void ReturnToThePool(GameObject pooledObject)
-        // {
-        //     pooledObject.SetActive(false);
-        // }
+        public void ReturnAll()
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.SetActive(false);
+            }
+            selectedEnemies.Clear();
+        }
     }
 }

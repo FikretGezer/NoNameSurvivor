@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace FikretGezer
 {
-    public class WeirdObject : MonoBehaviour
+    public class Bullet : MonoBehaviour
     {
         private Action OnShoot = delegate{};
         [SerializeField] private Gradient _gradient;
 
         private Renderer _renderer;
         private Camera _camera;
-        
+        private float damage;
         private void Awake() {
             _renderer = GetComponent<Renderer>();
             _camera = Camera.main;
@@ -35,8 +35,12 @@ namespace FikretGezer
             if(other.gameObject.tag == "enemy")
             {
                 ObjectPoolManager.Instance.ReturnToThePool(gameObject);
-                other.GetComponent<IDamageable>().TakeDamage(1f);
+                other.GetComponent<IDamageable>().TakeDamage(damage);
             }
+        }
+        public void SetDamage(float damage)
+        {
+            this.damage = damage;
         }
         IEnumerator ObjectColorOverTime()
         {

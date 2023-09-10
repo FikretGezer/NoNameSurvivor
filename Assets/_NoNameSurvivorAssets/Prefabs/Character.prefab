@@ -197,7 +197,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -241,10 +241,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87e551b22f6fa24a818c3e80c21328c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 7
+  _moveSpeed: 5
   _target: {fileID: 0}
   _lerpSpeed: 10
   <Health>k__BackingField: 10
+  gravity: -39.24
+  groundObject: {fileID: 1153531315784371296}
+  groundDistance: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &8382549409308378591
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,8 +370,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a23b40b44f93904e853dfad894d4b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunType: {fileID: 11400000, guid: 6a45fc32228aba24d9851d7001917217, type: 2}
   bulletPoint: {fileID: 3824928106741246077}
   target: {fileID: 0}
-  bulletSpeed: 20
   bulletCoolDown: 1
   GivingDamage: 1
+  bulletSpeed: 20

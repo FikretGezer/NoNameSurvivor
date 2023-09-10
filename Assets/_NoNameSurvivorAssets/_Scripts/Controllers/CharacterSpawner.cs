@@ -13,7 +13,6 @@ namespace FikretGezer
         [SerializeField] private GameObject _prefabCharacter;
         [HideInInspector] public Vector3 _position;
 
-
         private List<GameObject> _charactersOnTheScene = new List<GameObject>();
         private int _currentCharacterCount = 0;
         private bool newCharacterEquipped = false;

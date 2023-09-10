@@ -13,7 +13,7 @@ namespace FikretGezer
                 {
                     Debug.Log("Player here");
                     other.GetComponent<IDamageable>().TakeDamage(GivingDamage);
-                    StartCoroutine(CooldownForGivingDamage(3f));
+                    StartCoroutine(CooldownForGivingDamage(attackCoolDown));
                     canGiveDamage = false;
                 }
             }

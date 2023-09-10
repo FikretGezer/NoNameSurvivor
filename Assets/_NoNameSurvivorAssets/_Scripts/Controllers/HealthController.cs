@@ -42,5 +42,14 @@ namespace FikretGezer
             if(currentHealth > 0)
                 currentHealth -= damageAmount;
         }
+        public void UpdateNewHealth(float newMaxHealth)
+        {
+            if(newMaxHealth != 0)
+                maxHealth = newMaxHealth;
+                
+            currentHealth = previousCurrentHealth = maxHealth;
+            healthImage.fillAmount = 1f;
+            healthText.text = $"{previousCurrentHealth:0}/{maxHealth:0}";
+        }
     }
 }

@@ -6,13 +6,21 @@ namespace FikretGezer
 {
     public abstract class ShootingBase : MonoBehaviour
     {
+        [SerializeField] protected GunTypeScriptable gunType;
         [SerializeField] protected Transform bulletPoint;
         [SerializeField] protected Transform target;
         [SerializeField] protected float bulletCoolDown = 1f;
         [SerializeField] protected float GivingDamage = 1f;
         [field:SerializeField] protected float bulletSpeed;
         private bool didShoot;
-
+        private float coolDown;
+        private float damageAmount;
+        private float critique;
+        private float range;
+        private float pierce;
+        private void Start() {
+            SetGunParameters(gunType.coolDown, gunType.damageAmount, gunType.critique, gunType.range, gunType.pierce);
+        }
         public virtual void Update()
         {
             ChooseTarget();
@@ -20,7 +28,7 @@ namespace FikretGezer
             {
                 if(!didShoot)
                 {
-                    StartCoroutine(Timer(bulletCoolDown));
+                    StartCoroutine(Timer(coolDown));
                     didShoot = true;
                 }
             }
@@ -37,6 +45,14 @@ namespace FikretGezer
                     target = null;
             }
         }
+        private void SetGunParameters(float coolDown, float damageAmount, float critique, float range, float pierce)
+        {
+            this.coolDown = coolDown;
+            this.damageAmount = damageAmount;
+            this.critique = critique;
+            this.range = range;
+            this.pierce = pierce;
+        }
         private void Shoot()
         {
             ChooseTarget();
@@ -48,7 +64,8 @@ namespace FikretGezer
                 {
                     bullet.SetActive(true);
                     bullet.transform.position = bulletPoint.position;
-                    bullet.GetComponent<WeirdObject>().ShootThis(Fire);
+                    bullet.GetComponent<Bullet>().ShootThis(Fire);
+                    bullet.GetComponent<Bullet>().SetDamage(damageAmount);
                 }
 
                 void Fire()

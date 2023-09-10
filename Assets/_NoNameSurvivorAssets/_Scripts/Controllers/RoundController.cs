@@ -1,14 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FikretGezer
 {
-    public class RoundEnder : MonoBehaviour
+    public class RoundController : MonoBehaviour
     {
         [SerializeField] private CharacterSpawner _characterSpawner;
         private bool isActive;
-        public RoundEnder Instance;
+        public static RoundController Instance;
         private void Awake() {
             if(Instance == null) Instance = this;
         }
