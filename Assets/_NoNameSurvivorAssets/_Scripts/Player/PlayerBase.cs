@@ -79,7 +79,6 @@ namespace FikretGezer
             if(_target == null)
             {
                 _target = ChooseTarget();
-                Debug.Log("Selected");
             }
             else
             {              
