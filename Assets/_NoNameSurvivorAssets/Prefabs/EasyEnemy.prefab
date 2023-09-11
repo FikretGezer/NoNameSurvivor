@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Health>k__BackingField: 1
-  <Speed>k__BackingField: 0.1
+  <Speed>k__BackingField: 0.3
   <GivingDamage>k__BackingField: 1
   <moneyItem>k__BackingField: {fileID: 5925899492400535518, guid: 89411869de3633f4ba4c3d5c3350e069,
     type: 3}

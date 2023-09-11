@@ -1037,7 +1037,7 @@ GameObject:
   - component: {fileID: 535753669}
   - component: {fileID: 535753670}
   m_Layer: 0
-  m_Name: Object Pool Manager
+  m_Name: Bullet Pool Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1648,7 +1648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf5d77d353cf2b41b95230563a7e925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timePerRound: 30
+  timePerRound: 10
   InGameMenu: {fileID: 180409307}
   EndOfRunMenu: {fileID: 1087354238}
   currentTime: 0
@@ -3016,8 +3016,11 @@ MonoBehaviour:
   timePerSpawn: 5
   _posEffect: {fileID: 6487619963198025399, guid: 760513a465e36744284194fa79f65c8a,
     type: 3}
+  spawnPlaceholder: {fileID: 8537702931727811372, guid: 4a6f4bf4dd38d3e409d358b171c8568b,
+    type: 3}
   enemies: []
   selectedEnemies: []
+  totalSpawnCount: 0
 --- !u!4 &1338858470
 Transform:
   m_ObjectHideFlags: 0

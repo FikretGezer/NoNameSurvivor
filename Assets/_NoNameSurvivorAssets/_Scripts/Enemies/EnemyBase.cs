@@ -48,7 +48,8 @@ namespace FikretGezer
             for (int i = 0; i < dropCount; i++)
             {
                 Vector3 dropPos = GetItemDropPoint(transform.position);
-                Instantiate(moneyItem, dropPos, Quaternion.identity);                
+                var drop = Instantiate(moneyItem, dropPos, Quaternion.identity);                
+                XPPoolManager.xpItems.Add(drop);
             }
         }
         public void DropXP(float chanceOfHigherXP) // 2 xp item
@@ -57,7 +58,8 @@ namespace FikretGezer
             for (int i = 0; i < dropCount; i++)
             {
                 Vector3 dropPos = GetItemDropPoint(transform.position);
-                Instantiate(xpItem, dropPos, Quaternion.identity);                
+                var drop = Instantiate(xpItem, dropPos, Quaternion.identity);                
+                MoneyPoolManager.moneyItems.Add(drop);
             }
 
         }
