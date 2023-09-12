@@ -43,7 +43,7 @@ namespace FikretGezer
             }
             if(other.gameObject.CompareTag("money"))
             {
-                other.gameObject.SetActive(false);  
+                other.gameObject.SetActive(false);
                 CurrencyManager.Instance.UpdateCurrency(1);
             }
         }

@@ -13,13 +13,10 @@ namespace FikretGezer
         [SerializeField] private float _sizeOfSpawnArea = 20;
         [SerializeField] private MeshRenderer _groundMeshRenderer;
         [SerializeField] private float timePerSpawn = 1f;
-        [SerializeField] private ParticleSystem _posEffect;
-        [SerializeField] private GameObject spawnPlaceholder;
 
         public List<GameObject> enemies = new List<GameObject>();
         public List<GameObject> selectedEnemies = new List<GameObject>();
         private List<Vector3> locations = new List<Vector3>();
-        private List<GameObject> placeHolders = new List<GameObject>();
 
         private bool gotPooledObject;
         public int totalSpawnCount = 0;
@@ -50,15 +47,11 @@ namespace FikretGezer
                 StartCoroutine(SpawnTimer(timePerSpawn));
             }
         }
-        private void BeforeSpawn(Vector3 pos)
+        private void ReturnPointerWithPos(Vector3 pos)
         {
-            // ParticleSystem newEffect = Instantiate(_posEffect);
-            // newEffect.transform.position = pos;
-            // newEffect.Play();
-            GameObject pH = Instantiate(spawnPlaceholder);
-            pH.transform.position = pos;
-            pH.GetComponent<Animator>().SetTrigger("trigPlaceholder");
-            placeHolders.Add(pH);
+            GameObject pointer = PointerPoolManager.Instance.GetPooledPointer();
+            pointer.transform.position = pos;
+            pointer.GetComponent<Animator>().SetTrigger("trigPlaceholder");           
         }
         
         private void SpawnPointerOnSpawnPositions()
@@ -72,26 +65,23 @@ namespace FikretGezer
                 float z = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
                 Vector3 loc = new Vector3(x, 0.01f, z); 
                 locations.Add(loc + new Vector3(0,1-0.01f,0));
-                BeforeSpawn(loc);    
+                ReturnPointerWithPos(loc);    
             }
             StartCoroutine(EnemySpawn(2f));
         }
         IEnumerator EnemySpawn(float delayBeforeSpawn) //delay should be exactly same with the particle effect duration/lifetime
         {
             yield return new WaitForSeconds(delayBeforeSpawn);
-            foreach (var loc in locations)
+            foreach (var position in locations)
             {
-                var obj = GetPooledObject();
+                var obj = GetPooledEnemy();
                 if(obj != null)
                 {
                     obj.SetActive(true);
-                    obj.transform.position = loc;
+                    obj.transform.position = position;
                 }
             }
-            foreach (var pH in placeHolders)
-            {
-                Destroy(pH);
-            }
+            PointerPoolManager.Instance.ReturnAllToThePool();
         }
         IEnumerator SpawnTimer(float delay)
         {
@@ -106,7 +96,7 @@ namespace FikretGezer
             SpawnPointerOnSpawnPositions();
             gotPooledObject = false;
         }
-        public GameObject GetPooledObject()
+        public GameObject GetPooledEnemy()
         {
             for (int i = 0; i < _spawnCount; i++)
             {

@@ -38,8 +38,8 @@ namespace FikretGezer
         private void EndTheRound()
         {
             Time.timeScale = 0f;
-            XPPoolManager.ClearXpItems();
-            MoneyPoolManager.ClearMoneyItems();
+            XPPoolManager.Instance.ReturnAllToThePool();
+            MoneyPoolManager.Instance.ReturnAllToThePool();
             EnemySpawnController.Instance.totalSpawnCount = 0;
             InGameMenu.SetActive(false);
             EndOfRunMenu.SetActive(true);

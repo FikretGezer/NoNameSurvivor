@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1036,8 +1036,11 @@ GameObject:
   m_Component:
   - component: {fileID: 535753669}
   - component: {fileID: 535753670}
+  - component: {fileID: 535753672}
+  - component: {fileID: 535753671}
+  - component: {fileID: 535753673}
   m_Layer: 0
-  m_Name: Bullet Pool Manager
+  m_Name: Pool Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1073,6 +1076,51 @@ MonoBehaviour:
   objectToPool: {fileID: -1407571176439352164, guid: d7b05c6f154704e40b4ad9d9e14e9d66,
     type: 3}
   amountToPool: 100
+--- !u!114 &535753671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535753667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06f469ac44c8a14ea9493b507ddf788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnAmount: 20
+  xpPrefab: {fileID: 3069039675170944979, guid: ba07c3e3bdb8bf041b5f8c138b4e635f,
+    type: 3}
+--- !u!114 &535753672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535753667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63f63dc06c3c8945a8296caba06f8fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnAmount: 20
+  moneyPrefab: {fileID: 5925899492400535518, guid: 89411869de3633f4ba4c3d5c3350e069,
+    type: 3}
+--- !u!114 &535753673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535753667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618e16059fc03484c8a9c6a2c511c51e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnAmount: 10
+  pointerPrefab: {fileID: 8537702931727811372, guid: 4a6f4bf4dd38d3e409d358b171c8568b,
+    type: 3}
 --- !u!1 &687820551
 GameObject:
   m_ObjectHideFlags: 0

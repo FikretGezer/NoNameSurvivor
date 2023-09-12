@@ -11,10 +11,6 @@ namespace FikretGezer
         [field:SerializeField] public float Speed {get; set;}
         [field:SerializeField] public float GivingDamage {get; set;}
 
-        [field:Header("IDamageable Parameters")]
-        [field:SerializeField] public GameObject moneyItem {get; set;}
-        [field:SerializeField] public GameObject xpItem {get; set;}
-
         [SerializeField] protected float attackCoolDown;
         [SerializeField] protected float chanceOfHigherXP;
         [SerializeField] protected float chanceOfHigherMoney;
@@ -48,20 +44,17 @@ namespace FikretGezer
             for (int i = 0; i < dropCount; i++)
             {
                 Vector3 dropPos = GetItemDropPoint(transform.position);
-                var drop = Instantiate(moneyItem, dropPos, Quaternion.identity);                
-                XPPoolManager.xpItems.Add(drop);
+                MoneyPoolManager.Instance.GetPooledMoney().transform.position = dropPos;    
             }
         }
-        public void DropXP(float chanceOfHigherXP) // 2 xp item
+        public void DropXP(float chanceOfHigherXP) // 2 xp item // chance doens't applied yet but it will
         {
             int dropCount = Random.Range(1, 4);
             for (int i = 0; i < dropCount; i++)
             {
                 Vector3 dropPos = GetItemDropPoint(transform.position);
-                var drop = Instantiate(xpItem, dropPos, Quaternion.identity);                
-                MoneyPoolManager.moneyItems.Add(drop);
+                XPPoolManager.Instance.GetPooledXP().transform.position = dropPos;
             }
-
         }
         Vector3 GetItemDropPoint(Vector3 enemyPos)
         {
