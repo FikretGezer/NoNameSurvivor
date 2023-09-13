@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6822892490973561017}
   - component: {fileID: 4248889425561461745}
   m_Layer: 0
-  m_Name: Spawn Place Holder
+  m_Name: Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,18 +9,22 @@ namespace FikretGezer
         public static EnemySpawnController Instance;
 
         [SerializeField] private GameObject _enemyPrefab;
-        [SerializeField] private int _spawnCount = 0;
-        [SerializeField] private float _sizeOfSpawnArea = 20;
         [SerializeField] private MeshRenderer _groundMeshRenderer;
+        [SerializeField] private int _spawnCount = 0;
         [SerializeField] private float timePerSpawn = 1f;
+        
+        [HideInInspector] public List<GameObject> enemies = new List<GameObject>();
+        [HideInInspector] public List<GameObject> selectedEnemies = new List<GameObject>();
 
-        public List<GameObject> enemies = new List<GameObject>();
-        public List<GameObject> selectedEnemies = new List<GameObject>();
+        private float _sizeOfSpawnArea;
         private List<Vector3> locations = new List<Vector3>();
 
         private bool gotPooledObject;
-        public int totalSpawnCount = 0;
+        private int totalSpawnCount = 0;
         private int maxSpawnCount = 50;
+        public int TotalSpawnCount {
+            set => totalSpawnCount = 0;
+        }
         private void Awake() {
             if(Instance == null) Instance = this;
             _sizeOfSpawnArea = _groundMeshRenderer.bounds.size.x / 2 - 5;
@@ -30,9 +34,10 @@ namespace FikretGezer
             parent.name = "Enemy Parent";
             for (int i = 0; i < _spawnCount; i++)
             {
-                float x = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
-                float z = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
-                var _enemy = Instantiate(_enemyPrefab, new Vector3(x, 1f, z), Quaternion.identity);
+                // float x = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
+                // float z = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
+                // var _enemy = Instantiate(_enemyPrefab, new Vector3(x, 1f, z), Quaternion.identity);
+                var _enemy = Instantiate(_enemyPrefab);
                 enemies.Add(_enemy);
                 _enemy.SetActive(false);
                 _enemy.transform.parent = parent.transform;
@@ -49,7 +54,7 @@ namespace FikretGezer
         }
         private void ReturnPointerWithPos(Vector3 pos)
         {
-            GameObject pointer = PointerPoolManager.Instance.GetPooledPointer();
+            GameObject pointer = PointerPoolManager.Instance.GetPooledObject();
             pointer.transform.position = pos;
             pointer.GetComponent<Animator>().SetTrigger("trigPlaceholder");           
         }
@@ -59,15 +64,18 @@ namespace FikretGezer
             int count = Random.Range(5, 10);
             totalSpawnCount += count;
             locations.Clear();
-            for (int i = 0; i < count; i++)
+            if(TimeManagement.Instance.currentTime > 1f)
             {
-                float x = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
-                float z = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
-                Vector3 loc = new Vector3(x, 0.01f, z); 
-                locations.Add(loc + new Vector3(0,1-0.01f,0));
-                ReturnPointerWithPos(loc);    
+                for (int i = 0; i < count; i++)
+                {
+                    float x = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
+                    float z = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
+                    Vector3 loc = new Vector3(x, 0.01f, z); 
+                    locations.Add(loc + new Vector3(0,1-0.01f,0));
+                    ReturnPointerWithPos(loc);    
+                }
+                StartCoroutine(EnemySpawn(2f));
             }
-            StartCoroutine(EnemySpawn(2f));
         }
         IEnumerator EnemySpawn(float delayBeforeSpawn) //delay should be exactly same with the particle effect duration/lifetime
         {
@@ -82,6 +90,7 @@ namespace FikretGezer
                 }
             }
             PointerPoolManager.Instance.ReturnAllToThePool();
+            
         }
         IEnumerator SpawnTimer(float delay)
         {

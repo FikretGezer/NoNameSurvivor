@@ -59,10 +59,10 @@ namespace FikretGezer
             if(target != null)
             {
                 var dir = (target.position - transform.parent.position).normalized;
-                var bullet = ObjectPoolManager.Instance.GetPooledObject();
+                var bullet = BulletPoolManager.Instance.GetPooledObject();
                 if(bullet != null)
                 {
-                    bullet.SetActive(true);
+                    //bullet.SetActive(true);
                     bullet.transform.position = bulletPoint.position;
                     bullet.GetComponent<Bullet>().ShootThis(Fire);
                     bullet.GetComponent<Bullet>().SetDamage(damageAmount);

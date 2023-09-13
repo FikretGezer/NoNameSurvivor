@@ -44,7 +44,7 @@ namespace FikretGezer
             for (int i = 0; i < dropCount; i++)
             {
                 Vector3 dropPos = GetItemDropPoint(transform.position);
-                MoneyPoolManager.Instance.GetPooledMoney().transform.position = dropPos;    
+                MoneyPoolManager.Instance.GetPooledObject().transform.position = dropPos;    
             }
         }
         public void DropXP(float chanceOfHigherXP) // 2 xp item // chance doens't applied yet but it will
@@ -53,7 +53,7 @@ namespace FikretGezer
             for (int i = 0; i < dropCount; i++)
             {
                 Vector3 dropPos = GetItemDropPoint(transform.position);
-                XPPoolManager.Instance.GetPooledXP().transform.position = dropPos;
+                XPPoolManager.Instance.GetPooledObject().transform.position = dropPos;
             }
         }
         Vector3 GetItemDropPoint(Vector3 enemyPos)

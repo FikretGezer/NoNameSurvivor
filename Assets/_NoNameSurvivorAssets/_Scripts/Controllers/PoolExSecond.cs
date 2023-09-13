@@ -1,12 +1,12 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace FikretGezer
 {
-    public class MoneyPoolManager : PoolManagersBase
+    public class PoolExSecond : PoolManagersBase
     {
-        public static MoneyPoolManager Instance;
-
+        public static PoolExSecond Instance;
         public override void Awake()
         {
             base.Awake();

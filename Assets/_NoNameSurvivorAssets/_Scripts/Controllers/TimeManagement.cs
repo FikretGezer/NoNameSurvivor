@@ -40,9 +40,10 @@ namespace FikretGezer
             Time.timeScale = 0f;
             XPPoolManager.Instance.ReturnAllToThePool();
             MoneyPoolManager.Instance.ReturnAllToThePool();
-            EnemySpawnController.Instance.totalSpawnCount = 0;
+            EnemySpawnController.Instance.TotalSpawnCount = 0;
             InGameMenu.SetActive(false);
             EndOfRunMenu.SetActive(true);
+            PointerPoolManager.Instance.ReturnAllToThePool();
             EnemySpawnController.Instance.ReturnAll();                
         }
         public void GetBackToTheGame()

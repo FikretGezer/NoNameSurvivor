@@ -23,7 +23,7 @@ namespace FikretGezer
         private void Update() {
             if(!_camera.IsObjectVisible(_renderer))
             {
-                ObjectPoolManager.Instance.ReturnToThePool(gameObject); //If object is out of camera view, returns to the pool;
+                gameObject.SetActive(false); //If object is out of camera view, returns to the pool;
             }  
             OnShoot.Invoke();
         }
@@ -34,7 +34,7 @@ namespace FikretGezer
         private void OnTriggerEnter(Collider other) {
             if(other.gameObject.tag == "enemy")
             {
-                ObjectPoolManager.Instance.ReturnToThePool(gameObject);
+                gameObject.SetActive(false);
                 other.GetComponent<IDamageable>().TakeDamage(damage);
             }
         }

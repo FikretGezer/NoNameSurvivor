@@ -1073,9 +1073,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a0e6258dfc7134ca8ea57984bf0732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPool: {fileID: -1407571176439352164, guid: d7b05c6f154704e40b4ad9d9e14e9d66,
+  objectPrefab: {fileID: 7889919390129185042, guid: d7b05c6f154704e40b4ad9d9e14e9d66,
     type: 3}
-  amountToPool: 100
+  objectParentsName: Bullet Parent
+  spawnAmount: 100
 --- !u!114 &535753671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,9 +1089,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06f469ac44c8a14ea9493b507ddf788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAmount: 20
-  xpPrefab: {fileID: 3069039675170944979, guid: ba07c3e3bdb8bf041b5f8c138b4e635f,
+  objectPrefab: {fileID: 3069039675170944979, guid: ba07c3e3bdb8bf041b5f8c138b4e635f,
     type: 3}
+  objectParentsName: XP Parent
+  spawnAmount: 20
 --- !u!114 &535753672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,9 +1105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63f63dc06c3c8945a8296caba06f8fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAmount: 20
-  moneyPrefab: {fileID: 5925899492400535518, guid: 89411869de3633f4ba4c3d5c3350e069,
+  objectPrefab: {fileID: 5925899492400535518, guid: 89411869de3633f4ba4c3d5c3350e069,
     type: 3}
+  objectParentsName: Money Parent
+  spawnAmount: 20
 --- !u!114 &535753673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,9 +1121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618e16059fc03484c8a9c6a2c511c51e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAmount: 10
-  pointerPrefab: {fileID: 8537702931727811372, guid: 4a6f4bf4dd38d3e409d358b171c8568b,
+  objectPrefab: {fileID: 8537702931727811372, guid: 4a6f4bf4dd38d3e409d358b171c8568b,
     type: 3}
+  objectParentsName: Pointer Parent
+  spawnAmount: 10
 --- !u!1 &687820551
 GameObject:
   m_ObjectHideFlags: 0
@@ -3062,10 +3066,6 @@ MonoBehaviour:
   _sizeOfSpawnArea: 20
   _groundMeshRenderer: {fileID: 977174922}
   timePerSpawn: 5
-  _posEffect: {fileID: 6487619963198025399, guid: 760513a465e36744284194fa79f65c8a,
-    type: 3}
-  spawnPlaceholder: {fileID: 8537702931727811372, guid: 4a6f4bf4dd38d3e409d358b171c8568b,
-    type: 3}
   enemies: []
   selectedEnemies: []
   totalSpawnCount: 0
