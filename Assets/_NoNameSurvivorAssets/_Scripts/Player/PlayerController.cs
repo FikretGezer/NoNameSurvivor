@@ -13,7 +13,8 @@ namespace FikretGezer
         {
             Transform _target = null;
             float minDist = 100000f;
-            foreach(var trgt in EnemySpawnController.Instance.enemies)
+            //foreach(var trgt in EnemySpawnController.Instance.enemies)
+            foreach(var trgt in EnemySpawnController.Instance.GetListOfObjects())
             {
                 if(trgt.activeInHierarchy && !EnemySpawnController.Instance.selectedEnemies.Contains(trgt.gameObject))
                 {

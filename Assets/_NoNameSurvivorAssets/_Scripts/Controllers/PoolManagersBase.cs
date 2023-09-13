@@ -54,5 +54,9 @@ namespace FikretGezer
                 item.SetActive(false);
             }
         }
+        public List<GameObject> GetListOfObjects()
+        {
+            return items;
+        }
     }
 }

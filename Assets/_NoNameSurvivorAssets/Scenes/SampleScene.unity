@@ -3060,15 +3060,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2f75dfd859da14c99947c07107056c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 3327642099941451111, guid: ec85af303d0a18f47a461697b124c3dd,
+  objectPrefab: {fileID: 3327642099941451111, guid: ec85af303d0a18f47a461697b124c3dd,
     type: 3}
-  _spawnCount: 50
-  _sizeOfSpawnArea: 20
+  objectParentsName: Enemy Parent
+  spawnAmount: 50
   _groundMeshRenderer: {fileID: 977174922}
   timePerSpawn: 5
-  enemies: []
   selectedEnemies: []
-  totalSpawnCount: 0
 --- !u!4 &1338858470
 Transform:
   m_ObjectHideFlags: 0

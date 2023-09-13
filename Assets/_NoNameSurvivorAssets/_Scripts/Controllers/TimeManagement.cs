@@ -44,7 +44,7 @@ namespace FikretGezer
             InGameMenu.SetActive(false);
             EndOfRunMenu.SetActive(true);
             PointerPoolManager.Instance.ReturnAllToThePool();
-            EnemySpawnController.Instance.ReturnAll();                
+            EnemySpawnController.Instance.ReturnAllToThePool();                
         }
         public void GetBackToTheGame()
         {
