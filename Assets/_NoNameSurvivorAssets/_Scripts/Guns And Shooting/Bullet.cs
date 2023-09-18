@@ -13,18 +13,24 @@ namespace FikretGezer
         private Renderer _renderer;
         private Camera _camera;
         private float damage;
+        private bool isDisappearCountdownStarted;
         private void Awake() {
             _renderer = GetComponent<Renderer>();
             _camera = Camera.main;
         }
         private void OnEnable() {
-            StartCoroutine(nameof(ObjectColorOverTime));   
+            StartCoroutine(nameof(ObjectColorOverTime)); 
+            isDisappearCountdownStarted = true;  
         }
         private void Update() {
-            if(!_camera.IsObjectVisible(_renderer))
+            // if(!_camera.IsObjectVisible(_renderer))
+            //     gameObject.SetActive(false); //If object is out of camera view, returns to the pool;
+            // }  
+            if(isDisappearCountdownStarted)
             {
-                gameObject.SetActive(false); //If object is out of camera view, returns to the pool;
-            }  
+                StartCoroutine(nameof(DissapearTimer));
+                isDisappearCountdownStarted = false;
+            }
             OnShoot.Invoke();
         }
         public void ShootThis(Action shoot)
@@ -51,6 +57,15 @@ namespace FikretGezer
                 _renderer.material.color = _gradient.Evaluate(elapsedTime);
                 yield return null;
             }
+        }
+        IEnumerator DissapearTimer()//Bullet dissapear after some amount of time, if it don't hit any enemy
+        {
+            var elapsedTime = 0f;
+            while (elapsedTime < 5f)
+            {
+                yield return null;
+            }
+            gameObject.SetActive(false);
         }
     }
 }
