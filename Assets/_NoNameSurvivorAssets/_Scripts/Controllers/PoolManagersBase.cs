@@ -9,9 +9,10 @@ namespace FikretGezer
         private List<GameObject> items;
         private GameObject objectsParent;
         
+        [Header("Pool Parameters")]
         [field: SerializeField] protected GameObject objectPrefab;
         [field: SerializeField] protected string objectParentsName;
-        [field: SerializeField] protected int spawnAmount;
+        [field: SerializeField] protected int poolItemSpawnAmount;
 
         public virtual void Awake()
         {
@@ -22,7 +23,7 @@ namespace FikretGezer
         }
         private void SpawnItems()
         {
-            for (int i = 0; i < spawnAmount; i++)
+            for (int i = 0; i < poolItemSpawnAmount; i++)
             {
                 CreateNewOne(false);
             }

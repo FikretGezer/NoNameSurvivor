@@ -1076,7 +1076,7 @@ MonoBehaviour:
   objectPrefab: {fileID: 7889919390129185042, guid: d7b05c6f154704e40b4ad9d9e14e9d66,
     type: 3}
   objectParentsName: Bullet Parent
-  spawnAmount: 100
+  poolItemSpawnAmount: 0
 --- !u!114 &535753671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1092,7 +1092,7 @@ MonoBehaviour:
   objectPrefab: {fileID: 3069039675170944979, guid: ba07c3e3bdb8bf041b5f8c138b4e635f,
     type: 3}
   objectParentsName: XP Parent
-  spawnAmount: 20
+  poolItemSpawnAmount: 0
 --- !u!114 &535753672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,7 +1108,7 @@ MonoBehaviour:
   objectPrefab: {fileID: 5925899492400535518, guid: 89411869de3633f4ba4c3d5c3350e069,
     type: 3}
   objectParentsName: Money Parent
-  spawnAmount: 20
+  poolItemSpawnAmount: 0
 --- !u!114 &535753673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   objectPrefab: {fileID: 8537702931727811372, guid: 4a6f4bf4dd38d3e409d358b171c8568b,
     type: 3}
   objectParentsName: Pointer Parent
-  spawnAmount: 10
+  poolItemSpawnAmount: 0
 --- !u!1 &687820551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,7 +1700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf5d77d353cf2b41b95230563a7e925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timePerRound: 10
+  timePerRound: 30
   InGameMenu: {fileID: 180409307}
   EndOfRunMenu: {fileID: 1087354238}
   currentTime: 0
@@ -3063,9 +3063,10 @@ MonoBehaviour:
   objectPrefab: {fileID: 3327642099941451111, guid: ec85af303d0a18f47a461697b124c3dd,
     type: 3}
   objectParentsName: Enemy Parent
-  spawnAmount: 50
+  poolItemSpawnAmount: 50
   _groundMeshRenderer: {fileID: 977174922}
   timePerSpawn: 5
+  maxSpawnCountPerRound: 50
   selectedEnemies: []
 --- !u!4 &1338858470
 Transform:
@@ -3330,6 +3331,7 @@ MonoBehaviour:
   roundTimeText: {fileID: 170517682}
   currencyText: {fileID: 898629253}
   experienceText: {fileID: 1771701459}
+  currentLevelText: {fileID: 1241245173}
   _actualExperience: {fileID: 956076912}
   _timeManagement: {fileID: 928674989}
   _experienceManager: {fileID: 1785321377}

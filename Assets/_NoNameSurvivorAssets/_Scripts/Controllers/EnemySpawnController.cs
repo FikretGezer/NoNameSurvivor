@@ -127,36 +127,43 @@ namespace FikretGezer
 
         public static EnemySpawnController Instance;
 
+        [Header("Current Script's Parameters")]
         [SerializeField] private MeshRenderer _groundMeshRenderer;
         [SerializeField] private float timePerSpawn = 1f;
+        [SerializeField] private int maxSpawnCountPerRound;
 
         [HideInInspector] public List<GameObject> selectedEnemies = new List<GameObject>();
 
         private List<Vector3> locations = new List<Vector3>();
         private bool gotPooledObject;
-        private int maxSpawnCount;
         private int totalSpawnCount;
         private float _sizeOfSpawnArea;
-        public int TotalSpawnCount {
-            set => totalSpawnCount = 0;
-        }
+        private float elapsedTime;
 
         public override void Awake()
         {
             base.Awake();
             if(Instance == null) Instance = this;
 
-            maxSpawnCount = 50;
+            //maxSpawnCount = 50;
             _sizeOfSpawnArea = _groundMeshRenderer.bounds.size.x / 2 - 5;
-            Invoke(nameof(SpawnPointerOnSpawnPositions), 1f);
+            StartNewWave();
         }
         
         private void Update() {
             
-            if(!gotPooledObject && totalSpawnCount < maxSpawnCount)
+            if(!gotPooledObject && totalSpawnCount < maxSpawnCountPerRound)
             {
                 StartCoroutine(SpawnTimer(timePerSpawn));
             }
+        }
+
+        public void StartNewWave()
+        {
+            elapsedTime = 0f;
+            totalSpawnCount = 0;
+            maxSpawnCountPerRound += 10;
+            Invoke(nameof(SpawnPointerOnSpawnPositions), 1f);
         }
 
         private void SpawnPointerOnSpawnPositions()
@@ -198,11 +205,12 @@ namespace FikretGezer
         }
         IEnumerator SpawnTimer(float delay)
         {
-            var elaspedTime = 0f;
+            elapsedTime = 0f;
+
             gotPooledObject = true;
-            while(elaspedTime < delay)
+            while(elapsedTime < delay)
             {
-                elaspedTime += Time.deltaTime;
+                elapsedTime += Time.deltaTime;
                 yield return null;
             }
 

@@ -6,15 +6,21 @@ namespace FikretGezer
 {
     public class TimeManagement : MonoBehaviour
     {
+        public Action<float> OnRoundTimeChanged = delegate{};
+        public Action<int> OnLevelChanged = delegate{};
+        public static TimeManagement Instance;
+
         [SerializeField] private float timePerRound = 10f;
         [SerializeField] private GameObject InGameMenu;
         [SerializeField] private GameObject EndOfRunMenu;
-        public Action<float> OnRoundTimeChanged = delegate{};
+
         private bool isRoundStarted;
-        public static TimeManagement Instance;
+        private int currentLevel; //This will be maxed at 10lvl
         public float currentTime;
+
         private void Awake() {
             if (Instance == null) Instance = this;
+            currentLevel = 1;
         }
         private void Update() {
             if(!isRoundStarted)
@@ -35,24 +41,40 @@ namespace FikretGezer
             }
             EndTheRound();
         }
+        private void IncreaseTimeEachRound()
+        {
+            if(timePerRound < 60f)
+                timePerRound += 5f;
+        }
+        private void UpdateCurrentLevel()
+        {
+            currentLevel++;
+            OnLevelChanged(currentLevel);
+        }
         private void EndTheRound()
         {
             Time.timeScale = 0f;
             XPPoolManager.Instance.ReturnAllToThePool();
             MoneyPoolManager.Instance.ReturnAllToThePool();
-            EnemySpawnController.Instance.TotalSpawnCount = 0;
-            InGameMenu.SetActive(false);
-            EndOfRunMenu.SetActive(true);
             PointerPoolManager.Instance.ReturnAllToThePool();
             EnemySpawnController.Instance.ReturnAllToThePool();                
+            
+            InGameMenu.SetActive(false);
+            EndOfRunMenu.SetActive(true);
         }
         public void GetBackToTheGame()
         {
+            IncreaseTimeEachRound();
+            UpdateCurrentLevel();
+
             Time.timeScale = 1f;
+
             EndOfRunMenu.SetActive(false);
             InGameMenu.SetActive(true);
+            
             isRoundStarted = false;
             HealthController.Instance.UpdateNewHealth(0);
+            EnemySpawnController.Instance.StartNewWave();
         }
     }
 }

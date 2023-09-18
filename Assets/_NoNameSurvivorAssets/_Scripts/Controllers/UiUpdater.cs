@@ -9,6 +9,7 @@ namespace FikretGezer
         [SerializeField] private TMP_Text roundTimeText;
         [SerializeField] private TMP_Text currencyText;
         [SerializeField] private TMP_Text experienceText;
+        [SerializeField] private TMP_Text currentLevelText;
 
         [SerializeField] private Image _actualExperience;
 
@@ -19,12 +20,20 @@ namespace FikretGezer
         private float expFillAmount;
         private void OnEnable() {
             _timeManagement.OnRoundTimeChanged += UpdateRoundTimer;
+
+            _timeManagement.OnLevelChanged += UpdateCurrentLevel;
+
             _experienceManager.OnExperienceChanged += UpdateExperienceUI;
+
             _currencyManager.OnCurrencyChanged += UpdateCurrencyUI;
         }
         private void OnDisable() {
             _timeManagement.OnRoundTimeChanged -= UpdateRoundTimer;
+
+            _timeManagement.OnLevelChanged -= UpdateCurrentLevel;
+
             _experienceManager.OnExperienceChanged -= UpdateExperienceUI;
+            
             _currencyManager.OnCurrencyChanged -= UpdateCurrencyUI;
         }
 
@@ -42,6 +51,10 @@ namespace FikretGezer
         private void UpdateCurrencyUI(int currency)
         {
             currencyText.text = $"{currency:0}";
+        }
+        private void UpdateCurrentLevel(int currentLevel)
+        {
+            currentLevelText.text = $"Wave {currentLevel:0}";
         }
     }
 }
