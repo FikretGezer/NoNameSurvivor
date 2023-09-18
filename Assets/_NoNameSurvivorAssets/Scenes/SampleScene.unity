@@ -1076,7 +1076,7 @@ MonoBehaviour:
   objectPrefab: {fileID: 7889919390129185042, guid: d7b05c6f154704e40b4ad9d9e14e9d66,
     type: 3}
   objectParentsName: Bullet Parent
-  poolItemSpawnAmount: 0
+  poolItemSpawnAmount: 50
 --- !u!114 &535753671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1092,7 +1092,7 @@ MonoBehaviour:
   objectPrefab: {fileID: 3069039675170944979, guid: ba07c3e3bdb8bf041b5f8c138b4e635f,
     type: 3}
   objectParentsName: XP Parent
-  poolItemSpawnAmount: 0
+  poolItemSpawnAmount: 20
 --- !u!114 &535753672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,7 +1108,7 @@ MonoBehaviour:
   objectPrefab: {fileID: 5925899492400535518, guid: 89411869de3633f4ba4c3d5c3350e069,
     type: 3}
   objectParentsName: Money Parent
-  poolItemSpawnAmount: 0
+  poolItemSpawnAmount: 20
 --- !u!114 &535753673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   objectPrefab: {fileID: 8537702931727811372, guid: 4a6f4bf4dd38d3e409d358b171c8568b,
     type: 3}
   objectParentsName: Pointer Parent
-  poolItemSpawnAmount: 0
+  poolItemSpawnAmount: 20
 --- !u!1 &687820551
 GameObject:
   m_ObjectHideFlags: 0
@@ -4166,6 +4166,89 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &3054524685330661106
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2945878282291565508, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.313
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945878282291565508, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.445
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945878282291565508, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945878282291565508, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945878282291565508, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945878282291565508, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945878282291565508, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945878282291565508, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945878282291565508, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945878282291565508, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806259851685456420, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_Name
+      value: New Money Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806259851685456420, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525409396704970855, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525409396704970855, guid: 8a4c34c5f1c44be44a8886e752bac69d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8a4c34c5f1c44be44a8886e752bac69d, type: 3}
 --- !u!1 &4292075404543857674
 GameObject:
   m_ObjectHideFlags: 0
@@ -4533,3 +4616,4 @@ SceneRoots:
   - {fileID: 1504190184}
   - {fileID: 1005754221}
   - {fileID: 5813804410857926714}
+  - {fileID: 3054524685330661106}

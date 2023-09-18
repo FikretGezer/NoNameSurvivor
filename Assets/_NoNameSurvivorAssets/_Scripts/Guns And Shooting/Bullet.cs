@@ -24,6 +24,7 @@ namespace FikretGezer
         }
         private void Update() {
             // if(!_camera.IsObjectVisible(_renderer))
+            // {
             //     gameObject.SetActive(false); //If object is out of camera view, returns to the pool;
             // }  
             if(isDisappearCountdownStarted)

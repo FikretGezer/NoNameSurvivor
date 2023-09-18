@@ -39,12 +39,12 @@ namespace FikretGezer
             if(other.gameObject.CompareTag("xp"))
             {
                 other.gameObject.SetActive(false);
-                ExperienceManager.Instance.UpdateExperience(1);
+                ExperienceManager.Instance.UpdateExperience(1);//1 is Experience amount per item
             }
             if(other.gameObject.CompareTag("money"))
             {
                 other.gameObject.SetActive(false);
-                CurrencyManager.Instance.UpdateCurrency(1);
+                CurrencyManager.Instance.UpdateCurrency(1); // 1 is currency amount per item
             }
         }
         private void OnCollisionStay(Collision other) {
