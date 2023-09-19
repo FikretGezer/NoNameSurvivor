@@ -13,12 +13,12 @@ namespace FikretGezer
         // public int MaxExperience {get; private set;}
         private int currentExperience;
         private int maxExperience;
-        private int currentLevel;
+        private int currentXPLevel;
 
         private void Awake() {
             if(Instance == null) Instance = this;
 
-            currentLevel = 1;
+            currentXPLevel = 1;
             currentExperience = 0;
             maxExperience = 20;
             UpdateExperience(0);
@@ -28,14 +28,16 @@ namespace FikretGezer
         {
             currentExperience += amount;
             IsLeveledUp();
-            OnExperienceChanged(currentExperience, maxExperience, currentLevel);
+            OnExperienceChanged(currentExperience, maxExperience, currentXPLevel);
         }
         private void IsLeveledUp()
         {
             if(currentExperience == maxExperience)
             {
                 currentExperience = 0;
-                currentLevel++;
+                currentXPLevel++;
+                int increasedXP = maxExperience * 20 / 100;
+                maxExperience += increasedXP;
             }
         }
     }

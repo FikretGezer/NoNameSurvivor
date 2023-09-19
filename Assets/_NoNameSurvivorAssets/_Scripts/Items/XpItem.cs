@@ -12,14 +12,15 @@ namespace FikretGezer
 
         private Rigidbody _rb;
         private void Awake() {
-            _rb = GetComponent<Rigidbody>();
+            _rb = GetComponent<Rigidbody>();               
         }
         private void OnEnable() {
             _rb.velocity = Vector3.zero;    
             _rb.constraints = RigidbodyConstraints.None;        
         }
         private void Update() {
-            bool isOnTheFloor = Physics.CheckSphere(_groundObject.position, _radius, _layer);
+            bool isOnTheFloor = Physics.CheckSphere(_groundObject.position, _radius, _layer);     
+
             if(isOnTheFloor)
             {
                 _rb.constraints = RigidbodyConstraints.FreezePositionY;
