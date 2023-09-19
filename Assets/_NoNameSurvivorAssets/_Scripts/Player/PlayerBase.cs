@@ -35,30 +35,30 @@ namespace FikretGezer
             Moving(hor, ver);
             TargetTheEnemy(); 
         }
-        private void OnCollisionEnter(Collision other) {
-            if(other.gameObject.CompareTag("xp"))
-            {
-                other.gameObject.SetActive(false);
-                ExperienceManager.Instance.UpdateExperience(1);//1 is Experience amount per item
-            }
-            if(other.gameObject.CompareTag("money"))
-            {
-                other.gameObject.SetActive(false);
-                CurrencyManager.Instance.UpdateCurrency(1); // 1 is currency amount per item
-            }
-        }
-        private void OnCollisionStay(Collision other) {
-            if(other.gameObject.CompareTag("xp"))
-            {
-                other.gameObject.SetActive(false);                
-                ExperienceManager.Instance.UpdateExperience(1);
-            }
-            if(other.gameObject.CompareTag("money"))
-            {
-                other.gameObject.SetActive(false);  
-                CurrencyManager.Instance.UpdateCurrency(1);
-            }
-        }
+        // private void OnCollisionEnter(Collision other) {
+        //     if(other.gameObject.CompareTag("xp"))
+        //     {
+        //         other.gameObject.SetActive(false);
+        //         ExperienceManager.Instance.UpdateExperience(1);//1 is Experience amount per item
+        //     }
+        //     if(other.gameObject.CompareTag("money"))
+        //     {
+        //         other.gameObject.SetActive(false);
+        //         CurrencyManager.Instance.UpdateCurrency(1); // 1 is currency amount per item
+        //     }
+        // }
+        // private void OnCollisionStay(Collision other) {
+        //     if(other.gameObject.CompareTag("xp"))
+        //     {
+        //         other.gameObject.SetActive(false);                
+        //         ExperienceManager.Instance.UpdateExperience(1);
+        //     }
+        //     if(other.gameObject.CompareTag("money"))
+        //     {
+        //         other.gameObject.SetActive(false);  
+        //         CurrencyManager.Instance.UpdateCurrency(1);
+        //     }
+        // }
         public abstract Transform ChooseTarget();
         private void Moving(float hor, float ver)
         {
