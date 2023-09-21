@@ -6,9 +6,10 @@ namespace FikretGezer
 {
     public class MoneyItem : MonoBehaviour
     {
-        public Transform _groundObject;
-        public LayerMask _layer;
-        public float _radius = 0.1f;
+        [SerializeField] private Transform _groundObject;
+        [SerializeField] private LayerMask _layer;
+        [SerializeField] private float _radius = 0.1f;
+        [HideInInspector] public int moneyAmount = 1;
 
         private Rigidbody _rb;
         private void Awake() {
@@ -29,7 +30,7 @@ namespace FikretGezer
         {
             if(other.CompareTag("Player"))
             {
-                CurrencyManager.Instance.UpdateCurrency(1);
+                CurrencyManager.Instance.UpdateCurrency(moneyAmount);
                 gameObject.SetActive(false);
             }            
         }

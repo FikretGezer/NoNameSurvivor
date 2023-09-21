@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87e551b22f6fa24a818c3e80c21328c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 7
   _target: {fileID: 0}
   _lerpSpeed: 10
   <Health>k__BackingField: 10

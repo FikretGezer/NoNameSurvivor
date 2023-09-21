@@ -6,9 +6,10 @@ namespace FikretGezer
 {
     public class XpItem : MonoBehaviour
     {
-        public Transform _groundObject;
-        public LayerMask _layer;
-        public float _radius = 0.1f;
+        [SerializeField] private Transform _groundObject;
+        [SerializeField] private LayerMask _layer;
+        [SerializeField] private float _radius = 0.1f;
+        [HideInInspector] public int xpAmount = 1;
 
         private Rigidbody _rb;
         private void Awake() {
@@ -30,7 +31,7 @@ namespace FikretGezer
         {
             if(other.CompareTag("Player"))
             {
-                ExperienceManager.Instance.UpdateExperience(1);
+                ExperienceManager.Instance.UpdateExperience(xpAmount);
                 gameObject.SetActive(false);
             }            
         }

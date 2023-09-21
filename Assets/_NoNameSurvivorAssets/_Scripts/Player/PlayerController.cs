@@ -39,7 +39,6 @@ namespace FikretGezer
             if(_target != null)
                 EnemySpawnController.Instance.selectedEnemies.Add(_target.gameObject);
             return _target;
-        }
-         
+        }         
     }
 }

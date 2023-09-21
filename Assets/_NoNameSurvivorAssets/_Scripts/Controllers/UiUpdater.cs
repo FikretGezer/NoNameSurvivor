@@ -46,7 +46,7 @@ namespace FikretGezer
             experienceText.text = $"Lv.{currentLevel:0}";
 
             expFillAmount = (float)currentExperience / maxExperience;
-            _actualExperience.fillAmount = expFillAmount;           
+            _actualExperience.fillAmount = expFillAmount;          
         }
         private void UpdateCurrencyUI(int currency)
         {

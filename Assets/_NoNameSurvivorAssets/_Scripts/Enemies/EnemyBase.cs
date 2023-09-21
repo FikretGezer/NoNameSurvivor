@@ -6,23 +6,18 @@ namespace FikretGezer
 {
     public abstract class EnemyBase : MonoBehaviour, IDamageable, IDropableEnemy
     {
-        [field:Header("IDamageable Parameters")]
-        [field:SerializeField] public float Health {get;set;}
-        [field:SerializeField] public float Speed {get; set;}
-        [field:SerializeField] public float GivingDamage {get; set;}
-
         [SerializeField] protected float attackCoolDown;
         [SerializeField] protected float chanceOfHigherXP;
         [SerializeField] protected float chanceOfHigherMoney;
+        [SerializeField] protected float speed;
+        [field:Header("IDamageable Parameters")]
+        [field:SerializeField] public float Health {get;set;}
+
 
         protected bool canGiveDamage;
         private const float TAU = 6.28318530718f;
         private void Awake() {
             canGiveDamage = true;
-        }
-        public virtual void Update() {
-            var dir = CharacterSpawner.Instance._position - transform.position;
-            transform.Translate(dir * Speed * Time.deltaTime);
         }
         public void TakeDamage(float GivingDamage)
         {
@@ -40,21 +35,33 @@ namespace FikretGezer
         
         public void DropMoney(float chanceOfHigherMoney) // 2 money item
         {
-            int dropCount = Random.Range(1, 3);
-            for (int i = 0; i < dropCount; i++)
-            {
-                Vector3 dropPos = GetItemDropPoint(transform.position);
-                MoneyPoolManager.Instance.GetPooledObject().transform.position = dropPos;    
-            }
+            var money = MoneyPoolManager.Instance.GetPooledObject();    
+
+            Vector3 dropPos = GetItemDropPoint(transform.position);
+            money.transform.position = dropPos;
+
+            money.GetComponent<MoneyItem>().moneyAmount = Random.Range(1,3);
+            //int dropCount = Random.Range(1, 3);
+            // for (int i = 0; i < dropCount; i++)
+            // {
+                // Vector3 dropPos = GetItemDropPoint(transform.position);
+                // MoneyPoolManager.Instance.GetPooledObject().transform.position = dropPos;    
+            // }
         }
         public void DropXP(float chanceOfHigherXP) // 2 xp item // chance doens't applied yet but it will
         {
-            int dropCount = Random.Range(1, 4);
-            for (int i = 0; i < dropCount; i++)
-            {
-                Vector3 dropPos = GetItemDropPoint(transform.position);
-                XPPoolManager.Instance.GetPooledObject().transform.position = dropPos;
-            }
+            var xp = XPPoolManager.Instance.GetPooledObject();
+
+            Vector3 dropPos = GetItemDropPoint(transform.position);
+            xp.transform.position = dropPos;
+
+            xp.GetComponent<XpItem>().xpAmount = Random.Range(1,3);
+            // int dropCount = Random.Range(1, 4);
+            // for (int i = 0; i < dropCount; i++)
+            // {
+            //     Vector3 dropPos = GetItemDropPoint(transform.position);
+            //     XPPoolManager.Instance.GetPooledObject().transform.position = dropPos;
+            // }
         }
         Vector3 GetItemDropPoint(Vector3 enemyPos)
         {
