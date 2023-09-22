@@ -151,3 +151,6 @@ MonoBehaviour:
   chanceOfHigherMoney: 0
   speed: 0.5
   <Health>k__BackingField: 2
+  dashingPower: 3
+  dashingTime: 0.5
+  dashingCooldown: 3

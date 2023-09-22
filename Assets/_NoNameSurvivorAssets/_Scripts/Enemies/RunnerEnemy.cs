@@ -6,61 +6,57 @@ namespace FikretGezer
 {
     public class RunnerEnemy : EnemyBase, IEnemy
     {
-        public int GivenDamage { get; set;}
-        
-        public bool isAttacking;
-        public bool canAttack;
-        private float defaultSpeed;
-        public float dist;
+        [Header("Dash Parameters")]
+        [SerializeField] private float dashingPower = 1f;
+        [SerializeField] private float dashingTime = 0.5f;
+        [SerializeField] private float dashingCooldown = 2f;
 
-        public void Attack()
-        {
-            
-        }
 
-        private void Start() {
-            defaultSpeed = speed;
-            canAttack = true;
-        }
+        private float dist;
+        private bool canDash;
+        private bool isDashing;        
+
         private Vector3 direction;
-        private void Update()
+
+        private void OnEnable() {
+            StartCoroutine(nameof(DashCooldown));
+        }
+        public override void Update()
         {  
-
-            if(canAttack && !isAttacking && (dist > 10f && dist < 12f))
+            base.Update();
+        }
+        public override void Attack()
+        {
+            if(isDashing)
             {
-                //Get the last seen position of player or direction
-                //Move fast to that direction
-                StartCoroutine(AttackTimer(3f)); 
-                //Go into cooldown before next attack
-                //After animation finished, keep following player again                
+                //Play flying kick animation
+                transform.Translate(direction * dashingPower * Time.deltaTime);
+                return;
             }
-            else//is dist close to the characters
-            {
-                direction = CharacterSpawner.Instance._position - transform.position;
-                dist = direction.magnitude;
-                transform.Translate(direction * speed * Time.deltaTime);
-            }
+            
+            direction = CharacterSpawner.Instance._position - transform.position;
+            dist = direction.magnitude;
+            transform.Translate(direction * speed * Time.deltaTime);
 
-            if(isAttacking)
-            {
-                transform.Translate(direction * speed * Time.deltaTime);
+            if(canDash && dist < 7f)
+            { 
+                StartCoroutine(nameof(Dash));
             }
         }
-        private IEnumerator AttackTimer(float attackTime)
-        {   
-            isAttacking = true;
-            speed = 1f;
-            yield return new WaitForSeconds(attackTime);
-            StartCoroutine(CooldownForAttack(2f));
-        }
-        private IEnumerator CooldownForAttack(float coolDown)
-        {   
-            isAttacking = false;
-            canAttack = false;
-            speed = defaultSpeed;
+        IEnumerator Dash()
+        {
+            canDash = false;
+            isDashing = true;            
 
-            yield return new WaitForSeconds(coolDown);
-            canAttack = true;
+            yield return new WaitForSeconds(dashingTime);
+            isDashing = false;
+
+            StartCoroutine(nameof(DashCooldown));
+        }
+        IEnumerator DashCooldown()
+        {
+            yield return new WaitForSeconds(dashingCooldown);
+            canDash = true;            
         }
     }
 }

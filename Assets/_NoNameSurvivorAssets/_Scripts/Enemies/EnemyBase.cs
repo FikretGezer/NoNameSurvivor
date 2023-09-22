@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FikretGezer
 {
-    public abstract class EnemyBase : MonoBehaviour, IDamageable, IDropableEnemy
+    public abstract class EnemyBase : MonoBehaviour, IDamageable, IDropableEnemy, IEnemy
     {
         [SerializeField] protected float attackCoolDown;
         [SerializeField] protected float chanceOfHigherXP;
@@ -13,12 +13,20 @@ namespace FikretGezer
         [field:Header("IDamageable Parameters")]
         [field:SerializeField] public float Health {get;set;}
 
+        [field:Header("IEnemy Parameters")]
+        [field:SerializeField] public int GivenDamage {get;set;}
+
 
         protected bool canGiveDamage;
         private const float TAU = 6.28318530718f;
         private void Awake() {
             canGiveDamage = true;
         }
+        public virtual void Update()
+        {
+            Attack();
+        }
+        public abstract void Attack();
         public void TakeDamage(float GivingDamage)
         {
             Health -= GivingDamage;

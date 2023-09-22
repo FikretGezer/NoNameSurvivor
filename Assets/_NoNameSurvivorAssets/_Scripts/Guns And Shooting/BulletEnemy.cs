@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FikretGezer
 {
-    public class Bullet : MonoBehaviour
+    public class BulletEnemy : MonoBehaviour
     {
         private Action OnShoot = delegate{};
         [SerializeField] private Gradient _gradient;
@@ -22,15 +22,15 @@ namespace FikretGezer
             isDisappearCountdownStarted = true;  
         }
         private void Update() {
-            // if(!_camera.IsObjectVisible(_renderer))
-            // {
-            //     gameObject.SetActive(false); //If object is out of camera view, returns to the pool;
-            // }  
-            if(isDisappearCountdownStarted)
+            if(!_camera.IsObjectVisible(_renderer))
             {
-                StartCoroutine(nameof(DissapearTimer));
-                isDisappearCountdownStarted = false;
-            }
+                gameObject.SetActive(false); //If object is out of camera view, returns to the pool;
+            } 
+            // if(isDisappearCountdownStarted)
+            // {
+            //     StartCoroutine(nameof(DissapearTimer));
+            //     isDisappearCountdownStarted = false;
+            // }
             OnShoot.Invoke();
         }
         public void ShootThis(Action shoot)
@@ -38,7 +38,7 @@ namespace FikretGezer
             OnShoot = shoot;
         }
         private void OnTriggerEnter(Collider other) {
-            if(other.gameObject.tag == "enemy")
+            if(other.CompareTag("Player"))
             {
                 gameObject.SetActive(false);
                 other.GetComponent<IDamageable>().TakeDamage(damage);
@@ -58,7 +58,7 @@ namespace FikretGezer
                 yield return null;
             }
         }
-        IEnumerator DissapearTimer()//Bullet dissapear after some amount of time, if it don't hit any enemy
+        IEnumerator DissapearTimer()
         {
             var elapsedTime = 0f;
             while (elapsedTime < 5f)

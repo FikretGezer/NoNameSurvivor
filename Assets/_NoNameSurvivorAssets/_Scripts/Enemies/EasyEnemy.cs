@@ -4,36 +4,32 @@ using UnityEngine;
 
 namespace FikretGezer
 {
-    public class EasyEnemy : EnemyBase, IEnemy
+    public class EasyEnemy : EnemyBase
     {
-        
-        [field:Header("IEnemy Parameters")]
-        [field:SerializeField] public int GivenDamage {get;set;}
-
         private void OnTriggerEnter(Collider other) {
             if(other.gameObject.tag == "Player")
             {
                 if(canGiveDamage)
                 {
-                    Debug.Log("Player here");
+                    //Play punch animation
                     other.GetComponent<IDamageable>().TakeDamage(GivenDamage);
-                    StartCoroutine(CooldownForGivingDamage(attackCoolDown));
+                    StartCoroutine(AttackCooldown(attackCoolDown));
                     canGiveDamage = false;
                 }
             }
         }
-        private void Update()
+        public override void Update()
+        {
+            base.Update();
+        }
+        public override void Attack() //Fist, Different guns, bomb,
         {
             var dir = CharacterSpawner.Instance._position - transform.position;
             transform.Translate(dir * speed * Time.deltaTime);
-        }
-        public void Attack() //Fist, Different guns, bomb,
-        {
-            speed = 1;
         }        
-        private IEnumerator CooldownForGivingDamage(float coolDown)
+        private IEnumerator AttackCooldown(float cooldown)
         {   
-            yield return new WaitForSeconds(coolDown);
+            yield return new WaitForSeconds(cooldown);
             canGiveDamage = true;
         }
     }
