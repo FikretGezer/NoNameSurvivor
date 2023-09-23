@@ -10,6 +10,10 @@ namespace FikretGezer
         [SerializeField] protected float chanceOfHigherXP;
         [SerializeField] protected float chanceOfHigherMoney;
         [SerializeField] protected float speed;
+
+        public EnemyTypes _enemyType;
+        public float spawnChances;
+
         [field:Header("IDamageable Parameters")]
         [field:SerializeField] public float Health {get;set;}
 
@@ -25,6 +29,24 @@ namespace FikretGezer
         public virtual void Update()
         {
             Attack();
+            if(TimeManagement.Instance.isNewRoundStarted)       
+            {
+                EnemySpawnChanceArranger();
+            }
+        }
+        private void EnemySpawnChanceArranger()
+        {
+            TimeManagement.Instance.isNewRoundStarted = false;            
+            var currentWave = TimeManagement.Instance.CurrentLevel;
+            
+            if(spawnChances < 100f)
+            {
+                var chanceVision = spawnChances + 4 * currentWave;
+                if(chanceVision < 100f)
+                    spawnChances = chanceVision;
+                else 
+                    spawnChances = 100f;                
+            }
         }
         public abstract void Attack();
         public void TakeDamage(float GivingDamage)
@@ -38,7 +60,8 @@ namespace FikretGezer
             DropMoney(chanceOfHigherMoney);
             DropXP(chanceOfHigherXP);
             EnemySpawnController.Instance.selectedEnemies.Remove(gameObject);
-            gameObject.SetActive(false);
+            EnemySpawnController.Instance.ReturnToThePool(gameObject);
+            //gameObject.SetActive(false);
         }
         
         public void DropMoney(float chanceOfHigherMoney) // 2 money item

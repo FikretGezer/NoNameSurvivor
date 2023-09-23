@@ -8,13 +8,13 @@ namespace FikretGezer
     {
         private Action OnShoot = delegate{};
         [SerializeField] private Gradient _gradient;
+        [HideInInspector] public Vector3 direction;
+        [HideInInspector] public float bulletSpeed;
 
         private Renderer _renderer;
         private Camera _camera;
         private float damage;
         private bool isDisappearCountdownStarted;
-        public Vector3 direction;
-        public float bulletSpeed;
         private void Awake() {
             _renderer = GetComponent<Renderer>();
             _camera = Camera.main;
@@ -69,11 +69,9 @@ namespace FikretGezer
                 yield return null;
             }
         }
-        public float elapsedTime;
         IEnumerator DissapearTimer()
         {
-            //var elapsedTime = 0f;
-            elapsedTime = 0f;
+            var elapsedTime = 0f;
             isDisappearCountdownStarted = false;
             while (elapsedTime < 5f)
             {

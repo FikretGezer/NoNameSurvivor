@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 660550737817392208}
   - component: {fileID: -22398100800251801}
   - component: {fileID: 8506754242291424642}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EasyEnemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -146,9 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa688e855344cc40925a510f1318012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 1
-  <GivenDamage>k__BackingField: 1
   attackCoolDown: 3
   chanceOfHigherXP: 0
   chanceOfHigherMoney: 0
   speed: 0.5
+  <Health>k__BackingField: 1
+  <GivenDamage>k__BackingField: 1

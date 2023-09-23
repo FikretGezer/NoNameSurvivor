@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8328143315128487243}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2175830616514512092}
   - component: {fileID: 7311130159085427297}
   - component: {fileID: 5224502794977634036}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 4961024148034214841}
   - component: {fileID: 5507929801890800348}
   - component: {fileID: 1044601048377286752}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Revolver Guy
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -265,6 +265,7 @@ MonoBehaviour:
   attackCoolDown: 3
   chanceOfHigherXP: 0
   chanceOfHigherMoney: 0
+  _enemyType: 2
   speed: 20
   <Health>k__BackingField: 100
   <GivenDamage>k__BackingField: 1

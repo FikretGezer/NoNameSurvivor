@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5117613771696618170}
   - component: {fileID: 492937069266409996}
   - component: {fileID: 4592879362130064504}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RunnerEnemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -149,8 +149,10 @@ MonoBehaviour:
   attackCoolDown: 3
   chanceOfHigherXP: 0
   chanceOfHigherMoney: 0
+  _enemyType: 1
   speed: 0.5
   <Health>k__BackingField: 2
+  <GivenDamage>k__BackingField: 0
   dashingPower: 3
   dashingTime: 0.5
   dashingCooldown: 3

@@ -71,16 +71,8 @@ namespace FikretGezer
                 bullet.GetComponent<BulletEnemy>().direction = direction;
                 bullet.GetComponent<BulletEnemy>().bulletSpeed = bulletSpeed;
                 bullet.GetComponent<BulletEnemy>().SetDamage(GivenDamage);
-
-
-                // bullet.GetComponent<BulletEnemy>().ShootThis(Fire);
-                // bullet.GetComponent<BulletEnemy>().SetDamage(GivenDamage);
             }
 
-            // void Fire()
-            // {
-            //     bullet.transform.Translate(direction * bulletSpeed * Time.deltaTime);
-            // }
         }
     }
 }

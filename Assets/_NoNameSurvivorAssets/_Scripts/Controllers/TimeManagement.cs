@@ -15,12 +15,13 @@ namespace FikretGezer
         [SerializeField] private GameObject EndOfRunMenu;
 
         private bool isRoundStarted;
-        private int currentLevel; //This will be maxed at 10lvl
+        public int CurrentLevel {get; private set;} //This will be maxed at 10lvl
         public float currentTime;
+        public bool isNewRoundStarted = true;
 
         private void Awake() {
             if (Instance == null) Instance = this;
-            currentLevel = 1;
+            CurrentLevel = 1;
         }
         private void Update() {
             if(!isRoundStarted)
@@ -48,8 +49,9 @@ namespace FikretGezer
         }
         private void UpdateCurrentLevel()
         {
-            currentLevel++;
-            OnLevelChanged(currentLevel);
+            if(CurrentLevel < 10)
+                CurrentLevel++;
+            OnLevelChanged(CurrentLevel);
         }
         private void EndTheRound()
         {
@@ -58,12 +60,16 @@ namespace FikretGezer
             MoneyPoolManager.Instance.ReturnAllToThePool();
             PointerPoolManager.Instance.ReturnAllToThePool();
             EnemySpawnController.Instance.ReturnAllToThePool();                
-            
             InGameMenu.SetActive(false);
             EndOfRunMenu.SetActive(true);
+            if(CurrentLevel >= 10)
+            {
+                //GAME FINISHED
+            }
         }
         public void GetBackToTheGame()
         {
+            isNewRoundStarted = true;
             IncreaseTimeEachRound();
             UpdateCurrentLevel();
 
