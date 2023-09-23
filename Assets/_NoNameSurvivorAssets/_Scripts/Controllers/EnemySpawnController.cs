@@ -152,10 +152,10 @@ namespace FikretGezer
         
         private void Update() {
             
-            if(!gotPooledObject && totalSpawnCount < maxSpawnCountPerRound)
-            {
-                StartCoroutine(SpawnTimer(timePerSpawn));
-            }
+            // if(!gotPooledObject && totalSpawnCount < maxSpawnCountPerRound)
+            // {
+            //     StartCoroutine(SpawnTimer(timePerSpawn));
+            // }
         }
 
         public void StartNewWave()
@@ -168,7 +168,8 @@ namespace FikretGezer
 
         private void SpawnPointerOnSpawnPositions()
         {
-            int count = Random.Range(5, 10);
+            //int count = Random.Range(5, 10);
+            int count = 1;
             totalSpawnCount += count;
             locations.Clear();
             if(TimeManagement.Instance.currentTime > 1f)

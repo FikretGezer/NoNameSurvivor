@@ -1932,6 +1932,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 492937069266409996, guid: 04e566b0198e3d44ca10b798a031553a,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492937069266409996, guid: 04e566b0198e3d44ca10b798a031553a,
+        type: 3}
+      propertyPath: m_ImplicitCom
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1560139342523211009, guid: 04e566b0198e3d44ca10b798a031553a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2576,6 +2586,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1142732211}
   m_CullTransparentMesh: 1
+--- !u!1001 &1143321133
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534197100343057442, guid: 9fba019f74fd9124fb04ef23529b06d2,
+        type: 3}
+      propertyPath: m_Name
+      value: Revolver Guy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534197100343057442, guid: 9fba019f74fd9124fb04ef23529b06d2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9fba019f74fd9124fb04ef23529b06d2, type: 3}
 --- !u!1 &1154907041
 GameObject:
   m_ObjectHideFlags: 0
@@ -4136,84 +4219,6 @@ MonoBehaviour:
   _textCoolDown: {fileID: 2046349309}
   _textDamage: {fileID: 1142732213}
   _gunImage: {fileID: 687820553}
---- !u!1001 &4383570044295989438
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1044601048377286752, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: bulletSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2722745250471304488, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7534197100343057442, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: m_Name
-      value: Revolver Guy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7534197100343057442, guid: 9fba019f74fd9124fb04ef23529b06d2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9fba019f74fd9124fb04ef23529b06d2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4238,6 +4243,6 @@ SceneRoots:
   - {fileID: 507535342}
   - {fileID: 977174924}
   - {fileID: 1866694744}
-  - {fileID: 4383570044295989438}
   - {fileID: 940717365}
   - {fileID: 904690390}
+  - {fileID: 1143321133}

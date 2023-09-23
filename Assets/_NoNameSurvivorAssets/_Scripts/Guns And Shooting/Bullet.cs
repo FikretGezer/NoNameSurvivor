@@ -63,6 +63,7 @@ namespace FikretGezer
             var elapsedTime = 0f;
             while (elapsedTime < 5f)
             {
+                elapsedTime += Time.deltaTime;
                 yield return null;
             }
             gameObject.SetActive(false);
