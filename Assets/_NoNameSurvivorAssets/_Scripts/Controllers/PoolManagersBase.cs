@@ -6,7 +6,6 @@ namespace FikretGezer
     public abstract class PoolManagersBase : MonoBehaviour
     {
         protected List<GameObject> items;
-        protected List<GameObject> actives;
         private GameObject objectsParent;
         
         [Header("Pool Parameters")]
@@ -48,7 +47,6 @@ namespace FikretGezer
                 if(!item.activeInHierarchy)
                 {
                     item.SetActive(true);
-                    actives.Add(item);
                     return item;
                 }
             }
@@ -63,7 +61,6 @@ namespace FikretGezer
                 if(!item.activeInHierarchy && item.GetComponent<EnemyBase>()._enemyType == type)
                 {
                     item.SetActive(true);
-                    actives.Add(item);
                     return item;
                 }
             }
@@ -72,7 +69,6 @@ namespace FikretGezer
         }
         public void ReturnToThePool(GameObject item)
         {
-            actives.Remove(item);
             item.SetActive(false);
         }
         public void ReturnAllToThePool()

@@ -29,6 +29,8 @@ namespace FikretGezer
         private bool isSpawned = true;
 
         private const float maxChance = 100f;
+        private const float easyChance = 100f, mediumChance = 0f, hardChance = 0f;
+        public List<float> chances;
 
         public override void Awake()
         {
@@ -37,14 +39,22 @@ namespace FikretGezer
 
             //maxSpawnCount = 50;
             _sizeOfSpawnArea = _groundMeshRenderer.bounds.size.x / 2 - 5;
-            StartNewWave();
+            StartNewWave();       
+
+            chances.Add(easyChance);
+            chances.Add(mediumChance);
+            chances.Add(hardChance);
         }
         
         private void Update() {            
             if(!gotPooledObject)
             {
                 StartCoroutine(SpawnTimer(timePerSpawn));
-            }                 
+            }       
+            if(TimeManagement.Instance.isNewRoundStarted)       
+            {
+                EnemySpawnChanceArranger();
+            }         
         }
         private void LateUpdate() {
             bool isThereEnemy = GameObject.FindWithTag("enemy");
@@ -93,16 +103,52 @@ namespace FikretGezer
             pointer.transform.position = pos;
             pointer.GetComponent<Animator>().SetTrigger("trigPlaceholder");           
         }
-        
+        private void EnemySpawnChanceArranger()
+        {
+            TimeManagement.Instance.isNewRoundStarted = false;            
+            var currentWave = TimeManagement.Instance.CurrentLevel;
+
+            for(int i = 0; i < 3; i++)
+            {
+                if(chances[i] < 100f)
+                {
+                    var chanceVision = chances[i] + 4 * currentWave;
+                    if(chanceVision < 100f)
+                        chances[i] = chanceVision;
+                    else 
+                        chances[i] = 100f;                
+                }
+            }
+        }
         private GameObject GetEnemy()
         {
             float chance = Random.Range(1, 101);
             while (true)
             {
-                GameObject rnd = objectPrefabs[Random.Range(0, objectPrefabs.Count)];
-                if(chance < rnd.GetComponent<EnemyBase>().spawnChances){                    
-                    return rnd;
-                }                               
+                int typeNumber = Random.Range(0, 3);
+                EnemyTypes type = default;
+                float currentEnemyChance = easyChance;
+                switch(typeNumber)
+                {
+                    case 0:
+                        currentEnemyChance = chances[0];
+                        type = EnemyTypes.easy;
+                        break;
+                    case 1:
+                        currentEnemyChance = chances[1];
+                        type = EnemyTypes.medium;
+                        break;
+                    case 2:
+                        currentEnemyChance = chances[2];
+                        type = EnemyTypes.hard;
+                        break;
+                }
+
+                GameObject rnd = GetPooledObjectWithType(type);
+                if(chance < currentEnemyChance)
+                    return rnd;                                        
+                else
+                    ReturnToThePool(rnd);       
             }
         }
         IEnumerator EnemySpawn(float delayBeforeSpawn) //delay should be exactly same with the particle effect duration/lifetime
@@ -110,7 +156,8 @@ namespace FikretGezer
             yield return new WaitForSeconds(delayBeforeSpawn);
             foreach (Vector3 position in locations)
             {
-                GameObject enemy = GetPooledObjectWithType(EnemyTypes.easy);
+                //GameObject enemy = GetPooledObjectWithType(EnemyTypes.easy);
+                GameObject enemy = GetEnemy();
                 if(enemy != null)
                 {
                     enemy.transform.position = position;

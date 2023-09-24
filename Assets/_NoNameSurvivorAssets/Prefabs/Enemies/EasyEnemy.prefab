@@ -150,5 +150,7 @@ MonoBehaviour:
   chanceOfHigherXP: 0
   chanceOfHigherMoney: 0
   speed: 0.5
+  _enemyType: 0
+  spawnChances: 100
   <Health>k__BackingField: 1
   <GivenDamage>k__BackingField: 1

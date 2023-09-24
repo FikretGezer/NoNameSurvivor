@@ -17,11 +17,12 @@ namespace FikretGezer
         private bool isRoundStarted;
         public int CurrentLevel {get; private set;} //This will be maxed at 10lvl
         public float currentTime;
-        public bool isNewRoundStarted = true;
+        public bool isNewRoundStarted;
 
         private void Awake() {
             if (Instance == null) Instance = this;
             CurrentLevel = 1;
+            isNewRoundStarted = false;
         }
         private void Update() {
             if(!isRoundStarted)
@@ -60,7 +61,7 @@ namespace FikretGezer
             MoneyPoolManager.Instance.ReturnAllToThePool();
             PointerPoolManager.Instance.ReturnAllToThePool();
             EnemySpawnController.Instance.ReturnAllToThePool();                
-            InGameMenu.SetActive(false);
+            InGameMenu.SetActive(false);            
             EndOfRunMenu.SetActive(true);
             if(CurrentLevel >= 10)
             {

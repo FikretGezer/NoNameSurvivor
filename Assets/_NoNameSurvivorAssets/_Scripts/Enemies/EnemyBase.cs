@@ -28,26 +28,9 @@ namespace FikretGezer
         }
         public virtual void Update()
         {
-            Attack();
-            if(TimeManagement.Instance.isNewRoundStarted)       
-            {
-                EnemySpawnChanceArranger();
-            }
+            Attack();            
         }
-        private void EnemySpawnChanceArranger()
-        {
-            TimeManagement.Instance.isNewRoundStarted = false;            
-            var currentWave = TimeManagement.Instance.CurrentLevel;
-            
-            if(spawnChances < 100f)
-            {
-                var chanceVision = spawnChances + 4 * currentWave;
-                if(chanceVision < 100f)
-                    spawnChances = chanceVision;
-                else 
-                    spawnChances = 100f;                
-            }
-        }
+        
         public abstract void Attack();
         public void TakeDamage(float GivingDamage)
         {
