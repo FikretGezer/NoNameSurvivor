@@ -13,11 +13,15 @@ namespace FikretGezer
         [field: SerializeField] protected List<GameObject> objectPrefabs;
         [field: SerializeField] protected string objectParentsName;
         [field: SerializeField] protected int poolItemSpawnAmount;
+        [field: SerializeField] protected GameObject itemsParent;
 
         public virtual void Awake()
         {
             items = new List<GameObject>();
-            objectsParent = new GameObject();
+            if(itemsParent == null)
+                objectsParent = new GameObject();   
+            else
+                objectsParent = itemsParent;         
             objectsParent.name = objectParentsName;
             SpawnItems();
         }

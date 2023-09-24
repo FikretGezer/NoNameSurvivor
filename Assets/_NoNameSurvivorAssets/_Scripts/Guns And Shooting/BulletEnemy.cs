@@ -53,6 +53,7 @@ namespace FikretGezer
             {
                 gameObject.SetActive(false);
                 other.GetComponent<IDamageable>().TakeDamage(damage);
+                CameraMovement.Instance.StartShake();
             }
         }
         public void SetDamage(float damage)

@@ -19,18 +19,19 @@ namespace FikretGezer
         [SerializeField] private int maxSpawnCountPerRound;
 
         [HideInInspector] public List<GameObject> selectedEnemies = new List<GameObject>();
+        [HideInInspector] public int spawnIncreaser = 1;
 
         private List<Vector3> locations = new List<Vector3>();
         private bool gotPooledObject;
         private int totalSpawnCount;
         private float _sizeOfSpawnArea;
         private float elapsedTime;
-        private int spawnIncreaser = 1;
         private bool isSpawned = true;
 
         private const float maxChance = 100f;
         private const float easyChance = 100f, mediumChance = 0f, hardChance = 0f;
         public List<float> chances;
+        private bool isEnemyGot;
 
         public override void Awake()
         {
@@ -112,7 +113,7 @@ namespace FikretGezer
             {
                 if(chances[i] < 100f)
                 {
-                    var chanceVision = chances[i] + 4 * currentWave;
+                    var chanceVision = chances[i] + 2 * currentWave;
                     if(chanceVision < 100f)
                         chances[i] = chanceVision;
                     else 
@@ -123,11 +124,16 @@ namespace FikretGezer
         private GameObject GetEnemy()
         {
             float chance = Random.Range(1, 101);
-            while (true)
+            isEnemyGot = true;
+
+            GameObject rnd;
+            EnemyTypes type = default;
+            int typeNumber;
+            float currentEnemyChance = easyChance;
+            
+            while (isEnemyGot)
             {
-                int typeNumber = Random.Range(0, 3);
-                EnemyTypes type = default;
-                float currentEnemyChance = easyChance;
+                typeNumber = Random.Range(0, 3);
                 switch(typeNumber)
                 {
                     case 0:
@@ -144,12 +150,16 @@ namespace FikretGezer
                         break;
                 }
 
-                GameObject rnd = GetPooledObjectWithType(type);
+                rnd = GetPooledObjectWithType(type);
                 if(chance < currentEnemyChance)
+                {
+                    isEnemyGot = false;
                     return rnd;                                        
+                }
                 else
                     ReturnToThePool(rnd);       
             }
+            return null;
         }
         IEnumerator EnemySpawn(float delayBeforeSpawn) //delay should be exactly same with the particle effect duration/lifetime
         {

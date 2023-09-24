@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FikretGezer
@@ -10,8 +9,12 @@ namespace FikretGezer
         [SerializeField] private Transform _playerBody;
         [SerializeField] private float _mouseSpeed = 100f;
         [SerializeField] private float _lerpSpeed = 2f;
+
+        public float shakeAmount, shakeDuration; 
+        public static CameraMovement Instance;
         private void Awake() {
             //Cursor.lockState = CursorLockMode.Locked;
+            if(Instance == null) Instance = this;
         }
         private void Update() {
             FollowPlayer();            
@@ -23,7 +26,25 @@ namespace FikretGezer
             posPlayer.y = transform.position.y;
             posPlayer += _distanceBetweenPlayerAndCamera;
 
-            transform.position = Vector3.Lerp(transform.position, posPlayer, _lerpSpeed * Time.deltaTime); 
+            transform.position = Vector3.Lerp(transform.position, posPlayer, _lerpSpeed * Time.deltaTime);
+        }
+        public void StartShake()
+        {
+            StartCoroutine(CameraShake()); 
+        }
+        public void StopShake()
+        {
+            StopCoroutine(CameraShake()); 
+        }
+        private IEnumerator CameraShake()
+        {
+            var elapsedTime = 0f;            
+            while(elapsedTime < shakeDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                transform.position = transform.position + Random.insideUnitSphere * shakeAmount;
+                yield return null;
+            }
         }
     }
 }

@@ -56,13 +56,23 @@ namespace FikretGezer
         }
         private void EndTheRound()
         {
+            CameraMovement.Instance.StopShake();
             Time.timeScale = 0f;
-            XPPoolManager.Instance.ReturnAllToThePool();
+
+            BulletEnemyPoolManager.Instance.ReturnAllToThePool(); 
+            BulletPoolManager.Instance.ReturnAllToThePool(); 
+            EnemySpawnController.Instance.ReturnAllToThePool(); 
+            MoneyPoolManager.Instance.ReturnAllToThePool(); 
+            MoneyTextPoolManager.Instance.ReturnAllToThePool();             
             MoneyPoolManager.Instance.ReturnAllToThePool();
             PointerPoolManager.Instance.ReturnAllToThePool();
-            EnemySpawnController.Instance.ReturnAllToThePool();                
+            XPPoolManager.Instance.ReturnAllToThePool();
+            XPTextPoolManager.Instance.ReturnAllToThePool();
+                                     
             InGameMenu.SetActive(false);            
             EndOfRunMenu.SetActive(true);
+
+
             if(CurrentLevel >= 10)
             {
                 //GAME FINISHED
@@ -71,6 +81,7 @@ namespace FikretGezer
         public void GetBackToTheGame()
         {
             isNewRoundStarted = true;
+            EnemySpawnController.Instance.spawnIncreaser = CurrentLevel;
             IncreaseTimeEachRound();
             UpdateCurrentLevel();
 

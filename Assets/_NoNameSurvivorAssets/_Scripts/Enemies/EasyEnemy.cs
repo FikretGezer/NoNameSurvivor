@@ -14,6 +14,7 @@ namespace FikretGezer
                     //Play punch animation
                     other.GetComponent<IDamageable>().TakeDamage(GivenDamage);
                     StartCoroutine(AttackCooldown(attackCoolDown));
+                    CameraMovement.Instance.StartShake();
                     canGiveDamage = false;
                 }
             }

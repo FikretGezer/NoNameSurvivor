@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FikretGezer
@@ -32,6 +30,12 @@ namespace FikretGezer
             if(other.CompareTag("Player"))
             {
                 ExperienceManager.Instance.UpdateExperience(xpAmount);
+
+                var xpText = XPTextPoolManager.Instance.GetPooledObject();
+                xpText.GetComponent<xpText>().XPAmount = $"x{xpAmount}";
+                xpText.GetComponent<xpText>().StartPos = transform.position + Vector3.up;
+                xpText.GetComponent<xpText>().CanMove = true;
+
                 gameObject.SetActive(false);
             }            
         }

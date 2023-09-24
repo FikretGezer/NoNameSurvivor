@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 4c33c6fe6d6b8ec4aa7c8aa01e8e89e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -149,8 +149,9 @@ MonoBehaviour:
   attackCoolDown: 3
   chanceOfHigherXP: 0
   chanceOfHigherMoney: 0
-  _enemyType: 1
   speed: 0.5
+  _enemyType: 1
+  spawnChances: 0
   <Health>k__BackingField: 2
   <GivenDamage>k__BackingField: 0
   dashingPower: 3

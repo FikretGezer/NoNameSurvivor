@@ -20,7 +20,7 @@ namespace FikretGezer
 
             currentXPLevel = 1;
             currentExperience = 0;
-            maxExperience = 20;
+            maxExperience = 10;
             UpdateExperience(0);
         }
         

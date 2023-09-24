@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace FikretGezer
@@ -31,6 +30,12 @@ namespace FikretGezer
             if(other.CompareTag("Player"))
             {
                 CurrencyManager.Instance.UpdateCurrency(moneyAmount);
+
+                var moneyText = MoneyTextPoolManager.Instance.GetPooledObject();                
+                moneyText.GetComponent<moneyText>().MoneyAmount = $"x{moneyAmount}";
+                moneyText.GetComponent<moneyText>().StartPos = transform.position + Vector3.up;
+                moneyText.GetComponent<moneyText>().CanMove = true;
+
                 gameObject.SetActive(false);
             }            
         }
