@@ -100,7 +100,8 @@ namespace FikretGezer
         }
         public void Die()
         {
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
+            CharacterSpawner.Instance.DisableCharacters();
             Debug.Log("<color=red> DIED! </color>");
         }
     }

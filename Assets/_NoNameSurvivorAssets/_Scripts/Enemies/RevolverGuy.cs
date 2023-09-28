@@ -29,22 +29,24 @@ namespace FikretGezer
         {
             if(isShooting)
                 return;
-
-            direction = CharacterSpawner.Instance._position - transform.position;
-            distance = direction.magnitude;
-
-            //transform.Translate(direction * speed * Time.deltaTime);
-            transform.LookAt(CharacterSpawner.Instance._position);
-
-
-            //Rotate Enemy
-                _rb.velocity = direction * speed * Time.deltaTime;
-                
-            //
-
-            if(canShoot && distance < 10f)
+            if(FindObjectOfType<PlayerController>())
             {
-                StartCoroutine(nameof(ShootingTimer));
+                direction = CharacterSpawner.Instance._position - transform.position;
+                distance = direction.magnitude;
+
+                //transform.Translate(direction * speed * Time.deltaTime);
+                transform.LookAt(CharacterSpawner.Instance._position);
+
+
+                //Rotate Enemy
+                    _rb.velocity = direction * speed * Time.deltaTime;
+                    
+                //
+
+                if(canShoot && distance < 10f)
+                {
+                    StartCoroutine(nameof(ShootingTimer));
+                }
             }
         }
 

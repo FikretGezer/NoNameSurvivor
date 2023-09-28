@@ -12,8 +12,8 @@ namespace FikretGezer
         [SerializeField] private float _distanceBetweenCharacters = 1f;
         [SerializeField] private GameObject _prefabCharacter;
         [HideInInspector] public Vector3 _position;
+        [HideInInspector] public List<GameObject> _charactersOnTheScene = new List<GameObject>();
 
-        private List<GameObject> _charactersOnTheScene = new List<GameObject>();
         private int _currentCharacterCount = 0;
         private bool newCharacterEquipped = false;
         private GameObject charactersParent;
@@ -44,9 +44,9 @@ namespace FikretGezer
         }
         private void Update() {
             Vector3 total = Vector3.zero;
-            foreach (var item in _charactersOnTheScene)
+            foreach (var _char in _charactersOnTheScene)
             {
-                total += item.transform.position;
+                total += _char.transform.position;
             }
             _position = total / _characterCount;
         }
@@ -81,6 +81,13 @@ namespace FikretGezer
             for (int i = 0; i < _characterCount; i++)
             {
                 Gizmos.DrawSphere(_position + ReturnPositionOfSpawnedCharacter(i), 0.3f);
+            }
+        }
+        public void DisableCharacters()
+        {            
+            foreach (var _char in _charactersOnTheScene)
+            {
+                _char.SetActive(false);
             }
         }
     }

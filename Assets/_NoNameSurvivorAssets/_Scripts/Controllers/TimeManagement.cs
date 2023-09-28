@@ -80,6 +80,7 @@ namespace FikretGezer
         }
         public void GetBackToTheGame()
         {
+            EnemySpawnController.Instance.gotPooledObject = false;            
             isNewRoundStarted = true;
             EnemySpawnController.Instance.spawnIncreaser = CurrentLevel;
             IncreaseTimeEachRound();

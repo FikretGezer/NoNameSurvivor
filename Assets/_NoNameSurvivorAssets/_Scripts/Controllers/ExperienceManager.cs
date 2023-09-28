@@ -11,8 +11,8 @@ namespace FikretGezer
 
         // public int CurrentExperience {get; private set;}
         // public int MaxExperience {get; private set;}
-        private int currentExperience;
-        private int maxExperience;
+        [SerializeField] private int currentExperience;
+        [SerializeField] private int maxExperience;
         private int currentXPLevel;
 
         private void Awake() {
@@ -32,9 +32,9 @@ namespace FikretGezer
         }
         private void IsLeveledUp()
         {
-            if(currentExperience == maxExperience)
+            if(currentExperience >= maxExperience)
             {
-                currentExperience = 0;
+                currentExperience = currentExperience - maxExperience;
                 currentXPLevel++;
                 int increasedXP = maxExperience * 20 / 100;
                 maxExperience += increasedXP;

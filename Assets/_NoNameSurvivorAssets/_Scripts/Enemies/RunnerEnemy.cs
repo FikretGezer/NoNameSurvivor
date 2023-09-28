@@ -23,7 +23,8 @@ namespace FikretGezer
         }
         public override void Update()
         {  
-            base.Update();
+            if(FindObjectOfType<PlayerController>())
+                base.Update();
         }
         public override void Attack()
         {

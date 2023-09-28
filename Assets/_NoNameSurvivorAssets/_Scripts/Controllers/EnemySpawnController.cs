@@ -20,9 +20,9 @@ namespace FikretGezer
 
         [HideInInspector] public List<GameObject> selectedEnemies = new List<GameObject>();
         [HideInInspector] public int spawnIncreaser = 1;
+        [HideInInspector] public bool gotPooledObject;
 
         private List<Vector3> locations = new List<Vector3>();
-        private bool gotPooledObject;
         private int totalSpawnCount;
         private float _sizeOfSpawnArea;
         private float elapsedTime;
@@ -46,24 +46,28 @@ namespace FikretGezer
             chances.Add(mediumChance);
             chances.Add(hardChance);
         }
-        
-        private void Update() {            
-            if(!gotPooledObject)
+        private void Update() {     
+            if(FindObjectOfType<PlayerController>())
             {
-                StartCoroutine(SpawnTimer(timePerSpawn));
+                if(!gotPooledObject)
+                {
+                    StartCoroutine(SpawnTimer(timePerSpawn));
+                }       
+                if(TimeManagement.Instance.isNewRoundStarted)       
+                {
+                    EnemySpawnChanceArranger();
+                }         
             }       
-            if(TimeManagement.Instance.isNewRoundStarted)       
-            {
-                EnemySpawnChanceArranger();
-            }         
         }
         private void LateUpdate() {
-            bool isThereEnemy = GameObject.FindWithTag("enemy");
-            if(!isThereEnemy && !isSpawned)
-            {
-                elapsedTime = 0f;
-                SpawnPointerOnSpawnPositions();
-            }            
+            if(FindObjectOfType<PlayerController>()){
+                bool isThereEnemy = GameObject.FindWithTag("enemy");
+                if(!isThereEnemy && !isSpawned)
+                {
+                    elapsedTime = 0f;
+                    SpawnPointerOnSpawnPositions();
+                }            
+            }
         }
 
         public void StartNewWave()
