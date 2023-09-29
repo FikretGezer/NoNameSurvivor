@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace FikretGezer
@@ -13,12 +14,14 @@ namespace FikretGezer
         [SerializeField] private GameObject _prefabCharacter;
         [HideInInspector] public Vector3 _position;
         [HideInInspector] public List<GameObject> _charactersOnTheScene = new List<GameObject>();
+        public int _changeableCharacterCount;
 
         private int _currentCharacterCount = 0;
-        private bool newCharacterEquipped = false;
+        private bool newCharacterEquipped;
+        private bool equipNewGuns;
         private GameObject charactersParent;
-        public static CharacterSpawner Instance;
-        
+
+        public static CharacterSpawner Instance;        
         private void Awake() {
             if(Instance == null) Instance = this;
             charactersParent = new GameObject();
@@ -32,8 +35,8 @@ namespace FikretGezer
             if(newCharacterEquipped)
             {
                 _position = Vector3.zero;
-                if(_characterCount < 6) {
-                    _characterCount++;
+                if(_characterCount < 6 && _changeableCharacterCount > _characterCount) {
+                    _characterCount = _changeableCharacterCount;
                     Spawner();
                 }
                 newCharacterEquipped = false;
@@ -43,6 +46,21 @@ namespace FikretGezer
             newCharacterEquipped = true;
         }
         private void Update() {
+            //Equips new guns 
+            if(equipNewGuns)
+            {
+                if(ItemSelection.Instance.guns.Count > 0)
+                {
+                    for (int i = 0; i < ItemSelection.Instance.guns.Count; i++)
+                    {
+                        var gun = ItemSelection.Instance.guns[i];
+                        _charactersOnTheScene[i].transform.GetChild(2).GetComponent<FastShooter>().SetGunParameters(gun.coolDown, gun.damageAmount, gun.gunMesh, gun.gunColor);
+                    }
+                    ItemSelection.Instance.guns.Clear();
+                }
+                equipNewGuns = false;
+            }
+            //Character Position Adjuster
             Vector3 total = Vector3.zero;
             foreach (var _char in _charactersOnTheScene)
             {
@@ -50,6 +68,7 @@ namespace FikretGezer
             }
             _position = total / _characterCount;
         }
+        
         private void Spawner()
         {
             for (int i = _currentCharacterCount; i < _characterCount; i++)
@@ -59,8 +78,12 @@ namespace FikretGezer
                 _charactersOnTheScene.Add(character);
                 character.transform.parent = charactersParent.transform;
             }
-            _currentCharacterCount = _characterCount;
+            _changeableCharacterCount = _currentCharacterCount = _characterCount;
             
+            //Add new guns
+            equipNewGuns = true;
+            //
+
             for (int i = 0; i < _characterCount; i++)
             {
                 _charactersOnTheScene[i].transform.position = _position + ReturnPositionOfSpawnedCharacter(i);

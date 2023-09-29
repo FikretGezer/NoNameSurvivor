@@ -4,11 +4,94 @@ using UnityEngine;
 
 namespace FikretGezer
 {
-    public class FastShooter : ShootingBase
+    public class FastShooter : MonoBehaviour
     {
-        public override void Update()
+        // public override void Update()
+        // {
+        //     base.Update();
+        // }
+        [SerializeField] private GunTypeScriptable gunType;
+        [SerializeField] private Transform bulletPoint;
+        [SerializeField] private Transform target;
+        [SerializeField] private float bulletCoolDown = 1f;
+        [SerializeField] private float GivingDamage = 1f;
+        [SerializeField] private float coolDown;
+        [SerializeField] private float damageAmount;
+        [field:SerializeField] private float bulletSpeed;
+        private bool didShoot;
+        private void Start() {
+            SetGunParameters(gunType.coolDown, gunType.damageAmount, gunType.gunMesh, gunType.gunColor);
+        }
+        private void Update()
         {
-            base.Update();
+            ChooseTarget();
+            if(target != null)
+            {
+                if(!didShoot)
+                {
+                    StartCoroutine(Timer(coolDown));
+                    didShoot = true;
+                }
+            }
+        }
+        private void ChooseTarget()
+        {
+            if(target == null)
+            {
+                target = transform.parent.GetComponent<PlayerController>()._target;
+            }
+            else
+            {
+                if(!target.gameObject.activeInHierarchy)
+                    target = null;
+            }
+        }
+        public void SetGunParameters(float clDown, float damage, Mesh gunMesh, Color gunColor)
+        {
+            coolDown = clDown;
+            damageAmount = damage;
+            //GetComponent<MeshFilter>().mesh = gunMesh;
+            GetComponent<Renderer>().material.color = gunColor;
+        }
+        private void Shoot()
+        {
+            ChooseTarget();
+            if(target != null)
+            {
+                var dir = (target.position - transform.parent.position).normalized;
+                var bullet = BulletPoolManager.Instance.GetPooledObject();
+                if(bullet != null)
+                {
+                    //bullet.SetActive(true);
+                    bullet.transform.position = bulletPoint.position;
+                    bullet.GetComponent<Bullet>().ShootThis(Fire);
+                    bullet.GetComponent<Bullet>().SetDamage(damageAmount);
+                }
+
+                void Fire()
+                {
+                    bullet.transform.Translate(dir * bulletSpeed * Time.deltaTime);
+                }
+            }
+        }
+        IEnumerator Timer(float coolDown)
+        {
+            var elapsedTime = 0f;
+            Shoot();
+            while(elapsedTime < coolDown)
+            {
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            didShoot = false;
+        }
+        private void OnDrawGizmos() {
+            if(target != null)
+            {
+                var dir = target.position - transform.parent.position;
+                Gizmos.DrawLine(transform.parent.position,transform.parent.position + dir);
+            }
         }
     }
+    
 }

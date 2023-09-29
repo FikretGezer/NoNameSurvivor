@@ -13,13 +13,10 @@ namespace FikretGezer
         [SerializeField] protected float GivingDamage = 1f;
         [field:SerializeField] protected float bulletSpeed;
         private bool didShoot;
-        private float coolDown;
-        private float damageAmount;
-        private float critique;
-        private float range;
-        private float pierce;
+        [SerializeField] protected float coolDown;
+        [SerializeField] protected float damageAmount;
         private void Start() {
-            SetGunParameters(gunType.coolDown, gunType.damageAmount, gunType.critique, gunType.range, gunType.pierce);
+            SetGunParameters(gunType.coolDown, gunType.damageAmount, gunType.gunMesh, gunType.gunColor);
         }
         public virtual void Update()
         {
@@ -45,13 +42,12 @@ namespace FikretGezer
                     target = null;
             }
         }
-        private void SetGunParameters(float coolDown, float damageAmount, float critique, float range, float pierce)
+        public void SetGunParameters(float clDown, float damage, Mesh gunMesh, Color gunColor)
         {
-            this.coolDown = coolDown;
-            this.damageAmount = damageAmount;
-            this.critique = critique;
-            this.range = range;
-            this.pierce = pierce;
+            coolDown = clDown;
+            damageAmount = damage;
+            //GetComponent<MeshFilter>().mesh = gunMesh;
+            GetComponent<Renderer>().material.color = gunColor;
         }
         private void Shoot()
         {

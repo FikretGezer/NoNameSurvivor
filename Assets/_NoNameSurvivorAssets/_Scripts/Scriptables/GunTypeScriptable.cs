@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace FikretGezer
 {
@@ -8,10 +7,11 @@ namespace FikretGezer
     {
         public Sprite gunImage;
         public Mesh gunMesh;
+        public Color gunColor;
         public float coolDown;
         public float damageAmount;
-        public float critique;
-        public float range;
-        public float pierce;        
+        // public float critique;
+        // public float range;
+        // public float pierce;        
     }
 }

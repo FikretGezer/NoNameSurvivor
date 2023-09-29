@@ -11,7 +11,7 @@ namespace FikretGezer
         private void Awake() {
             if(Instance == null) Instance = this;
         }
-        public void NewRoundStart()
+        public void SpawnNewCharacters()
         {
             StartCoroutine(nameof(Timer));
         }
