@@ -8,6 +8,7 @@ namespace FikretGezer
     {
         [SerializeField] private TMP_Text roundTimeText;
         [SerializeField] private TMP_Text currencyText;
+        [SerializeField] private TMP_Text endWaveCurrencyText;
         [SerializeField] private TMP_Text experienceText;
         [SerializeField] private TMP_Text currentLevelText;
 
@@ -51,6 +52,7 @@ namespace FikretGezer
         private void UpdateCurrencyUI(int currency)
         {
             currencyText.text = $"{currency:0}";
+            endWaveCurrencyText.text = $"{currency:0}";
         }
         private void UpdateCurrentLevel(int currentLevel)
         {

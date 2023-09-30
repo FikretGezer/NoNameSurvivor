@@ -235,7 +235,7 @@ MonoBehaviour:
   attackCoolDown: 3
   chanceOfHigherXP: 0
   chanceOfHigherMoney: 0
-  speed: 0.5
+  speed: 0.4
   _enemyType: 1
   spawnChances: 0
   <Health>k__BackingField: 2

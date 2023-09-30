@@ -27,7 +27,7 @@ namespace FikretGezer
         }
         
         public virtual void Update() {
-            
+            _moveSpeed = Stats.Instance.speed;
             float hor = Input.GetAxis("Horizontal");
             float ver = Input.GetAxis("Vertical");
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FikretGezer
 {
-    public class FastShooter : MonoBehaviour
+    public class GunShooter : MonoBehaviour
     {
         // public override void Update()
         // {
@@ -16,7 +16,7 @@ namespace FikretGezer
         [SerializeField] private float bulletCoolDown = 1f;
         [SerializeField] private float GivingDamage = 1f;
         [SerializeField] private float coolDown;
-        [SerializeField] private float damageAmount;
+        [SerializeField] private int damageAmount;
         [field:SerializeField] private float bulletSpeed;
         private bool didShoot;
         private void Start() {
@@ -46,12 +46,17 @@ namespace FikretGezer
                     target = null;
             }
         }
-        public void SetGunParameters(float clDown, float damage, Mesh gunMesh, Color gunColor)
+        public void FeatureMultiplier(int damage, int attackSpeed)
+        {
+            coolDown -= (coolDown * attackSpeed / 100f);
+            damageAmount += damage;
+        }
+        public void SetGunParameters(float clDown, int damage, Mesh gunMesh, Color gunColor)
         {
             coolDown = clDown;
             damageAmount = damage;
             //GetComponent<MeshFilter>().mesh = gunMesh;
-            GetComponent<Renderer>().material.color = gunColor;
+            GetComponent<Renderer>().material.color = gunColor;           
         }
         private void Shoot()
         {
