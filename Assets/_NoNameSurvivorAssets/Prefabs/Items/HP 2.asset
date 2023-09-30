@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384f2e3c9197ee947bf1f3c9b65a2825, type: 3}
   m_Name: HP 2
   m_EditorClassIdentifier: 
-  cardType: 0
-  itemName: 
-  itemImage: {fileID: 0}
+  cardType: 1
+  itemName: Vitalia
+  itemImage: {fileID: 21300000, guid: 98ed1d132cbd1bb44b9731400d9dad65, type: 3}
   itemHP: 2
   itemDamage: 2
   itemSpeed: 2
   itemAttackSpeed: 0
   itemLuck: 0
   itemArmor: 0
+  itemCost: 5

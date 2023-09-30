@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a14867240660d4b9320a76d5377713, type: 3}
   m_Name: (lvl_1)_gun_model 1
   m_EditorClassIdentifier: 
-  gunName: Basic Gun
+  cardType: 0
+  gunName: Shooter
   gunImage: {fileID: 21300000, guid: a9a2204d0e297fe40ae4fdb77e72904d, type: 3}
   gunMesh: {fileID: 0}
   gunColor: {r: 0.04513645, g: 1, b: 0, a: 1}
-  coolDown: 1
+  cooldown: 1
   damageAmount: 1
-  itemCost: 0
+  gunCost: 10

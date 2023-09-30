@@ -16,7 +16,7 @@ namespace FikretGezer
         [SerializeField] protected float coolDown;
         [SerializeField] protected float damageAmount;
         private void Start() {
-            SetGunParameters(gunType.coolDown, gunType.damageAmount, gunType.gunMesh, gunType.gunColor);
+            SetGunParameters(gunType.cooldown, gunType.damageAmount, gunType.gunMesh, gunType.gunColor);
         }
         public virtual void Update()
         {

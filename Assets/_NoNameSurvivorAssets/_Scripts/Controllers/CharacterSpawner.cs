@@ -54,7 +54,7 @@ namespace FikretGezer
                     for (int i = 0; i < ItemSelection.Instance.guns.Count; i++)
                     {
                         var gun = ItemSelection.Instance.guns[i];
-                        _charactersOnTheScene[i].transform.GetChild(2).GetComponent<GunShooter>().SetGunParameters(gun.coolDown, gun.damageAmount, gun.gunMesh, gun.gunColor);
+                        _charactersOnTheScene[i].transform.GetChild(2).GetComponent<GunShooter>().SetGunParameters(gun.cooldown, gun.damageAmount, gun.gunMesh, gun.gunColor);
                     }
                     ItemSelection.Instance.guns.Clear();
                     ItemSelection.Instance.gunsThatChanged.Clear();
