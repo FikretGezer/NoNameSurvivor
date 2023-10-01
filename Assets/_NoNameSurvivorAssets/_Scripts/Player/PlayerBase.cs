@@ -34,6 +34,12 @@ namespace FikretGezer
             Falling();
             Moving(hor, ver);
             TargetTheEnemy(); 
+
+            if(TimeManagement.Instance.refuelHealth)
+            {
+                Health = Stats.Instance.maxHp;
+                TimeManagement.Instance.refuelHealth = false;
+            }
         }
         // private void OnCollisionEnter(Collision other) {
         //     if(other.gameObject.CompareTag("xp"))

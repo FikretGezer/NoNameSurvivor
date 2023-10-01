@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 0
   gunName: Rapidfire
-  gunImage: {fileID: 21300000, guid: a9a2204d0e297fe40ae4fdb77e72904d, type: 3}
+  gunImage: {fileID: 21300000, guid: 42c80d691d6e4da4f83345d35f509695, type: 3}
   gunMesh: {fileID: 0}
   gunColor: {r: 0, g: 0.7709999, b: 1, a: 1}
   cooldown: 1

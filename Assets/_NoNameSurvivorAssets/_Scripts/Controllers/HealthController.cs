@@ -37,6 +37,12 @@ namespace FikretGezer
                 healthText.text = $"{previousCurrentHealth:0}/{maxHealth:0}";
             }
         }
+        public void SetHealthBack()
+        {
+            healthImage.fillAmount = reducedFillAmount = 1f;
+            currentHealth = previousCurrentHealth = maxHealth = Stats.Instance.maxHp;
+            healthText.text = $"{currentHealth:0}/{maxHealth:0}";
+        }
         public void RearrangeHealth(float damageAmount)
         {
             if(currentHealth > 0)

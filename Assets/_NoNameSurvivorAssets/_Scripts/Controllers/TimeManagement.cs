@@ -18,6 +18,7 @@ namespace FikretGezer
         public int CurrentLevel {get; private set;} //This will be maxed at 10lvl
         public float currentTime;
         public bool isNewRoundStarted;
+        public bool refuelHealth;
 
         private void Awake() {
             if (Instance == null) Instance = this;
@@ -68,7 +69,9 @@ namespace FikretGezer
             PointerPoolManager.Instance.ReturnAllToThePool();
             XPPoolManager.Instance.ReturnAllToThePool();
             XPTextPoolManager.Instance.ReturnAllToThePool();
-                                     
+            ItemSelection.Instance.EnableCards();
+
+
             InGameMenu.SetActive(false);            
             EndOfRunMenu.SetActive(true);
 
@@ -82,7 +85,9 @@ namespace FikretGezer
         {
             EnemySpawnController.Instance.gotPooledObject = false;            
             isNewRoundStarted = true;
+            refuelHealth = true;
             EnemySpawnController.Instance.spawnIncreaser = CurrentLevel;
+            HealthController.Instance.SetHealthBack();
             IncreaseTimeEachRound();
             UpdateCurrentLevel();
 
@@ -94,6 +99,7 @@ namespace FikretGezer
             isRoundStarted = false;
             HealthController.Instance.UpdateNewHealth(0);
             EnemySpawnController.Instance.StartNewWave();
+            ItemsHolder.Instance.RemoveSelectedItem();
         }
     }
 }

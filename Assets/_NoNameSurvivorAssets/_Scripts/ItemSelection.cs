@@ -10,6 +10,8 @@ namespace FikretGezer
 
         public List<GunTypeScriptable> guns = new List<GunTypeScriptable>();
         public List<GunTypeScriptable> gunsThatChanged = new List<GunTypeScriptable>();
+        public List<GameObject> cards = new List<GameObject>();
+
         public int currentCharCount = 0;
         public int gunIndx = 0;
         public bool canBuyAGun;
@@ -59,7 +61,7 @@ namespace FikretGezer
                     if(CharacterSpawner.Instance._changeableCharacterCount < 6){
                         CharacterSpawner.Instance._changeableCharacterCount++;
 
-                        var itm = item.GetComponent<CardShowing>().Gun;
+                        var itm = item.GetComponent<CardShowing>().Gun;                                             
                         guns.Add(itm);
 
                         //Stats.Instance.SetValue("damage", itm.damageAmount);
@@ -78,6 +80,7 @@ namespace FikretGezer
                 else if(t == ItemType.item)
                 {
                     var itm = item.GetComponent<CardShowing>().Item;
+
                     int maxHp = itm.itemHP;
                     int damage = itm.itemDamage;
                     int speed = itm.itemSpeed;
@@ -131,6 +134,13 @@ namespace FikretGezer
         }
         public void ScaleUpWhenExitHovering(Button _button){
             _button.transform.localScale = new Vector2(1f, 1f);
+        }
+        public void EnableCards()
+        {
+            foreach(var card in cards) 
+            {
+                card.SetActive(true);
+            }
         }
     }
     public enum ItemType

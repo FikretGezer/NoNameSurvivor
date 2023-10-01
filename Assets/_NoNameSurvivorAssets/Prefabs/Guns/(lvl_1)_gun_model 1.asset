@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 0
   gunName: Shooter
-  gunImage: {fileID: 21300000, guid: a9a2204d0e297fe40ae4fdb77e72904d, type: 3}
+  gunImage: {fileID: 21300000, guid: b0daaf570f233824e9ff3a82d1d1793c, type: 3}
   gunMesh: {fileID: 0}
   gunColor: {r: 0.04513645, g: 1, b: 0, a: 1}
   cooldown: 1
