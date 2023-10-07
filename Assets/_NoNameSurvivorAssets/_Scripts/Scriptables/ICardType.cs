@@ -8,4 +8,15 @@ namespace FikretGezer
     {
         public ItemType cardType { get; set; }
     }
+    public enum ItemType
+    {
+        gun,
+        item
+    }
+    public enum GunLength
+    {
+        shortLength,
+        mediumLength,
+        longLength
+    }
 }

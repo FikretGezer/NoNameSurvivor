@@ -18,7 +18,7 @@ namespace FikretGezer
             _camera = Camera.main;
         }
         private void OnEnable() {
-            StartCoroutine(nameof(ObjectColorOverTime)); 
+            //StartCoroutine(nameof(ObjectColorOverTime)); 
             isDisappearCountdownStarted = true;  
         }
         private void Update() {

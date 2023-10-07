@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a14867240660d4b9320a76d5377713, type: 3}
+  m_Name: SniperRifle_6
+  m_EditorClassIdentifier: 
+  cardType: 0
+  gunName: Annihilator
+  gunImage: {fileID: 21300000, guid: 79b8141825cdf0549b947fc6b6384cb2, type: 3}
+  gunMesh: {fileID: -4402956292378221190, guid: 2544654cbde363c4092f646c25cd8be1,
+    type: 3}
+  gunColor: {r: 0.5809746, g: 0, b: 1, a: 1}
+  cooldown: 1
+  damageAmount: 1
+  gunCost: 13
+  gunLength: 2

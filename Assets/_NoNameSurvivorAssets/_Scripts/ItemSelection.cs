@@ -143,9 +143,5 @@ namespace FikretGezer
             }
         }
     }
-    public enum ItemType
-    {
-        gun,
-        item
-    }
+   
 }

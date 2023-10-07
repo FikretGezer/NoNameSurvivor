@@ -21,6 +21,9 @@ namespace FikretGezer
         
         private Vector3 velocity;
         protected Camera _cam;
+
+        public Vector3 tilt;
+        public Vector3 enemyDir;
         public virtual void Awake() {
             _characterController = GetComponent<CharacterController>();
             _cam = Camera.main;
@@ -92,7 +95,8 @@ namespace FikretGezer
                 {                             
                     var pos = _target.position;
                     pos.y = transform.position.y;
-                    var direction = (pos - transform.position).normalized;
+                    var direction = ((pos - transform.position) + tilt).normalized;
+                    enemyDir = direction;
                     transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), _lerpSpeed * Time.deltaTime);
                 }
                 else _target = null;

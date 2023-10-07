@@ -12,6 +12,7 @@ namespace FikretGezer
         public float cooldown;
         public int damageAmount;
         public int gunCost;
+        public GunLength gunLength;
         // public float critique;
         // public float range;
         // public float pierce;        

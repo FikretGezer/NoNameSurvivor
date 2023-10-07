@@ -39,7 +39,7 @@ namespace FikretGezer
             if(Instance == null) Instance = this;
 
             //maxSpawnCount = 50;
-            _sizeOfSpawnArea = _groundMeshRenderer.bounds.size.x / 2 - 5;
+            _sizeOfSpawnArea = _groundMeshRenderer.bounds.size.x / 2 - 30;
             StartNewWave();       
 
             chances.Add(easyChance);

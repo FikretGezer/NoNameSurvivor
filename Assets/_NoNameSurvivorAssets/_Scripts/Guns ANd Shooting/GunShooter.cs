@@ -13,6 +13,7 @@ namespace FikretGezer
         [SerializeField] private GunTypeScriptable gunType;
         [SerializeField] private Transform bulletPoint;
         [SerializeField] private Transform target;
+        [SerializeField] private Vector3 tilt;
         [SerializeField] private float bulletCoolDown = 1f;
         [SerializeField] private float GivingDamage = 1f;
         [SerializeField] private float coolDown;
@@ -20,7 +21,7 @@ namespace FikretGezer
         [field:SerializeField] private float bulletSpeed;
         private bool didShoot;
         private void Start() {
-            SetGunParameters(gunType.cooldown, gunType.damageAmount, gunType.gunMesh, gunType.gunColor);
+            SetGunParameters(gunType.cooldown, gunType.damageAmount, gunType.gunMesh, gunType.gunColor, gunType.gunLength);
         }
         private void Update()
         {
@@ -51,19 +52,29 @@ namespace FikretGezer
             coolDown -= (coolDown * attackSpeed / 100f);
             damageAmount += damage;
         }
-        public void SetGunParameters(float clDown, int damage, Mesh gunMesh, Color gunColor)
+        public void SetGunParameters(float clDown, int damage, Mesh gunMesh, Color gunColor, GunLength gunLength)
         {
             coolDown = clDown;
             damageAmount = damage;
-            //GetComponent<MeshFilter>().mesh = gunMesh;
-            GetComponent<Renderer>().material.color = gunColor;           
+            GetComponent<MeshFilter>().mesh = gunMesh;
+            GetComponent<Renderer>().material.color = gunColor;      
+            Vector3 SetZ(float zVal)
+            {
+                var pos = transform.localPosition;
+                pos.z += zVal;
+                return pos;
+            }
+            //if (gunLength == GunLength.shortLength) transform.position = SetZ(0);
+            if (gunLength == GunLength.mediumLength) transform.localPosition = SetZ(1.25f);
+            else if (gunLength == GunLength.longLength) transform.localPosition = SetZ(2.75f);
         }
         private void Shoot()
         {
             ChooseTarget();
             if(target != null)
             {
-                var dir = (target.position - transform.parent.position).normalized;
+                //var dir = (target.position - transform.parent.position).normalized;                
+                var dir = (target.position - transform.position).normalized;                
                 var bullet = BulletPoolManager.Instance.GetPooledObject();
                 if(bullet != null)
                 {
@@ -79,6 +90,7 @@ namespace FikretGezer
                 }
             }
         }
+        
         IEnumerator Timer(float coolDown)
         {
             var elapsedTime = 0f;
