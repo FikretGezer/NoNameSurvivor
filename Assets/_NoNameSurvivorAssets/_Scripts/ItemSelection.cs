@@ -40,8 +40,6 @@ namespace FikretGezer
                 Stats.Instance.prev_damage = Stats.Instance.damage;
                 Stats.Instance.prev_attackSpeed = Stats.Instance.attackSpeed;
 
-                Debug.Log(activeGuns);
-                Debug.Log("asddsa");
 
                 foreach (var gun in activeGuns)
                 {

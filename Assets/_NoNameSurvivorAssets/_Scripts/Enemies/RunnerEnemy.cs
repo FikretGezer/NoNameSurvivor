@@ -44,6 +44,12 @@ namespace FikretGezer
                 StartCoroutine(nameof(Dash));
             }
         }
+        public override void Die()
+        {
+            base.Die();
+            EnemySpawnController.Instance.selectedEnemies.Remove(gameObject);
+            MediumEnemyPoolManager.Instance.ReturnToThePool(gameObject);
+        }
         IEnumerator Dash()
         {
             canDash = false;

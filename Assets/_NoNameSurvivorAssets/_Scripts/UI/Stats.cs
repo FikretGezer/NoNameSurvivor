@@ -30,6 +30,8 @@ namespace FikretGezer
             if (Instance == null) Instance = this;
             maxHp = 10;
             speed = 5;
+            SetValue(nameof(maxHp), 0);
+            SetValue(nameof(speed), 0);
         }
         public void SetValue(string valueToSet, int value)
         {

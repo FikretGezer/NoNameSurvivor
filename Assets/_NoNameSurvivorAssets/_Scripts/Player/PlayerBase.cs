@@ -111,8 +111,8 @@ namespace FikretGezer
         public void Die()
         {
             //Time.timeScale = 0f;
+            TimeManagement.Instance.isGameEnded = true;
             CharacterSpawner.Instance.DisableCharacters();
-            Debug.Log("<color=red> DIED! </color>");
         }
     }
 }

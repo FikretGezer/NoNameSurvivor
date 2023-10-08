@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace FikretGezer
 {
@@ -40,10 +41,30 @@ namespace FikretGezer
         private void OnTriggerEnter(Collider other) {
             if(other.gameObject.tag == "enemy")
             {
-                gameObject.SetActive(false);
                 other.GetComponent<IDamageable>().TakeDamage(damage);
                 CameraMovement.Instance.StartShake();
+
+                GameObject hitEffectObj = HitVFXPoolManager.Instance.GetPooledObject();
+                hitEffectObj.transform.position = other.transform.position;
+                hitEffectObj.GetComponent<VisualEffect>().Play();
+
+                var type = other.GetComponent<EnemyBase>()._enemyType;
+                if (type == EnemyTypes.easy)                
+                    SetColor(hitEffectObj, new Vector4(1 * 4, 1 * 4, 1 * 4, 1));                
+                else if(type == EnemyTypes.medium)
+                    SetColor(hitEffectObj, new Vector4(0, 0, 1 * 4, 1));
+                else
+                    SetColor(hitEffectObj, new Vector4(0.8f * 4, 0f, 0.8f * 4, 1));
+
+                HitVFXPoolManager.Instance.StartCor(hitEffectObj);
+
+                gameObject.SetActive(false);
             }
+        }
+        private void SetColor(GameObject effectObj, Vector4 color)
+        {            
+            effectObj.GetComponent<VisualEffect>().SetVector4("Color_Flash", color);
+            effectObj.GetComponent<VisualEffect>().SetVector4("Color_Particles", color);
         }
         public void SetDamage(float damage)
         {

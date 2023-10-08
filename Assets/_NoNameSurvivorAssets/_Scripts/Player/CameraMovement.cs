@@ -12,12 +12,14 @@ namespace FikretGezer
 
         public float shakeAmount, shakeDuration; 
         public static CameraMovement Instance;
+        public bool isShaking;
         private void Awake() {
             //Cursor.lockState = CursorLockMode.Locked;
             if(Instance == null) Instance = this;
+            isShaking = true;
         }
         private void Update() {
-            FollowPlayer();            
+            FollowPlayer();
         }
         private void FollowPlayer()
         {
@@ -43,6 +45,8 @@ namespace FikretGezer
             {
                 elapsedTime += Time.deltaTime;
                 transform.position = transform.position + Random.insideUnitSphere * shakeAmount;
+                if (!isShaking)
+                    break;
                 yield return null;
             }
         }

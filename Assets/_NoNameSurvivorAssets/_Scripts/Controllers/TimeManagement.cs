@@ -13,13 +13,16 @@ namespace FikretGezer
         [SerializeField] private float timePerRound = 10f;
         [SerializeField] private GameObject InGameMenu;
         [SerializeField] private GameObject EndOfRunMenu;
+        [SerializeField] private GameObject dieMenu;
+        [SerializeField] private GameObject winMenu;
 
         private bool isRoundStarted;
         public int CurrentLevel {get; private set;} //This will be maxed at 10lvl
         public float currentTime;
         public bool isNewRoundStarted;
         public bool refuelHealth;
-
+        public bool isGameEnded;
+        private bool enableDeathMenu;
         private void Awake() {
             if (Instance == null) Instance = this;
             CurrentLevel = 1;
@@ -30,6 +33,11 @@ namespace FikretGezer
             {
                 StartCoroutine(nameof(RoundTimerCountDown));
                 isRoundStarted = true;
+            }
+            if(isGameEnded)
+            {
+                enableDeathMenu = true;
+                EndTheRound();
             }
         }
         private IEnumerator RoundTimerCountDown()
@@ -57,28 +65,42 @@ namespace FikretGezer
         }
         private void EndTheRound()
         {
-            CameraMovement.Instance.StopShake();
+            
             Time.timeScale = 0f;
 
             BulletEnemyPoolManager.Instance.ReturnAllToThePool(); 
             BulletPoolManager.Instance.ReturnAllToThePool(); 
             EnemySpawnController.Instance.ReturnAllToThePool(); 
+            MediumEnemyPoolManager.Instance.ReturnAllToThePool(); 
+            HardEnemyPoolManager.Instance.ReturnAllToThePool(); 
             MoneyPoolManager.Instance.ReturnAllToThePool(); 
             MoneyTextPoolManager.Instance.ReturnAllToThePool();             
             MoneyPoolManager.Instance.ReturnAllToThePool();
             PointerPoolManager.Instance.ReturnAllToThePool();
             XPPoolManager.Instance.ReturnAllToThePool();
             XPTextPoolManager.Instance.ReturnAllToThePool();
-            ItemSelection.Instance.EnableCards();
-
+            CameraMovement.Instance.isShaking = false;
 
             InGameMenu.SetActive(false);            
-            EndOfRunMenu.SetActive(true);
 
-
-            if(CurrentLevel >= 10)
+            if(enableDeathMenu)
             {
-                //GAME FINISHED
+                isGameEnded = false;
+                Time.timeScale = 1f;
+                dieMenu.SetActive(true);                
+            }
+            else
+            {
+                if(CurrentLevel >= 10)
+                {
+                    //Won The Game
+                    winMenu.SetActive(true);
+                }            
+                else
+                {
+                    ItemSelection.Instance.EnableCards();
+                    EndOfRunMenu.SetActive(true);
+                }
             }
         }
         public void GetBackToTheGame()
@@ -92,6 +114,7 @@ namespace FikretGezer
             UpdateCurrentLevel();
 
             Time.timeScale = 1f;
+            CameraMovement.Instance.isShaking = true;
 
             EndOfRunMenu.SetActive(false);
             InGameMenu.SetActive(true);

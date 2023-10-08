@@ -7,7 +7,6 @@ namespace FikretGezer
     public class BulletEnemy : MonoBehaviour
     {
         private Action OnShoot = delegate{};
-        [SerializeField] private Gradient _gradient;
         [HideInInspector] public Vector3 direction;
         [HideInInspector] public float bulletSpeed;
 
@@ -20,7 +19,6 @@ namespace FikretGezer
             _camera = Camera.main;
         }
         private void OnEnable() {
-            StartCoroutine(nameof(ObjectColorOverTime)); 
             isDisappearCountdownStarted = true;  
             direction = Vector3.zero;
         }
@@ -32,7 +30,6 @@ namespace FikretGezer
             // } 
             if(isDisappearCountdownStarted)
             {
-                Debug.Log("damn");
                 StartCoroutine(nameof(DissapearTimer));                
             }
 
@@ -59,16 +56,6 @@ namespace FikretGezer
         public void SetDamage(float damage)
         {
             this.damage = damage;
-        }
-        IEnumerator ObjectColorOverTime()
-        {
-            var elapsedTime = 0f;
-            while(elapsedTime < 1f)
-            {
-                elapsedTime += Time.deltaTime;
-                _renderer.material.color = _gradient.Evaluate(elapsedTime);
-                yield return null;
-            }
         }
         IEnumerator DissapearTimer()
         {

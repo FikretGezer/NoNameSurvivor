@@ -13,5 +13,14 @@ namespace FikretGezer
             base.Awake();
             if(Instance == null) Instance = this;
         }
+        public override void ReturnAllToThePool()
+        {
+            foreach (GameObject item in items)
+            {
+                activeItems.Clear();
+                item.SetActive(false);
+                item.GetComponent<Animator>().ResetTrigger("trigPlaceholder");
+            }
+        }
     }
 }

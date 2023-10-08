@@ -59,15 +59,21 @@ namespace FikretGezer
                 }         
             }       
         }
+
+        bool isThereEnemy;
+        bool isTherePointer;
         private void LateUpdate() {
-            if(FindObjectOfType<PlayerController>()){
-                bool isThereEnemy = GameObject.FindWithTag("enemy");
-                if(!isThereEnemy && !isSpawned)
-                {
-                    elapsedTime = 0f;
-                    SpawnPointerOnSpawnPositions();
-                }            
-            }
+            //if (FindObjectOfType<PlayerController>())
+            //{
+            //    isThereEnemy = activeItems.Count > 0 || MediumEnemyPoolManager.Instance.activeItems.Count > 0 || HardEnemyPoolManager.Instance.activeItems.Count > 0;
+            //    isTherePointer = PointerPoolManager.Instance.activeItems.Count > 0;
+
+            //    if ((!isThereEnemy && !isTherePointer) && !isSpawned)
+            //    {
+            //        elapsedTime = 0f;
+            //        SpawnPointerOnSpawnPositions();
+            //    }
+            //}
         }
 
         public void StartNewWave()
@@ -125,52 +131,39 @@ namespace FikretGezer
                 }
             }
         }
+
         private GameObject GetEnemy()
         {
             float chance = Random.Range(1, 101);
-            isEnemyGot = true;
-            return GetPooledObjectWithType(EnemyTypes.easy);
-            // GameObject rnd;
-            // EnemyTypes type = default;
-            // int typeNumber;
-            // float currentEnemyChance = easyChance;
-            
-            // while (isEnemyGot)
-            // {
-            //     typeNumber = Random.Range(0, 3);
-            //     switch(typeNumber)
-            //     {
-            //         case 0:
-            //             currentEnemyChance = chances[0];
-            //             type = EnemyTypes.easy;
-            //             break;
-            //         case 1:
-            //             currentEnemyChance = chances[1];
-            //             type = EnemyTypes.medium;
-            //             break;
-            //         case 2:
-            //             currentEnemyChance = chances[2];
-            //             type = EnemyTypes.hard;
-            //             break;
-            //     }
+            int typeNumber = Random.Range(0, 3);
+            float currentEnemyChance = easyChance;
 
-            //     rnd = GetPooledObjectWithType(type);
-            //     if(chance < currentEnemyChance)
-            //     {
-            //         isEnemyGot = false;
-            //         return rnd;                                        
-            //     }
-            //     else
-            //         ReturnToThePool(rnd);       
-            // }
-            // return null;
+            switch (typeNumber)
+            {
+                case 0:
+                    currentEnemyChance = chances[0];
+                    break;
+                case 1:
+                    currentEnemyChance = chances[1];
+                    break;
+                case 2:
+                    currentEnemyChance = chances[2];
+                    break;
+            }
+            if (chance < currentEnemyChance)
+            {
+                if (typeNumber == 0) return GetPooledObject();
+                if (typeNumber == 1) return MediumEnemyPoolManager.Instance.GetPooledObject();
+                if (typeNumber == 2) return HardEnemyPoolManager.Instance.GetPooledObject();
+            }           
+
+            return GetPooledObject();            
         }
         IEnumerator EnemySpawn(float delayBeforeSpawn) //delay should be exactly same with the particle effect duration/lifetime
         {
             yield return new WaitForSeconds(delayBeforeSpawn);
             foreach (Vector3 position in locations)
             {
-                //GameObject enemy = GetPooledObjectWithType(EnemyTypes.easy);
                 GameObject enemy = GetEnemy();
                 if(enemy != null)
                 {
@@ -185,11 +178,7 @@ namespace FikretGezer
             elapsedTime = 0f;
 
             gotPooledObject = true;
-            while(elapsedTime < delay)
-            {
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
+            yield return new WaitForSeconds(delay);
 
             SpawnPointerOnSpawnPositions();
             gotPooledObject = false;

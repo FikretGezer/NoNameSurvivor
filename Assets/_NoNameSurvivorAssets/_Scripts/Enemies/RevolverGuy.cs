@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace FikretGezer
 {
@@ -11,6 +12,8 @@ namespace FikretGezer
         [SerializeField] private float shootingDelay = 1f;
         [SerializeField] private float bulletSpeed = 1f;
         [SerializeField] private Transform bulletPoint;
+        [SerializeField] private Transform gun;
+        [SerializeField] private GameObject _vfxMuzzle;
 
         private Vector3 direction;
         private float distance;
@@ -43,13 +46,18 @@ namespace FikretGezer
                     
                 //
 
-                if(canShoot && distance < 10f)
+                if(canShoot && distance < 20f)
                 {
                     StartCoroutine(nameof(ShootingTimer));
                 }
             }
         }
-
+        public override void Die()
+        {
+            base.Die();
+            EnemySpawnController.Instance.selectedEnemies.Remove(gameObject);
+            HardEnemyPoolManager.Instance.ReturnToThePool(gameObject);
+        }
         IEnumerator ShootingTimer()
         {
             canShoot = false;
@@ -66,11 +74,12 @@ namespace FikretGezer
         private void Shooting()
         {
             var bullet = BulletEnemyPoolManager.Instance.GetPooledObject();
-            if(bullet != null)
+            _vfxMuzzle.GetComponent<VisualEffect>().Play();
+            if (bullet != null)
             {
                 bullet.transform.position = bulletPoint.position;
-
-                bullet.GetComponent<BulletEnemy>().direction = direction;
+                var dir = (CharacterSpawner.Instance._position - gun.position).normalized;
+                bullet.GetComponent<BulletEnemy>().direction = dir;
                 bullet.GetComponent<BulletEnemy>().bulletSpeed = bulletSpeed;
                 bullet.GetComponent<BulletEnemy>().SetDamage(GivenDamage);
             }

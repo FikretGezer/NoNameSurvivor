@@ -7,6 +7,7 @@ namespace FikretGezer
     {
         public Action<int> OnCurrencyChanged = delegate{};
         public int money;
+        public int totalMoney;
         public static CurrencyManager Instance;
         private void Awake() {
             if(Instance == null) Instance = this;
@@ -14,6 +15,7 @@ namespace FikretGezer
         public void UpdateCurrency(int amount)
         {
             money += amount;
+            totalMoney += amount;
             OnCurrencyChanged(money);
         }
     }

@@ -14,6 +14,7 @@ namespace FikretGezer
         [SerializeField] private int currentExperience;
         [SerializeField] private int maxExperience;
         private int currentXPLevel;
+        public int totalExperience;
 
         private void Awake() {
             if(Instance == null) Instance = this;
@@ -27,6 +28,7 @@ namespace FikretGezer
         public void UpdateExperience(int amount)
         {
             currentExperience += amount;
+            totalExperience += amount;
             IsLeveledUp();
             OnExperienceChanged(currentExperience, maxExperience, currentXPLevel);
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace FikretGezer
 {
@@ -13,6 +14,7 @@ namespace FikretGezer
         [SerializeField] private GunTypeScriptable gunType;
         [SerializeField] private Transform bulletPoint;
         [SerializeField] private Transform target;
+        [SerializeField] private GameObject _vfxMuzzle;
         [SerializeField] private Vector3 tilt;
         [SerializeField] private float bulletCoolDown = 1f;
         [SerializeField] private float GivingDamage = 1f;
@@ -73,7 +75,8 @@ namespace FikretGezer
             ChooseTarget();
             if(target != null)
             {
-                //var dir = (target.position - transform.parent.position).normalized;                
+                //var dir = (target.position - transform.parent.position).normalized;
+                _vfxMuzzle.GetComponent<VisualEffect>().Play();
                 var dir = (target.position - transform.position).normalized;                
                 var bullet = BulletPoolManager.Instance.GetPooledObject();
                 if(bullet != null)

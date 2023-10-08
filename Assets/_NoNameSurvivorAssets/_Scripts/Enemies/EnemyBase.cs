@@ -38,12 +38,10 @@ namespace FikretGezer
             if(Health <= 0)
                 Die();
         }
-        public void Die()
+        public virtual void Die()
         {
             DropMoney(chanceOfHigherMoney);
-            DropXP(chanceOfHigherXP);
-            EnemySpawnController.Instance.selectedEnemies.Remove(gameObject);
-            EnemySpawnController.Instance.ReturnToThePool(gameObject);
+            DropXP(chanceOfHigherXP);            
             //gameObject.SetActive(false);
         }
         

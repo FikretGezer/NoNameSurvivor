@@ -6,7 +6,7 @@ namespace FikretGezer
     public abstract class PoolManagersBase : MonoBehaviour
     {
         protected List<GameObject> items;
-        private GameObject objectsParent;
+        protected GameObject objectsParent;
         
         [Header("Pool Parameters")]
         //[field: SerializeField] protected GameObject objectPrefab;
@@ -14,6 +14,8 @@ namespace FikretGezer
         [field: SerializeField] protected string objectParentsName;
         [field: SerializeField] protected int poolItemSpawnAmount;
         [field: SerializeField] protected GameObject itemsParent;
+        
+        [HideInInspector] public List<GameObject> activeItems;
 
         public virtual void Awake()
         {
@@ -36,7 +38,7 @@ namespace FikretGezer
                 }                
             }
         }
-        private GameObject CreateNewOne(bool activeness, GameObject selectedPrefab)
+        protected GameObject CreateNewOne(bool activeness, GameObject selectedPrefab)
         {            
             GameObject item = Instantiate(selectedPrefab);
             item.transform.SetParent(objectsParent.transform);
@@ -44,12 +46,13 @@ namespace FikretGezer
             item.SetActive(activeness);
             return item;
         }
-        public GameObject GetPooledObject()
+        public virtual GameObject GetPooledObject()
         {
             foreach (GameObject item in items)
             {
                 if(!item.activeInHierarchy)
                 {
+                    if(!activeItems.Contains(item)) activeItems.Add(item);
                     item.SetActive(true);
                     return item;
                 }
@@ -73,12 +76,14 @@ namespace FikretGezer
         }
         public void ReturnToThePool(GameObject item)
         {
+            if (activeItems.Contains(item)) activeItems.Remove(item);
             item.SetActive(false);
         }
-        public void ReturnAllToThePool()
+        public virtual void ReturnAllToThePool()
         {
             foreach (GameObject item in items)
             {
+                activeItems.Clear();
                 item.SetActive(false);
             }
         }

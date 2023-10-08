@@ -24,6 +24,12 @@ namespace FikretGezer
             if(FindObjectOfType<PlayerController>())
                 base.Update();
         }
+        public override void Die()
+        {
+            base.Die();
+            EnemySpawnController.Instance.selectedEnemies.Remove(gameObject);
+            EnemySpawnController.Instance.ReturnToThePool(gameObject);
+        }
         public override void Attack() //Fist, Different guns, bomb,
         {
             var dir = CharacterSpawner.Instance._position - transform.position;
