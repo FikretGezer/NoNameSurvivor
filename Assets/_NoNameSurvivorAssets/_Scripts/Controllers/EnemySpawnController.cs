@@ -32,7 +32,7 @@ namespace FikretGezer
         private const float easyChance = 100f, mediumChance = 0f, hardChance = 0f;
         public List<float> chances;
         private bool isEnemyGot;
-
+        public bool isRoundOver;
         public override void Awake()
         {
             base.Awake();
@@ -40,48 +40,34 @@ namespace FikretGezer
 
             //maxSpawnCount = 50;
             _sizeOfSpawnArea = _groundMeshRenderer.bounds.size.x / 2 - 30;
-            StartNewWave();       
 
             chances.Add(easyChance);
             chances.Add(mediumChance);
             chances.Add(hardChance);
+            StartNewWave();       
         }
         private void Update() {     
-            if(FindObjectOfType<PlayerController>())
+            if(!TimeManagement.Instance.isGameCompleted)
             {
                 if(!gotPooledObject)
                 {
                     StartCoroutine(SpawnTimer(timePerSpawn));
-                }       
-                if(TimeManagement.Instance.isNewRoundStarted)       
-                {
-                    EnemySpawnChanceArranger();
-                }         
-            }       
-        }
-
-        bool isThereEnemy;
-        bool isTherePointer;
-        private void LateUpdate() {
-            //if (FindObjectOfType<PlayerController>())
-            //{
-            //    isThereEnemy = activeItems.Count > 0 || MediumEnemyPoolManager.Instance.activeItems.Count > 0 || HardEnemyPoolManager.Instance.activeItems.Count > 0;
-            //    isTherePointer = PointerPoolManager.Instance.activeItems.Count > 0;
-
-            //    if ((!isThereEnemy && !isTherePointer) && !isSpawned)
-            //    {
-            //        elapsedTime = 0f;
-            //        SpawnPointerOnSpawnPositions();
-            //    }
-            //}
-        }
+                }              
+            }
+        }        
 
         public void StartNewWave()
         {
             elapsedTime = 0f;
             totalSpawnCount = 0;
             maxSpawnCountPerRound += 10;
-            Invoke(nameof(SpawnPointerOnSpawnPositions), 1f);
+            spawnIncreaser = TimeManagement.Instance.CurrentLevel;
+            gotPooledObject = true;
+            locations.Clear();
+            StopCoroutine(nameof(EnemySpawn));
+            StopCoroutine(nameof(SpawnTimer));
+            EnemySpawnChanceArranger();
+            StartCoroutine(SpawnTimer(1f));
         }
 
         private void SpawnPointerOnSpawnPositions()
@@ -89,15 +75,20 @@ namespace FikretGezer
             isSpawned = true;
             int min = 1 * spawnIncreaser;
             int max = 3 * spawnIncreaser;
-            int count = Random.Range(min, max);
+            int spawnCount = Random.Range(min, max);
 
-            //int count = 1;
             spawnIncreaser++;
-            totalSpawnCount += count;
+            //totalSpawnCount += count;
             locations.Clear();
-            if(TimeManagement.Instance.currentTime > 1f)
+            void ReturnThePointerWithPos(Vector3 pos)
             {
-                for (int i = 0; i < count; i++)
+                GameObject pointer = PointerPoolManager.Instance.GetPooledObject();
+                pointer.transform.position = pos;
+                pointer.GetComponent<Animator>().SetTrigger("trigPlaceholder");
+            }
+            if (TimeManagement.Instance.currentTime > 1f && !isRoundOver)
+            {
+                for (int i = 0; i < spawnCount; i++)
                 {
                     float x = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
                     float z = Random.Range(-_sizeOfSpawnArea, _sizeOfSpawnArea);
@@ -107,12 +98,6 @@ namespace FikretGezer
                 }
                 StartCoroutine(EnemySpawn(2f)); //Same amount of delay with the effect playing time
             }
-        }
-        private void ReturnThePointerWithPos(Vector3 pos)
-        {
-            GameObject pointer = PointerPoolManager.Instance.GetPooledObject();
-            pointer.transform.position = pos;
-            pointer.GetComponent<Animator>().SetTrigger("trigPlaceholder");           
         }
         private void EnemySpawnChanceArranger()
         {
@@ -131,7 +116,6 @@ namespace FikretGezer
                 }
             }
         }
-
         private GameObject GetEnemy()
         {
             float chance = Random.Range(1, 101);
@@ -162,26 +146,28 @@ namespace FikretGezer
         IEnumerator EnemySpawn(float delayBeforeSpawn) //delay should be exactly same with the particle effect duration/lifetime
         {
             yield return new WaitForSeconds(delayBeforeSpawn);
-            foreach (Vector3 position in locations)
+            if(!isRoundOver)
             {
-                GameObject enemy = GetEnemy();
-                if(enemy != null)
+                foreach (Vector3 position in locations)
                 {
-                    enemy.transform.position = position;
+                    GameObject enemy = GetEnemy();
+                    if(enemy != null)
+                    {
+                        enemy.transform.position = position;
+                    }
                 }
+                isSpawned = false;
+                PointerPoolManager.Instance.ReturnAllToThePool();
+                gotPooledObject = false;
             }
-            isSpawned = false;
-            PointerPoolManager.Instance.ReturnAllToThePool();            
         }
         IEnumerator SpawnTimer(float delay)
         {
-            elapsedTime = 0f;
-
             gotPooledObject = true;
+
             yield return new WaitForSeconds(delay);
 
-            SpawnPointerOnSpawnPositions();
-            gotPooledObject = false;
+            SpawnPointerOnSpawnPositions();            
         }
     }
 }

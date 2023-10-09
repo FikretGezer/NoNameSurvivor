@@ -41,7 +41,8 @@ namespace FikretGezer
         public virtual void Die()
         {
             DropMoney(chanceOfHigherMoney);
-            DropXP(chanceOfHigherXP);            
+            DropXP(chanceOfHigherXP);
+            SoundManager.Instance.PlaySFX(1);
             //gameObject.SetActive(false);
         }
         

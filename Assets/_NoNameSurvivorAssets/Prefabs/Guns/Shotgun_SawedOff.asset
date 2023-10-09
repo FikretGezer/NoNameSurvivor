@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Shotgun_SawedOff
   m_EditorClassIdentifier: 
   cardType: 0
-  gunName: Annihilator
+  gunName: Sawed Off
   gunImage: {fileID: 21300000, guid: 46c292f66cd465d488aec9d4b23753af, type: 3}
   gunMesh: {fileID: 1884184291698316309, guid: 2544654cbde363c4092f646c25cd8be1, type: 3}
   gunColor: {r: 0.5809746, g: 0, b: 1, a: 1}
-  cooldown: 1
-  damageAmount: 1
-  gunCost: 13
+  cooldown: 2.1
+  damageAmount: 6
+  gunCost: 50
   gunLength: 1

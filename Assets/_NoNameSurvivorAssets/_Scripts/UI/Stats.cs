@@ -38,29 +38,46 @@ namespace FikretGezer
             switch (valueToSet)
             {
                 case nameof(maxHp):
-                    maxHp += value;
+                    if(maxHp + value >= 0)
+                        maxHp += value;
+                    else
+                        maxHp = 0;
+
                     text_MaxHp.text = maxHp.ToString();
                     break;
 
                 case nameof(damage):
-                    damage += value;
+                    if (damage + value >= 0)
+                        damage += value;
+                    else
+                        damage = 0;
                     text_Damage.text = damage.ToString();
                     break;
 
                 case nameof(speed):
-                    speed += value;
+                    if (speed + value >= 20)
+                        speed = 20;
+                    else if (speed + value < 5)
+                        speed = 5;
+                    else
+                        speed += value;
                     text_Speed.text = speed.ToString();
+                    break;
+
+                case nameof(attackSpeed):
+                    if (attackSpeed + value > 50)
+                        attackSpeed = 50;
+                    else if (attackSpeed + value < 0)
+                        attackSpeed = 0;
+                    else
+                        attackSpeed += value;
+
+                    text_AttackSpeed.text = attackSpeed.ToString();
                     break;
 
                 case nameof(luck):
                     luck += value;
                     text_Luck.text = luck.ToString();
-                    break;
-
-                case nameof(attackSpeed):
-                    if(attackSpeed + value <= 50)
-                        attackSpeed += value;
-                    text_AttackSpeed.text = attackSpeed.ToString();
                     break;
 
                 case nameof(armor):

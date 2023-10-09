@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384f2e3c9197ee947bf1f3c9b65a2825, type: 3}
+  m_Name: Outlaw Ointment
+  m_EditorClassIdentifier: 
+  cardType: 1
+  itemName: Outlaw Ointment
+  itemImage: {fileID: 21300000, guid: 056a969e9e334724f957c08b4bb506ca, type: 3}
+  itemHP: 7
+  itemDamage: 2
+  itemSpeed: -1
+  itemAttackSpeed: 0
+  itemLuck: 0
+  itemArmor: 0
+  itemCost: 66

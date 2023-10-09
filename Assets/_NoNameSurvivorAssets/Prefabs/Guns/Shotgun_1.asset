@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Shotgun_1
   m_EditorClassIdentifier: 
   cardType: 0
-  gunName: Annihilator
+  gunName: Shotgun 1
   gunImage: {fileID: 21300000, guid: 4f571d3f416b7f9409695918902254a8, type: 3}
   gunMesh: {fileID: -7376103864651089618, guid: 2544654cbde363c4092f646c25cd8be1,
     type: 3}
   gunColor: {r: 0.5809746, g: 0, b: 1, a: 1}
-  cooldown: 1
-  damageAmount: 1
-  gunCost: 13
+  cooldown: 2.7
+  damageAmount: 10
+  gunCost: 70
   gunLength: 1

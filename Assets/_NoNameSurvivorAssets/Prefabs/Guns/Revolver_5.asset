@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Revolver_5
   m_EditorClassIdentifier: 
   cardType: 0
-  gunName: Annihilator
+  gunName: Revolver 3
   gunImage: {fileID: 21300000, guid: ec0f1ec7913b7e442a61854cad99223b, type: 3}
   gunMesh: {fileID: -7309389674946965509, guid: 2544654cbde363c4092f646c25cd8be1,
     type: 3}
   gunColor: {r: 0.5809746, g: 0, b: 1, a: 1}
-  cooldown: 1
-  damageAmount: 1
-  gunCost: 13
+  cooldown: 1.65
+  damageAmount: 5
+  gunCost: 20
   gunLength: 0

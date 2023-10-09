@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: SniperRifle_6
   m_EditorClassIdentifier: 
   cardType: 0
-  gunName: Annihilator
+  gunName: Sniper Rifle 5
   gunImage: {fileID: 21300000, guid: 79b8141825cdf0549b947fc6b6384cb2, type: 3}
   gunMesh: {fileID: -4402956292378221190, guid: 2544654cbde363c4092f646c25cd8be1,
     type: 3}
   gunColor: {r: 0.5809746, g: 0, b: 1, a: 1}
-  cooldown: 1
-  damageAmount: 1
-  gunCost: 13
+  cooldown: 2.7
+  damageAmount: 40
+  gunCost: 250
   gunLength: 2

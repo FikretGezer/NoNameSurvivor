@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384f2e3c9197ee947bf1f3c9b65a2825, type: 3}
+  m_Name: Desperado Draught
+  m_EditorClassIdentifier: 
+  cardType: 1
+  itemName: Desperado Draught
+  itemImage: {fileID: 21300000, guid: d9bf62c286a9af94fb03b46fc02476b0, type: 3}
+  itemHP: 11
+  itemDamage: 4
+  itemSpeed: -1
+  itemAttackSpeed: -5
+  itemLuck: 0
+  itemArmor: 0
+  itemCost: 80

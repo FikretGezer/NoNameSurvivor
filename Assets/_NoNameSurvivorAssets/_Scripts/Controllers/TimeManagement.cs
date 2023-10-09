@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace FikretGezer
 {
@@ -17,12 +18,13 @@ namespace FikretGezer
         [SerializeField] private GameObject winMenu;
 
         private bool isRoundStarted;
-        public int CurrentLevel {get; private set;} //This will be maxed at 10lvl
+        [field:SerializeField]public int CurrentLevel {get; private set;} //This will be maxed at 10lvl
         public float currentTime;
         public bool isNewRoundStarted;
         public bool refuelHealth;
         public bool isGameEnded;
         private bool enableDeathMenu;
+        public bool isGameCompleted;
         private void Awake() {
             if (Instance == null) Instance = this;
             CurrentLevel = 1;
@@ -66,7 +68,6 @@ namespace FikretGezer
         private void EndTheRound()
         {
             
-            Time.timeScale = 0f;
 
             BulletEnemyPoolManager.Instance.ReturnAllToThePool(); 
             BulletPoolManager.Instance.ReturnAllToThePool(); 
@@ -80,24 +81,27 @@ namespace FikretGezer
             XPPoolManager.Instance.ReturnAllToThePool();
             XPTextPoolManager.Instance.ReturnAllToThePool();
             CameraMovement.Instance.isShaking = false;
+            EnemySpawnController.Instance.isRoundOver = true;
 
             InGameMenu.SetActive(false);            
 
             if(enableDeathMenu)
             {
                 isGameEnded = false;
-                Time.timeScale = 1f;
-                dieMenu.SetActive(true);                
+                dieMenu.SetActive(true);
+                isGameCompleted = true;
             }
             else
             {
                 if(CurrentLevel >= 10)
                 {
                     //Won The Game
+                    isGameCompleted = true;
                     winMenu.SetActive(true);
                 }            
                 else
                 {
+                    //Time.timeScale = 0f;
                     ItemSelection.Instance.EnableCards();
                     EndOfRunMenu.SetActive(true);
                 }
@@ -108,7 +112,7 @@ namespace FikretGezer
             EnemySpawnController.Instance.gotPooledObject = false;            
             isNewRoundStarted = true;
             refuelHealth = true;
-            EnemySpawnController.Instance.spawnIncreaser = CurrentLevel;
+            EnemySpawnController.Instance.spawnIncreaser = 1;
             HealthController.Instance.SetHealthBack();
             IncreaseTimeEachRound();
             UpdateCurrentLevel();
@@ -120,9 +124,18 @@ namespace FikretGezer
             InGameMenu.SetActive(true);
             
             isRoundStarted = false;
+            EnemySpawnController.Instance.isRoundOver = false;
             HealthController.Instance.UpdateNewHealth(0);
             EnemySpawnController.Instance.StartNewWave();
             ItemsHolder.Instance.RemoveSelectedItem();
+        }
+        public void ReloadTheGame()
+        {
+            SceneManager.LoadScene("Main Game");
+        }
+        public void ReturnToTheMenu()
+        {
+            SceneManager.LoadScene("Main Menu");
         }
     }
 }

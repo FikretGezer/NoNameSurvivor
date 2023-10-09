@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: AssaultRifle2_2
   m_EditorClassIdentifier: 
   cardType: 0
-  gunName: Shooter
+  gunName: Assault Rifle 3
   gunImage: {fileID: 21300000, guid: 4010331610b387241a985456a2d49ad3, type: 3}
   gunMesh: {fileID: 6448233555166387127, guid: 2544654cbde363c4092f646c25cd8be1, type: 3}
   gunColor: {r: 0.04513645, g: 1, b: 0, a: 1}
-  cooldown: 1
-  damageAmount: 1
-  gunCost: 10
+  cooldown: 0.7
+  damageAmount: 2
+  gunCost: 130
   gunLength: 1

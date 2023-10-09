@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: SubmachineGun_2
   m_EditorClassIdentifier: 
   cardType: 0
-  gunName: Annihilator
+  gunName: Submachine Gun 2
   gunImage: {fileID: 21300000, guid: b4ddec84fd57592438e4be1062837f92, type: 3}
   gunMesh: {fileID: 8590376844424186391, guid: 2544654cbde363c4092f646c25cd8be1, type: 3}
   gunColor: {r: 0.5809746, g: 0, b: 1, a: 1}
-  cooldown: 1
+  cooldown: 0.37
   damageAmount: 1
-  gunCost: 13
+  gunCost: 65
   gunLength: 1

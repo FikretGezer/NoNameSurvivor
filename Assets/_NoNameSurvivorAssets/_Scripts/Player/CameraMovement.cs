@@ -13,10 +13,18 @@ namespace FikretGezer
         public float shakeAmount, shakeDuration; 
         public static CameraMovement Instance;
         public bool isShaking;
+
+        private AudioSource musicSource;
         private void Awake() {
             //Cursor.lockState = CursorLockMode.Locked;
             if(Instance == null) Instance = this;
             isShaking = true;
+
+            musicSource = GetComponent<AudioSource>();
+        }
+        private void Start()
+        {
+            SoundManager.Instance.PlayRandomMusic(musicSource);            
         }
         private void Update() {
             FollowPlayer();

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Pistol_2
   m_EditorClassIdentifier: 
   cardType: 0
-  gunName: Annihilator
+  gunName: Pistol 1
   gunImage: {fileID: 21300000, guid: 9090d5122c1ef6a4bbad2004e2a111df, type: 3}
   gunMesh: {fileID: -7773929819413329251, guid: 2544654cbde363c4092f646c25cd8be1,
     type: 3}
   gunColor: {r: 0.5809746, g: 0, b: 1, a: 1}
   cooldown: 1
   damageAmount: 1
-  gunCost: 13
+  gunCost: 10
   gunLength: 0

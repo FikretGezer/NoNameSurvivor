@@ -77,6 +77,7 @@ namespace FikretGezer
             {
                 //var dir = (target.position - transform.parent.position).normalized;
                 _vfxMuzzle.GetComponent<VisualEffect>().Play();
+                SoundManager.Instance.PlaySFX(0);
                 var dir = (target.position - transform.position).normalized;                
                 var bullet = BulletPoolManager.Instance.GetPooledObject();
                 if(bullet != null)
