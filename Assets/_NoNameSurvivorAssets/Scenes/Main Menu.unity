@@ -951,7 +951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1690018672
 RectTransform:
   m_ObjectHideFlags: 0
@@ -994,8 +994,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
-    m_PressedColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1048,7 +1048,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fcb92729447835344b6bd11f53fd5592, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59cdf777aeb6cd4468160ec4ba56161f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1083,7 +1083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1708563798
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1125,8 +1125,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cea7b4ec710a47341b45827a24d3b0e9, type: 2}
-  m_sharedMaterial: {fileID: 2823217422982653104, guid: cea7b4ec710a47341b45827a24d3b0e9,
+  m_fontAsset: {fileID: 11400000, guid: 9a01047b01f52a941ae4938b4f53310e, type: 2}
+  m_sharedMaterial: {fileID: 419413985755135170, guid: 9a01047b01f52a941ae4938b4f53310e,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
