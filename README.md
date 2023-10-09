@@ -1,5 +1,5 @@
 # NoNameSurvivor
-## Screenshots of the game:
+### Screenshots of the game:
 
 ![Ekran görüntüsü 2023-10-09 092845](https://github.com/FikretGezer/NoNameSurvivor/assets/64322071/64c53fc5-658e-4e04-86ff-69b687758d30)
 ![Ekran görüntüsü 2023-10-09 092913](https://github.com/FikretGezer/NoNameSurvivor/assets/64322071/267c9de7-248e-45d5-8a89-d99964ce0a76)
