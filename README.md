@@ -1,4 +1,5 @@
 # NoNameSurvivor
+If you want to play the game. Here is the link: https://fikretgezer.itch.io/no-name-survivors
 ### Screenshots of the game:
 
 ![Ekran görüntüsü 2023-10-09 092845](https://github.com/FikretGezer/NoNameSurvivor/assets/64322071/64c53fc5-658e-4e04-86ff-69b687758d30)
