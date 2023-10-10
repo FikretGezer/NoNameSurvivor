@@ -29,8 +29,8 @@ namespace FikretGezer
         public void PlayRandomMusic(AudioSource src)
         {
             int i = Random.Range(0, musics.Count);
-            AudioClip clip = musics[i];
-            src.PlayOneShot(clip);
+            src.clip = musics[i];
+            src.Play();
         }
     }
 }
