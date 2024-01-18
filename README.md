@@ -22,9 +22,3 @@ Creating No Name Survivor taught me various skills, including implementing OOP, 
 * I used OOP to create different enemies and guns, avoiding code repetition and allowing easy modification of parameters or functions within one script used by similar objects. For instance, I centralized code for enemy behavior in one script and inherited enemy types from it. The use of abstract functions facilitated easy control over being hit by these enemies.
 * While not essential, I implemented a mini-map to explore its functionality and provide players with a vision of their surroundings.
 * Weapons and items are essential in these types of games. I utilized Scriptable Objects to define various weapons and items. After each round, a store appears, offering players options to strengthen their characters.
-* 
-<div align="center">  
-  <a href="http://www.youtube.com/watch?feature=player_embedded&v=CezxOliOeV8
-" target="_blank"><img src="http://img.youtube.com/vi/CezxOliOeV8/0.jpg" 
-alt="No Name Survivor Gameplay" width="720" height="480" border="10" /></a>
-</div>
