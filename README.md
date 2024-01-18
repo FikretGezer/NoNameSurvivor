@@ -26,5 +26,5 @@ Creating No Name Survivor taught me various skills, including implementing OOP, 
 <div align="center">  
   <a href="http://www.youtube.com/watch?feature=player_embedded&v=CezxOliOeV8
 " target="_blank"><img src="http://img.youtube.com/vi/CezxOliOeV8/0.jpg" 
-alt="No Name Survivor Gameplay" width="240" height="180" border="10" /></a>
+alt="No Name Survivor Gameplay" width="720" height="480" border="10" /></a>
 </div>
