@@ -1,10 +1,10 @@
 # [No Name Survivor](https://fikretgezer.itch.io/no-name-survivors)
 ## Screenshots
 <div align="center">
-  <img src="https://github.com/FikretGezer/NoNameSurvivor/assets/64322071/64c53fc5-658e-4e04-86ff-69b687758d30" width="400" height="160">
-  <img src="https://github.com/FikretGezer/NoNameSurvivor/assets/64322071/267c9de7-248e-45d5-8a89-d99964ce0a76" width="400" height="160"> 
-  <img src="https://github.com/FikretGezer/NoNameSurvivor/assets/64322071/c448d012-422f-4867-a0b3-ca09632a84aa" width="400" height="160"> 
-  <img src="https://github.com/FikretGezer/NoNameSurvivor/assets/64322071/123d6950-2f22-4e27-aca9-8eaa0bd61c07" width="400" height="160"> 
+  <img src="https://github.com/FikretGezer/NoNameSurvivor/assets/64322071/64c53fc5-658e-4e04-86ff-69b687758d30" width="400" height="200">
+  <img src="https://github.com/FikretGezer/NoNameSurvivor/assets/64322071/267c9de7-248e-45d5-8a89-d99964ce0a76" width="400" height="200"> 
+  <img src="https://github.com/FikretGezer/NoNameSurvivor/assets/64322071/c448d012-422f-4867-a0b3-ca09632a84aa" width="400" height="200"> 
+  <img src="https://github.com/FikretGezer/NoNameSurvivor/assets/64322071/123d6950-2f22-4e27-aca9-8eaa0bd61c07" width="400" height="200"> 
 </div>
 
 ## What is this game about?
