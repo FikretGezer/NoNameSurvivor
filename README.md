@@ -24,5 +24,7 @@ Creating No Name Survivor taught me various skills, including implementing OOP, 
 * Weapons and items are essential in these types of games. I utilized Scriptable Objects to define various weapons and items. After each round, a store appears, offering players options to strengthen their characters.
 * 
 <div align="center">  
-  <img src="https://www.youtube.com/watch?v=StTqXEQ2l-Y" width="400" height="220"> 
+  <a href="http://www.youtube.com/watch?feature=player_embedded&v=CezxOliOeV8
+" target="_blank"><img src="http://img.youtube.com/vi/CezxOliOeV8/0.jpg" 
+alt="No Name Survivor Gameplay" width="240" height="180" border="10" /></a>
 </div>
